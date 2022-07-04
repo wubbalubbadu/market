@@ -1,23 +1,23 @@
 import React from "react";
+import { BrowserRouter as Routes, Route} from "react-router-dom";
+
+//Pages
+import Home from "./Pages/Home";
+import PostItems from "./Pages/PostItems";
+import RequestItem from "./Pages/RequestItem";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Home/>}/> 
+        <Route path="/post_items" element={<PostItems />}/> 
+        <Route path="/request_item" element={<RequestItem />}/>
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
+//element = {<Home/>} is putting in the component we created (aka Home.js )
