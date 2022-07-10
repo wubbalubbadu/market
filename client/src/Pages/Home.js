@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Add from '@mui/icons-material/Add';
 import {Typography,Button} from "@material-ui/core";
-import {ActionButton} from "../theme/ActionButton.js"
+import {ActionButton} from "../themes/ActionButton.js"
+import { ThemeProvider } from '@mui/material';
 
 
 function Home() {
   return (
     <div>
+      <ThemeProvider>
         <Typography variant='h2'> THIS IS HOME PAGE </Typography>
 
         <Button 
@@ -19,6 +21,7 @@ function Home() {
           //startIcon={<Add />} //dunno why when i add this npm starts render blank
         >  ADD POST
         </Button>
+
         <Button
           component={Link}
           to="/request_item"
@@ -27,7 +30,10 @@ function Home() {
         >
           REQUEST ITEMS
         </Button>
+        
         <ActionButton> Home </ActionButton>
+      </ThemeProvider>
+        
     </div>
   );
 }
