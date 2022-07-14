@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Proudct() {
+function Product() {
   return (
     <div>Proudct</div>
   )
 }
 
-export default Proudct
+export default Product
