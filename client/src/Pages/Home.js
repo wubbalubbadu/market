@@ -10,7 +10,7 @@ import {Box } from '@mui/material';
 function Home() {
   return (
     <div>
-      <Box>
+      <Box >
         <Navbar/>
         <HomeDisplay/>
       </Box>

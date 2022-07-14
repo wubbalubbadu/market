@@ -15,6 +15,8 @@ import {ThemeProvider } from "@material-ui/core/styles";
 const StyledToolbar = styled(Toolbar)({
     display:"flex",
     justifyContent: "space-between",
+    padding: 10,
+    margin: 5,
 });
 
 const IconsNav = styled(Box)(({theme}) => ({

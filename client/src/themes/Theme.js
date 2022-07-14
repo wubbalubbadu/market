@@ -12,5 +12,17 @@ export const theme = createTheme({
         otherColor:{
             main: "#ffee33"
         }
+    },
+    typography:{
+        headlineoswald: {
+            fontsize: 22,
+
+        },
+        bodynunito:{
+            fontsize: 18,
+        },
+        subbodynunito:{
+            fontsize: 18,
+        }
     }
-})
+    });
