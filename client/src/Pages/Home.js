@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Sidebar from '../Components/Sidebar.jsx';
 import HomeDisplay from '../Components/HomeDisplay.jsx';
+import Navbar from '../Components/Navbar.jsx';
 
-import { Stack, Box } from '@mui/material';
+import {Box } from '@mui/material';
 
 
 
@@ -11,11 +11,8 @@ function Home() {
   return (
     <div>
       <Box>
-        <Stack direction="row" justifyContent="space-between" spacing={2}>
-          <Sidebar/>
-          <HomeDisplay/>
-        </Stack>
-
+        <Navbar/>
+        <HomeDisplay/>
       </Box>
 
     </div>

@@ -1,17 +1,21 @@
 import React from 'react'
-import Navbar from './Navbar';
-import Post from './Post';
+import Postsection from './Postsection';
+import Sidebar from './Sidebar';
 
-import {Box} from '@mui/material'
+import {Box, Stack } from '@mui/material'
 
 
 function HomeDisplay() {
   return (
-    <Box bgcolor="skyblue" flex={2} padding={2}>
-        <Navbar/>
-        <Post/>
+          
+    <Box bgcolor="skyblue" padding={2}>
+      <Stack direction="row" justifyContent="space-between" spacing={2}>
+        <Sidebar/>
+        <Postsection/>
+      </Stack>
     </Box>
   )
+
 }
 
 export default HomeDisplay
