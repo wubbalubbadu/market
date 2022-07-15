@@ -67,10 +67,10 @@ const requestCtrl = {
     createRequest: async(req, res) =>{
         try {
             req.body.user = req.user.id;
-            const {title, description, category, user} = req.body;
+            const {title, description, category, user, low_price, high_price} = req.body;
             
             const newRequest = new Requests({
-                title: title.toLowerCase(), description, category, user
+                title: title.toLowerCase(), description, category, user, low_price, high_price
             })
 
             await newRequest.save()
@@ -90,10 +90,10 @@ const requestCtrl = {
     },
     updateRequest: async(req, res) =>{
         try {
-            const {title, description, category, user} = req.body;
+            const {title, description, category, user, low_price, high_price} = req.body;
           
             await Requests.findOneAndUpdate({_id: req.params.id}, {
-                title: title.toLowerCase(), description, category, user
+                title: title.toLowerCase(), description, category, user, low_price, high_price
             })
 
             res.json({msg: "Updated a Request"})
