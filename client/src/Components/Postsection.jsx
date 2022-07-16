@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
 
@@ -9,19 +9,21 @@ const SearchBar=styled("div")(({theme}) => ({
 }))
 
 
-
 function PostSection() {
+  const [products, setProducts] = useState(SAMPLE_PRODUCTS)
+
   return (
     <Box bgcolor="pink" flex={2} padding={2}>
       <SearchBar>Search</SearchBar>
-      <ProductList>
-        Product List
-      </ProductList>
+
+      <ProductList products={products} />  
+      {/* passing in sample products into ProductList component */}
+      
    </Box>
   )
 }
 
-const sampleProducts = [
+const SAMPLE_PRODUCTS = [
   {
     title: "Hotpot Cooker",
     price: 50,
