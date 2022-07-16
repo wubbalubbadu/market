@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Link } from "react-router-dom";
 import {theme} from "../themes/Theme"
+import './Navbar.css'
 
 import Add from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
