@@ -5,13 +5,14 @@ import BasicModal from './common/BasicModal'
 function Product({product}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (e) => {e.stopPropagation(); 
+                              setOpen(false)}; //e = event 
   //Modal to be close at default
 
   return (
     <Item onClick={handleOpen}>
       {product.title}
-      <BasicModal open={open} onClose={handleClose}></BasicModal>
+      <BasicModal open={open} onClose={handleClose} product={product}></BasicModal>
       {/* pass in modal state */}
     </Item>
   )
