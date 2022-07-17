@@ -2,15 +2,16 @@ import React, {useState} from 'react'
 import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
 
-import { Box, styled, Typography } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
-const SearchBar=styled("div")(({theme}) => ({
+const SearchBar=styled("div")({
   backgroundColor:"white",
-}))
+})
 
 
 function PostSection() {
   const [products, setProducts] = useState(SAMPLE_PRODUCTS)
+  console.log("testing",products)
 
   return (
     <Box bgcolor="pink" flex={2} padding={2}>

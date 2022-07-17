@@ -6,10 +6,13 @@ import {Box, styled} from '@mui/material'
 //to make each card responsive to screen sizes
 const Wrapper = styled('div')({
   backgroundColor: "blue",
+  padding: 12,
 })
 
+function ProductList(props) {
+  console.log('component!', props)
 
-function ProductList( products) {
+  const {products} = props //deconstruction 
 
   return (
     <Wrapper>
