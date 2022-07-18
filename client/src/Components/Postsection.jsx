@@ -29,22 +29,29 @@ const SAMPLE_PRODUCTS = [
     title: "Hotpot Cooker",
     price: 50,
     description: "Amazing Hotpot Cooker at your hand, get it with 50 bucks and you can enjoy hotpot in your own kitchen!",
-    images: "src for now",
+    images: {
+      "public_id": "test/rsltmafcyek9v4fm7oid",
+      "url": "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
+    },
     category: "cooking",
-    condition: "brandnew",
+    condition: "used",
     checked: "True",
     seller: "userid1-juliachu",
   },
   {
     title: "Iron Curler",
-    price: 100,
+    price: 5,
     description: "want the perfect curl? this is what you need",
-    images: "src for now",
-    category: "makeup",
-    condition: "used",
+    images: {
+      "public_id": "test/rsltmafcyek9v4fm7oid",
+      "url": "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
+    },
+    category: "Makeup",
+    condition: "New",
+    checked: "True",
     checked: "True",
     seller: "userid2-hayliewu",
-  },
+}
 ]
 
 export default PostSection
