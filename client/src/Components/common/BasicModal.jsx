@@ -1,7 +1,6 @@
 import React from 'react'
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import {Modal, Stack,Box, styled} from '@mui/material';
 
 const BasicModal = ({open, onClose}) => {
   const style = {

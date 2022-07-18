@@ -4,23 +4,23 @@ import {Box, styled} from '@mui/material'
 
 //this styled div should also take care of grid styling 
 //to make each card responsive to screen sizes
-const Wrapperstyle = {
+const Wrapperstyle = styled('div')({
   backgroundColor: "blue",
   padding: 2,
-}
+  display: 'inline-flex',
+})
 
 function ProductList(props) {
-  console.log('component!', props)
 
   const {products} = props //deconstruction 
 
   return (
-    <Box sx={Wrapperstyle}>
+    <Wrapperstyle>
       {/* map each of the product into a Product component */}
       {products.map( product => {
         return <Product product={product}/>
       })}
-    </Box>
+    </Wrapperstyle>
   )
 }
 
