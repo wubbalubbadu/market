@@ -5,7 +5,8 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 const app = express()
 
 app.use(express.json())
@@ -14,20 +15,29 @@ app.use(cors())
 app.use(fileUpload({
     useTempFiles: true
 }))
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: process.env.COOKIE_KEY,
+}))
 
 
+app.use(passport.initialize())
+app.use(passport.session())
 
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
     res.json({mes: "hihi"})
 })
 
 // Routes
+
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productRouter'))
 app.use('/api', require('./routes/requestRouter'))
+
+const passportSetup = require('./config/passport')
 
 
 // Connect to mongodb
@@ -48,7 +58,6 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
     })
 }
-
 
 
 const PORT = process.env.PORT || 5000
