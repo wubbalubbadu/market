@@ -12,7 +12,7 @@ import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui
 import {ThemeProvider } from "@material-ui/core/styles";
 import {GoogleLogin} from 'react-google-login'
 import GoogleIcon from '@mui/icons-material/Google';
-
+import { GlobalState } from '../GlobalState';
 // contains searchbar and Post Request button
 
 const StyledToolbar = styled(Toolbar)({
@@ -34,6 +34,7 @@ const IconsNav = styled(Box)(({theme}) => ({
 
 
 function Navbar() {
+  const value = useContext(GlobalState)
 
   const googleSuccess = async (res) => {
     console.log(res)

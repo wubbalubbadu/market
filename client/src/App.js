@@ -18,13 +18,14 @@ function App() {
   
   return (
     <div className="App">
+    <DataProvider>
       <Routes>
-      <Route path="/" element={<Home/>}/> 
-      <Route path="/post_request_items" element={<PostRequest />}/> 
-      <Route path="/account" element={<Account/>}/>
- 
+        <Route path="/" element={<Home/>}/> 
+        <Route path="/post_request_items" element={<PostRequest />}/> 
+        <Route path="/account" element={<Account/>}/>
 
       </Routes>
+      </DataProvider>
     </div>
   );
 }
