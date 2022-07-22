@@ -10,7 +10,7 @@ function Home() {
   return (
     <div>
       <Box >
-        <Navbar/>
+        <Navbar key={1}/>
         <HomeDisplay/>
       </Box>
 

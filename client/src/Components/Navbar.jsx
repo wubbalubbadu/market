@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 import {theme} from "../themes/Theme"
 import Login from './Login'
@@ -11,7 +11,7 @@ import ProfileIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Forum';
 import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui/material'
 import {ThemeProvider } from "@material-ui/core/styles";
-
+import {useLocation} from 'react-router-dom'
 //import { GlobalState } from '../GlobalState';
 
 
@@ -36,11 +36,20 @@ const IconsNav = styled(Box)(({theme}) => ({
 
 
 function Navbar() {
+
+  const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
 
-  console.log(user)
+  useEffect(()=>{
+    console.log('imhere')
+    //const token = user?.token
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  
+  },[location])
 
-  return (
+  
+
+  return  (
     <ThemeProvider theme={theme}>
       <AppBar position='sticky'>
         <StyledToolbar>

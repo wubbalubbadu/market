@@ -1,26 +1,25 @@
 import {GoogleLogin} from 'react-google-login'
 import { Button } from '@material-ui/core';
 import GoogleIcon from '@mui/icons-material/Google';
-import {useDispatch} from 'react-redux'
-import axios from 'axios'
-import {Navigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
 
 const clientId = '381794249860-mcjanab1cd2803ksbek94pgk5me0k7d9.apps.googleusercontent.com'
 
 function Login () {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
 
 
-  
     const googleSuccess = async (res) => {
       const result = res?.profileObj;
       const token = res?.tokenId;
 
     try {
       dispatch({ type: 'AUTH', data: { result, token } });
-
-      Navigate('/');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
