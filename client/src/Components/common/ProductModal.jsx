@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import {Modal, Stack,Box, styled, Button}  from '@mui/material';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-
+import {Link} from 'react-router-dom'
 const BasicModal = ({open, onClose, product}) => {
   const style = {
     position: 'absolute',
@@ -32,8 +32,9 @@ const BasicModal = ({open, onClose, product}) => {
                     <Typography> {product.seller} </Typography>
                 </Box>
                 <ActionButtonDiv>
-                    <Button sx={buttonstyle}>Contact Seller</Button>
-                    <Button sx={buttonstyle}>Add to Watchings</Button>
+                    <Button sx={buttonstyle} component={Link} to="/message">
+                    Contact Seller</Button>
+                    <Button sx={buttonstyle} >Add to Watchings</Button>
                 </ActionButtonDiv>
             </Box>
         </Stack>

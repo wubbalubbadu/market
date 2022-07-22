@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
-import { GlobalState } from '../GlobalState'
+//import { GlobalState } from '../GlobalState'
 import { Box, styled } from '@mui/material';
 
 const SearchBar=styled("div")({
@@ -10,9 +10,9 @@ const SearchBar=styled("div")({
 
 
 function PostSection() {
-  const state = useContext(GlobalState)
-  const [products] = state.productsAPI.products
-  //const [products, setProducts] = useState(SAMPLE_PRODUCTS)
+  //const state = useContext(GlobalState)
+  //const [products] = state.productsAPI.products
+  const [products, setProducts] = useState(SAMPLE_PRODUCTS)
   console.log("testing",products)
 
   return (
