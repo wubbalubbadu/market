@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 const cookieSession = require('cookie-session')
-const passport = require('passport')
+
 const app = express()
 
 app.use(express.json())
@@ -21,8 +21,6 @@ app.use(cookieSession({
 }))
 
 
-app.use(passport.initialize())
-app.use(passport.session())
 
 
 app.get('/', (req, res) => {
@@ -37,7 +35,6 @@ app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productRouter'))
 app.use('/api', require('./routes/requestRouter'))
 
-const passportSetup = require('./config/passport')
 
 
 // Connect to mongodb
@@ -52,13 +49,12 @@ mongoose.connect(URI, {
     console.log('Connected to MongoDB')
 })
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'))
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-    })
-}
-
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static('client/build'))
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+//     })
+// }
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>{

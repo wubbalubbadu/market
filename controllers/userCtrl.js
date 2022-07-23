@@ -1,7 +1,14 @@
 const Users = require('../models/userModel')
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+const {google} = require('googleapis')
+const {OAuth2} = google.auth
+// const fetch = require('node-fetch')
+
+// const client = new OAuth2(process.env.GOOGLE_CLIENT_ID)
+
+// const {CLIENT_URL} = process.env
 
 const userCtrl = {
     
@@ -41,32 +48,32 @@ const userCtrl = {
     //         return res.status(500).json({msg: err.message})
     //     }
     // },
-    login: async (req, res) =>{
-        try {
-            const {email, password} = req.body;
+    // login: async (req, res) =>{
+    //     try {
+    //         const {email, password} = req.body;
 
-            const user = await Users.findOne({email})
-            if(!user) return res.status(400).json({msg: "User does not exist."})
+    //         const user = await Users.findOne({email})
+    //         if(!user) return res.status(400).json({msg: "User does not exist."})
 
-            const isMatch = await bcrypt.compare(password, user.password)
-            if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
+    //         const isMatch = await bcrypt.compare(password, user.password)
+    //         if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
 
-            // If login success , create access token and refresh token
-            const accesstoken = createAccessToken({id: user._id})
-            const refreshtoken = createRefreshToken({id: user._id})
+    //         // If login success , create access token and refresh token
+    //         const accesstoken = createAccessToken({id: user._id})
+    //         const refreshtoken = createRefreshToken({id: user._id})
 
-            res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
-                path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 // 7d
-            })
+    //         res.cookie('refreshtoken', refreshtoken, {
+    //             httpOnly: true,
+    //             path: '/user/refresh_token',
+    //             maxAge: 7*24*60*60*1000 // 7d
+    //         })
 
-            res.json({accesstoken})
+    //         res.json({accesstoken})
 
-        } catch (err) {
-            return res.status(500).json({msg: err.message})
-        }
-    },
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message})
+    //     }
+    // },
     logout: async (req, res) =>{
         try {
             res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
@@ -105,6 +112,47 @@ const userCtrl = {
         }
     },
 
+    googleLogin: async(req, res) => {
+        try {
+            const {profileObj,tokenId} = req.body
+            
+            const {email, name, imageUrl } = profileObj
+
+            const user = await Users.findOne({email})
+     
+
+            if(user){
+        
+                // const refresh_token = createRefreshToken({id: user._id})
+                // res.cookie('refreshtoken', refresh_token, {
+                //     httpOnly: true,
+                //     path: '/user/refresh_token',
+                //     maxAge: 7*24*60*60*1000 // 7 days
+                // })
+
+                res.json({msg: "Login success!"})
+            }else{
+                const newUser = new Users({
+                    name, email,  avatar: imageUrl
+                })
+
+                await newUser.save()
+                
+                // const refresh_token = createRefreshToken({id: newUser._id})
+                // res.cookie('refreshtoken', refresh_token, {
+                //     httpOnly: true,
+                //     path: '/user/refresh_token',
+                //     maxAge: 7*24*60*60*1000 // 7 days
+                // })
+
+                res.json({msg: "Login success!"})
+            }
+
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
     
     addCart: async (req, res) =>{
         try {

@@ -8,7 +8,6 @@ import PostRequest from "./Pages/PostRequest";
 import Account from "./Pages/Account"
 import Message from "./Pages/Message"
 
-const clientId = '381794249860-mcjanab1cd2803ksbek94pgk5me0k7d9.apps.googleusercontent.com'
 function App() {
 
   
@@ -22,6 +21,8 @@ function App() {
   
 
   return (
+    
+
     <div className="App">
 
       <Routes>
@@ -31,8 +32,8 @@ function App() {
         <Route path="/message" element={<Message/>}/>
 
       </Routes>
-      
-    </div>
+   </div>
+   
   );
 }
 
