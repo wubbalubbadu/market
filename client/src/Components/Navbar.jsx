@@ -41,8 +41,7 @@ function Navbar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
 
   useEffect(()=>{
-    console.log('imhere')
-    //const token = user?.token
+    
     setUser(JSON.parse(localStorage.getItem('profile')));
   
   },[location])

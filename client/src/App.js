@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import {gapi} from "gapi-script"
-//import {DataProvider} from './GlobalState'
-//Pages
 import Home from "./Pages/Home";
 import PostRequest from "./Pages/PostRequest";
 import Account from "./Pages/Account"
