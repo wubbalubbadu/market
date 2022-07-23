@@ -34,7 +34,9 @@ const BasicModal = ({open, onClose, product}) => {
                 <ActionButtonDiv>
                     <Button sx={buttonstyle} component={Link} to="/message">
                     Contact Seller</Button>
-                    <Button sx={buttonstyle} >Add to Watchings</Button>
+                    <Button sx={buttonstyle} 
+                    // onClick={()=> addLoves(product)}
+                    >Add to Watchings</Button>
                 </ActionButtonDiv>
             </Box>
         </Stack>

@@ -12,7 +12,6 @@ function Login () {
     const navigate = useNavigate()
     
 
-
     const googleSuccess = async (res) => {
       const result = res?.profileObj;
       const token = res?.tokenId;
@@ -26,7 +25,6 @@ function Login () {
       }
 
   };
-
     const googleError = (error) => console.log(error);
 
   return(

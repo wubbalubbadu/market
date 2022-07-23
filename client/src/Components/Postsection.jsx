@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
-import {setProducts} from '../redux/actions/productActions'
+import {setProducts} from '../redux/actions/productsActions'
 
 import axios from 'axios'
 import { Box, styled } from '@mui/material';
@@ -14,7 +14,7 @@ const SearchBar=styled("div")({
 
 function PostSection() {
 
-  const products = useSelector((state)=>state.allProducts.products)
+  const products = useSelector((state)=>state.productsReducer.products)
   const dispatch = useDispatch()
   const fetchProducts = async () => {
     const response = await axios
@@ -22,7 +22,6 @@ function PostSection() {
     .catch((err)=> {
       console.log(err)
     })
-    console.log(response)
     dispatch(setProducts(response.data.products))
   }
   useEffect(()=>{
