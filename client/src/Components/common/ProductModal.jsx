@@ -2,6 +2,9 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import {Modal, Stack,Box, styled, Button}  from '@mui/material';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import {QuiltedImageList} from './until';
+
+
 
 const BasicModal = ({open, onClose, product}) => {
   const style = {
@@ -23,7 +26,10 @@ const BasicModal = ({open, onClose, product}) => {
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
         <Stack direction="row" justifyContent="space-between" spacing={1}>
-            <Box sx={imagediv}> text</Box>
+            <Box sx={imagediv}> 
+              <QuiltedImageList></QuiltedImageList>
+            </Box>
+ 
             <Box justifyContent="flex-start" sx={PDheadingDiv}>
                 <Typography id="modal-modal-title" fontSize={30} fontWeight="bold"> {product.title} </Typography>
                 <Typography fontSize={24} fontWeight="light" sx={{textDecoration: 'underline'}}> {product.category} </Typography>
@@ -62,12 +68,13 @@ const PDheadingDiv = {
 }
 
 const imagediv = {
-    bgcolor:'black',
-    width: 700,
-    height:480,
+    bgcolor:'pink',
     borderRadius: 5,
+    width: "60%",
+    height:"500px",
+    overflow:"hidden",
+    marginRight: '-5px',
 }
-
 
 const ActionButtonDiv =styled('div')({
     backgroundColor:"yellow",

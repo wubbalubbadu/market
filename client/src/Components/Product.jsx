@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import Box from '@mui/material/Box';
 import ProductModal from './common/ProductModal'
-import { Typography } from '@mui/material';
+import { Typography, styled} from '@mui/material';
+
 
 function Product({product}) {
   const [open, setOpen] = useState(false);
@@ -35,3 +36,4 @@ const itemstyle = {
   height:268,
   padding: 2,
 };
+

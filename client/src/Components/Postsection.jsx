@@ -16,10 +16,8 @@ function PostSection() {
   return (
     <Box bgcolor="pink" flex={2} padding={2}>
       <SearchBar>Search</SearchBar>
-
       <ProductList products={products} />  
       {/* passing in sample products into ProductList component */}
-      
    </Box>
   )
 }
@@ -43,8 +41,8 @@ const SAMPLE_PRODUCTS = [
     price: 5,
     description: "want the perfect curl? this is what you need",
     images: {
-      "public_id": "test/rsltmafcyek9v4fm7oid",
-      "url": "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
+      public_id: "test/rsltmafcyek9v4fm7oid",
+      url: "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
     },
     category: "Makeup",
     condition: "New",
