@@ -5,14 +5,35 @@ import { BrowserRouter } from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {theme} from "./themes/Theme"
+<<<<<<< HEAD
+=======
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { reducers } from './redux/reducer/index'; 
+>>>>>>> main
 
+
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+<<<<<<< HEAD
   <BrowserRouter>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
   </BrowserRouter>
+=======
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+
+  </Provider>
+  
+>>>>>>> main
 );
 
 // If you want to start measuring performance in your app, pass a function

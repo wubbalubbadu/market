@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React from 'react'
 
 import { Link } from "react-router-dom";
 import {theme} from "../themes/Theme"
+=======
+import React, {useState, useEffect} from 'react'
+import { Link } from "react-router-dom";
+import {theme} from "../themes/Theme"
+import Login from './Login'
+>>>>>>> main
 import './Navbar.css'
 
 import Add from '@mui/icons-material/Add';
@@ -11,6 +18,13 @@ import ProfileIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Forum';
 import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui/material'
 import {ThemeProvider } from "@material-ui/core/styles";
+<<<<<<< HEAD
+=======
+import {useLocation} from 'react-router-dom'
+//import { GlobalState } from '../GlobalState';
+
+
+>>>>>>> main
 // contains searchbar and Post Request button
 
 const StyledToolbar = styled(Toolbar)({
@@ -30,6 +44,7 @@ const IconsNav = styled(Box)(({theme}) => ({
 }));
 
 
+<<<<<<< HEAD
 function Navbar() {
   return (
 
@@ -37,13 +52,45 @@ function Navbar() {
       <AppBar position='sticky'>
         <StyledToolbar>
           <Typography variant="h6" sx={{display: {xs: "none", sm:"block"}}}>
+=======
+
+function Navbar() {
+
+  const location = useLocation();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+
+  useEffect(()=>{
+    
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  
+  },[location])
+
+  
+
+  return  (
+    <ThemeProvider theme={theme}>
+      <AppBar position='sticky'>
+        <StyledToolbar>
+          <Typography component = {Link} to='/' variant="h6" sx={{display: {xs: "none", sm:"block"}}}>
+>>>>>>> main
             MARKET 
           </Typography>
           {/* <HomeIcon/> */}
           <IconsNav> 
+<<<<<<< HEAD
             <IconButton component={Link} to="/account">
               <ProfileIcon margin={2}/>
             </IconButton>
+=======
+            { user ? (
+              <IconButton component={Link} to="/account">
+              <ProfileIcon margin={2}/>
+            </IconButton>
+            ) : (
+              <Login/>
+            )
+            }
+>>>>>>> main
 
             <FavoriteIcon/>
             <ChatIcon/>
