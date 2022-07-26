@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
+import TabSwitch from "./TabSwitch"
 import {setProducts} from '../redux/actions/productsActions'
 
 import axios from 'axios'
@@ -31,6 +31,7 @@ function PostSection() {
   return (
     <Box bgcolor="pink" flex={2} padding={2}>
       <SearchBar>Search</SearchBar>
+      <TabSwitch>TabSwitch</TabSwitch>
       <ProductList products={products} />  
    </Box>
   )
