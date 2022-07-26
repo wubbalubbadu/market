@@ -18,11 +18,7 @@ function ProductList(props) {
     <Wrapperstyle>
       {/* map each of the product into a Product component */}
       {products.map( product => {
-<<<<<<< HEAD
-        return <Product product={product}/>
-=======
         return <Product key={product._id} product={product}/>
->>>>>>> main
       })}
     </Wrapperstyle>
   )

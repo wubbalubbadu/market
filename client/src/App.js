@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { Routes, Route} from "react-router-dom";
-
-//Pages
-import Home from "./Pages/Home";
-import PostRequest from "./Pages/PostRequest";
-import Account from "./Pages/Account"
-=======
 import React, { useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import {gapi} from "gapi-script"
@@ -14,7 +5,6 @@ import Home from "./Pages/Home";
 import PostRequest from "./Pages/PostRequest";
 import Account from "./Pages/Account"
 import Message from "./Pages/Message"
->>>>>>> main
 
 function App() {
 
@@ -32,14 +22,6 @@ function App() {
     
 
     <div className="App">
-<<<<<<< HEAD
-      <Routes>
-        <Route path="/" element={<Home/>}/> 
-        <Route path="/post_request_items" element={<PostRequest />}/> 
-        <Route path="/account" elemnt={<Account/>}/>
-      </Routes>
-    </div>
-=======
 
       <Routes>
         <Route path="/" element={<Home/>}/> 
@@ -50,7 +32,6 @@ function App() {
       </Routes>
    </div>
    
->>>>>>> main
   );
 }
 
