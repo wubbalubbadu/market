@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import {Modal, Stack,Box, styled, Button}  from '@mui/material';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 const BasicModal = ({open, onClose, product}) => {
   const style = {
     position: 'absolute',
@@ -19,6 +20,7 @@ const BasicModal = ({open, onClose, product}) => {
     padding:10,
   };
 
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
@@ -34,8 +36,7 @@ const BasicModal = ({open, onClose, product}) => {
                 <ActionButtonDiv>
                     <Button sx={buttonstyle} component={Link} to="/message">
                     Contact Seller</Button>
-                    <Button sx={buttonstyle} 
-                    // onClick={()=> addLoves(product)}
+                    <Button sx={buttonstyle}
                     >Add to Watchings</Button>
                 </ActionButtonDiv>
             </Box>
