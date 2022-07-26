@@ -89,7 +89,9 @@ const ImgsContainer = styled.div`
   background: purple;
   border-radius: 5px;
   justify-content: center;
+  display: grid;
   width:'30%'
+  grid-template-rows:1rf 1rf 1rf;
 `
 
 const ActionButtonDiv =styled.div`

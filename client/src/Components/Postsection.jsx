@@ -12,21 +12,21 @@ const SearchBar=styled("div")({
 })
 
 
-function PostSection() {
+function PostSection({ products }) {
 
-  const products = useSelector((state)=>state.productsReducer.products)
-  const dispatch = useDispatch()
-  const fetchProducts = async () => {
-    const response = await axios
-    .get('http://localhost:5000/api/products')
-    .catch((err)=> {
-      console.log(err)
-    })
-    dispatch(setProducts(response.data.products))
-  }
-  useEffect(()=>{
-    fetchProducts()
-  },[])
+  // const products = useSelector((state)=>state.productsReducer.products)
+  // const dispatch = useDispatch()
+  // const fetchProducts = async () => {
+  //   const response = await axios
+  //   .get('http://localhost:5000/api/products')
+  //   .catch((err)=> {
+  //     console.log(err)
+  //   })
+  //   dispatch(setProducts(response.data.products))
+  // }
+  // useEffect(()=>{
+  //   fetchProducts()
+  // },[])
 
   return (
     <Box bgcolor="pink" flex={2} padding={2}>
