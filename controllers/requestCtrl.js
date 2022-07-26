@@ -68,7 +68,8 @@ const requestCtrl = {
         try {
             req.body.user = req.user.id;
             const {title, description, category, user, low_price, high_price} = req.body;
-            
+            if(high_price < low_price)
+                return res.status(400).json({msg: "Upper price must be higher than lower price."})
             const newRequest = new Requests({
                 title: title.toLowerCase(), description, category, user, low_price, high_price
             })

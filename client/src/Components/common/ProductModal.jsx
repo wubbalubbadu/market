@@ -2,10 +2,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import {Modal, Stack,Box, styled, Button}  from '@mui/material';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-import {QuiltedImageList} from './until';
-
-
-
+import {Link} from 'react-router-dom'
 const BasicModal = ({open, onClose, product}) => {
   const style = {
     position: 'absolute',
@@ -26,10 +23,7 @@ const BasicModal = ({open, onClose, product}) => {
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
         <Stack direction="row" justifyContent="space-between" spacing={1}>
-            <Box sx={imagediv}> 
-              <QuiltedImageList></QuiltedImageList>
-            </Box>
- 
+            <Box sx={imagediv}> text</Box>
             <Box justifyContent="flex-start" sx={PDheadingDiv}>
                 <Typography id="modal-modal-title" fontSize={30} fontWeight="bold"> {product.title} </Typography>
                 <Typography fontSize={24} fontWeight="light" sx={{textDecoration: 'underline'}}> {product.category} </Typography>
@@ -38,8 +32,9 @@ const BasicModal = ({open, onClose, product}) => {
                     <Typography> {product.seller} </Typography>
                 </Box>
                 <ActionButtonDiv>
-                    <Button sx={buttonstyle}>Contact Seller</Button>
-                    <Button sx={buttonstyle}>Add to Watchings</Button>
+                    <Button sx={buttonstyle} component={Link} to="/message">
+                    Contact Seller</Button>
+                    <Button sx={buttonstyle} >Add to Watchings</Button>
                 </ActionButtonDiv>
             </Box>
         </Stack>
@@ -68,13 +63,12 @@ const PDheadingDiv = {
 }
 
 const imagediv = {
-    bgcolor:'pink',
+    bgcolor:'black',
+    width: 700,
+    height:480,
     borderRadius: 5,
-    width: "60%",
-    height:"500px",
-    overflow:"hidden",
-    marginRight: '-5px',
 }
+
 
 const ActionButtonDiv =styled('div')({
     backgroundColor:"yellow",

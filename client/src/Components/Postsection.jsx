@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {theme} from "../themes/Theme";
 import ProductList from './ProductList';
+import {setProducts} from '../redux/actions/productActions'
 
+import axios from 'axios'
 import { Box, styled } from '@mui/material';
 
 const SearchBar=styled("div")({
@@ -10,14 +13,27 @@ const SearchBar=styled("div")({
 
 
 function PostSection() {
-  const [products, setProducts] = useState(SAMPLE_PRODUCTS)
-  console.log("testing",products)
+
+  const products = useSelector((state)=>state.allProducts.products)
+  const dispatch = useDispatch()
+  const fetchProducts = async () => {
+    const response = await axios
+    .get('http://localhost:5000/api/products')
+    .catch((err)=> {
+      console.log(err)
+    })
+    console.log(response)
+    dispatch(setProducts(response.data.products))
+  }
+  useEffect(()=>{
+    fetchProducts()
+  },[])
 
   return (
     <Box bgcolor="pink" flex={2} padding={2}>
       <SearchBar>Search</SearchBar>
       <ProductList products={products} />  
-      {/* passing in sample products into ProductList component */}
+
    </Box>
   )
 }
@@ -41,8 +57,8 @@ const SAMPLE_PRODUCTS = [
     price: 5,
     description: "want the perfect curl? this is what you need",
     images: {
-      public_id: "test/rsltmafcyek9v4fm7oid",
-      url: "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
+      "public_id": "test/rsltmafcyek9v4fm7oid",
+      "url": "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg"
     },
     category: "Makeup",
     condition: "New",
