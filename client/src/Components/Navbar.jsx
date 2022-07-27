@@ -12,7 +12,6 @@ import ChatIcon from '@mui/icons-material/Forum';
 import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui/material'
 import {ThemeProvider } from "@material-ui/core/styles";
 import {useLocation} from 'react-router-dom'
-//import { GlobalState } from '../GlobalState';
 
 
 // contains searchbar and Post Request button
