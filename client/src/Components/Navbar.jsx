@@ -5,14 +5,13 @@ import Login from './Login'
 import './Navbar.css'
 
 import Add from '@mui/icons-material/Add';
-import HomeIcon from '@mui/icons-material/Home';
+//import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import ProfileIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Forum';
 import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui/material'
 import {ThemeProvider } from "@material-ui/core/styles";
 import {useLocation} from 'react-router-dom'
-//import { GlobalState } from '../GlobalState';
 
 
 // contains searchbar and Post Request button
