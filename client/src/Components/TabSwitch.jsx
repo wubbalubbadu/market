@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function TabSwitch() {
-  return (
-    <div>TabSwitch</div>
-  )
+  return <div>TabSwitch</div>;
 }
 
-export default TabSwitch
+export default TabSwitch;
