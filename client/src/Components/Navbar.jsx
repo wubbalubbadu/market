@@ -5,7 +5,7 @@ import Login from './Login'
 import './Navbar.css'
 
 import Add from '@mui/icons-material/Add';
-import HomeIcon from '@mui/icons-material/Home';
+//import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import ProfileIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Forum';
