@@ -16,6 +16,10 @@ function HomeDisplay() {
         console.log(err);
       });
     dispatch(setProducts(response.data.products));
+    // dispatch({
+    //   type: 'SET_PRODUCTS', // type is required
+    //   payload: response.data.products
+    // })
   };
   useEffect(() => {
     fetchProducts();
@@ -24,7 +28,7 @@ function HomeDisplay() {
   return (
     <Box bgcolor="skyblue" padding={2}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
-        <Sidebar setProducts={setProducts} />
+        <Sidebar />
         <Postsection products={products} />
       </Stack>
     </Box>
