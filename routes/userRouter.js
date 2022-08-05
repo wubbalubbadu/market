@@ -15,7 +15,7 @@ router.get('/logout', (req,res)=>{
 })
 
 router.post('/google_login', userCtrl.googleLogin)
-router.get('/refresh_token', userCtrl.refreshToken)
+//router.get('/refresh_token', userCtrl.refreshToken)
 
 router.get('/userinfo', auth,  userCtrl.getUser)
 

@@ -1,5 +1,6 @@
 export const ActionTypes = {
     SET_PRODUCTS: 'SET_PRODUCTS',
+    CREATE_PRODUCT: 'CREATE_PRODUCT',
     AUTH:'AUTH',
     ADD_TO_LOVES:'ADD_TO_LOVES',
 }

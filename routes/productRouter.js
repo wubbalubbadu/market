@@ -5,8 +5,9 @@ const authAdmin = require('../middleware/authAdmin')
 
 
 router.route('/products')
-    .get(productCtrl.getProducts) //if it's get HTTP request => then getProducts (controllers)
-    .post(auth, productCtrl.createProduct)
+    .get(productCtrl.getProducts)
+    .post(productCtrl.createProduct)
+    //.post(auth, productCtrl.createProduct)
 
 
 router.route('/products/:id')
