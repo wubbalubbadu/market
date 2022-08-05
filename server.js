@@ -21,13 +21,11 @@ app.use(cookieSession({
 }))
 
 
-
-
 app.get('/', (req, res) => {
     res.json({mes: "hihi"})
 })
 
-// Routes
+// Routes 
 
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
@@ -37,7 +35,7 @@ app.use('/api', require('./routes/requestRouter'))
 
 
 
-// Connect to mongodb
+// Connect to mongodb 
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {
     useCreateIndex: true,
@@ -56,8 +54,10 @@ mongoose.connect(URI, {
 //     })
 // }
 
+//backend server entrypoint 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>{
     console.log('Server is running on port', PORT)
 })
+
 
