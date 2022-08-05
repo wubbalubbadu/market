@@ -6,11 +6,11 @@ import PostRequest from "./Pages/PostRequest";
 import Account from "./Pages/Account"
 import Message from "./Pages/Message"
 
+
 function App() {
 
-  
   gapi.load("client:auth2", () => {
-    gapi.client.init({
+    gapi.auth2.init({
       clientId:
         "381794249860-mcjanab1cd2803ksbek94pgk5me0k7d9.apps.googleusercontent.com",
       plugin_name: "chat",
@@ -19,10 +19,8 @@ function App() {
   
 
   return (
-    
 
     <div className="App">
-
       <Routes>
         <Route path="/" element={<Home/>}/> 
         <Route path="/post_request_items" element={<PostRequest />}/> 
