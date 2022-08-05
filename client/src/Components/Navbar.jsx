@@ -49,7 +49,7 @@ function Navbar() {
 
   return  (
     <ThemeProvider theme={theme}>
-      <AppBar position='sticky'>
+      <AppBar position='sticky' >
         <StyledToolbar>
           <Typography component = {Link} to='/' variant="h6" sx={{display: {xs: "none", sm:"block"}}}>
             MARKET 
@@ -57,16 +57,16 @@ function Navbar() {
           {/* <HomeIcon/> */}
           <IconsNav> 
             { user ? (
-              <IconButton component={Link} to="/account">
-              <ProfileIcon margin={2}/>
+              <IconButton component={Link} to="/account" >
+              <ProfileIcon margin={2} style={{ color: 'black' }}/>
             </IconButton>
             ) : (
               <Login/>
             )
             }
 
-            <FavoriteIcon/>
-            <ChatIcon/>
+            <FavoriteIcon style={{ color: 'black' }} />
+            <ChatIcon style={{ color: 'black' }}/>
             <Button 
                 component={Link}
                 to="/post_request_items"

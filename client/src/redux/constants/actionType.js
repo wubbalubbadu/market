@@ -4,3 +4,4 @@ export const ActionTypes = {
     AUTH:'AUTH',
     ADD_TO_LOVES:'ADD_TO_LOVES',
 }
+
