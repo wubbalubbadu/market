@@ -4,7 +4,6 @@ import { Modal, Stack, Box, Button } from "@mui/material";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const ProductModal = ({ open, onClose, product }) => {
   const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);

@@ -20,9 +20,9 @@ const Sidebar = () => {
     >
       {categories.map((category) => (
         <Typography
+          key={category}
           onClick={async () => {
             // if (currentTab === 'sell') {
-
             // }
             if (category === "All") {
               const response = await axios
