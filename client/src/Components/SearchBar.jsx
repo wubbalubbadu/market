@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import { Typography } from "@mui/material";
@@ -11,30 +11,47 @@ function SearchBar() {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
-  const searchbytitle = async () => {
+  const fetchbytitle = async () => {
     const response = await axios.get(
       "http://localhost:5000/api/products?title[regex]=" + query
     );
     dispatch(setProducts(response.data.products));
-    // console.log("click submitsearch, keyword", { query });
+    console.log("click submitsearch, keyword", query);
   };
 
+  useEffect(() => {
+    const keyDownHandler = (event, query) => {
+      if (event.key === "Enter") {
+        console.log("User pressed: ", event.key);
+        event.preventDefault();
+        // 👇️ call submit function here
+        fetchbytitle();
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
+
   return (
-    <SearchBox>
+    <SearchContainer>
+      <SearchIcon></SearchIcon>
       <SearchInput
         placeholder="Feed me some keywords"
         onChange={(e) => setQuery(e.target.value)}
       ></SearchInput>
-      <SummitButton id="submitsearch" onClick={searchbytitle}>
+      <SummitButton id="submitsearch" onClick={fetchbytitle}>
         Submit
       </SummitButton>
-    </SearchBox>
+    </SearchContainer>
   );
 }
 
 export default SearchBar;
 
-const SearchBox = styled.div`
+const SearchContainer = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -45,6 +62,7 @@ const SearchBox = styled.div`
 const SearchInput = styled.input`
   padding: 0.5em;
   background: papayawhip;
+  padding: 0.5em;
   border: 0.25em;
   border-radius: 5px;
   width: 40%;
