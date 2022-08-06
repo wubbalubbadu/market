@@ -19,21 +19,14 @@ function SearchBar() {
     console.log("click submitsearch, keyword", query);
   };
 
-  useEffect(() => {
-    const keyDownHandler = (event, query) => {
-      if (event.key === "Enter") {
-        console.log("User pressed: ", event.key);
-        event.preventDefault();
-        // 👇️ call submit function here
-        fetchbytitle();
-      }
-    };
-
-    document.addEventListener("keydown", keyDownHandler);
-    return () => {
-      document.removeEventListener("keydown", keyDownHandler);
-    };
-  }, []);
+  const keyDownHandler = (event, query) => {
+    if (event.key === "Enter") {
+      console.log("User pressed: ", event.key);
+      event.preventDefault();
+      // call submit function here
+      fetchbytitle();
+    }
+  };
 
   return (
     <SearchContainer>
@@ -41,6 +34,7 @@ function SearchBar() {
       <SearchInput
         placeholder="Feed me some keywords"
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={keyDownHandler}
       ></SearchInput>
       <SummitButton id="submitsearch" onClick={fetchbytitle}>
         Submit
