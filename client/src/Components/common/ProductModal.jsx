@@ -64,20 +64,17 @@ const ProductModal = ({ open, onClose, product }) => {
           </Imagediv>
           <Box justifyContent="flex-start" sx={PDheadingDiv}>
             <Typography id="modal-modal-title" fontSize={30} fontWeight="bold">
-              {" "}
-              {product.title}{" "}
+              {product.title}
             </Typography>
             <Typography
               fontSize={24}
               fontWeight="light"
               sx={{ textDecoration: "underline" }}
             >
-              {" "}
-              {product.category}{" "}
+              {product.category}
             </Typography>
             <Typography fontSize={28} sx={{ mt: 5, mb: 5 }}>
-              {" "}
-              ${product.price}{" "}
+              ${product.price}
             </Typography>
             <Box>
               <Typography> {product.seller} </Typography>
