@@ -1,29 +1,35 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {theme} from "../themes/Theme"
-import Login from './Login'
-import './Navbar.css'
+import { theme } from "../themes/Theme";
+import Login from "./Login";
 
-import Add from '@mui/icons-material/Add';
+import Add from "@mui/icons-material/Add";
 //import HomeIcon from '@mui/icons-material/Home';
-import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
-import ProfileIcon from '@mui/icons-material/Person';
-import ChatIcon from '@mui/icons-material/Forum';
-import {IconButton, Typography,Button, styled, Toolbar, AppBar, Box } from '@mui/material'
-import {ThemeProvider } from "@material-ui/core/styles";
-import {useLocation} from 'react-router-dom'
-
+import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
+import ProfileIcon from "@mui/icons-material/Person";
+import ChatIcon from "@mui/icons-material/Forum";
+import {
+  IconButton,
+  Typography,
+  Button,
+  styled,
+  Toolbar,
+  AppBar,
+  Box,
+} from "@mui/material";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { useLocation } from "react-router-dom";
 
 // contains searchbar and Post Request button
 
 const StyledToolbar = styled(Toolbar)({
-    display:"flex",
-    justifyContent: "space-between",
-    padding: 10,
-    margin: 5,
+  display: "flex",
+  justifyContent: "space-between",
+  padding: 10,
+  margin: 5,
 });
 
-const IconsNav = styled(Box)(({theme}) => ({
+const IconsNav = styled(Box)(({ theme }) => ({
   display: "none",
   alignItems: "center",
   gap: "20px",
@@ -32,56 +38,55 @@ const IconsNav = styled(Box)(({theme}) => ({
   },
 }));
 
-
-
 function Navbar() {
-
   const location = useLocation();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  useEffect(()=>{
-    
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  
-  },[location])
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
 
-  
-
-  return  (
+  return (
     <ThemeProvider theme={theme}>
-      <AppBar position='sticky' >
+      <AppBar position="sticky">
         <StyledToolbar>
-          <Typography component = {Link} to='/' variant="h6" sx={{display: {xs: "none", sm:"block"}}}>
-            MARKET 
+          <Typography
+            component={Link}
+            to="/"
+            variant="h6"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
+            MARKET
           </Typography>
           {/* <HomeIcon/> */}
-          <IconsNav> 
-            { user ? (
-              <IconButton component={Link} to="/account" >
-              <ProfileIcon margin={2} style={{ color: 'black' }}/>
-            </IconButton>
+          <IconsNav>
+            {user ? (
+              <IconButton component={Link} to="/account">
+                <ProfileIcon margin={2} style={{ color: "black" }} />
+              </IconButton>
             ) : (
-              <Login/>
-            )
-            }
+              <Login />
+            )}
 
-            <FavoriteIcon style={{ color: 'black' }} />
-            <ChatIcon style={{ color: 'black' }}/>
-            <Button 
-                component={Link}
-                to="/post_request_items"
-                variant="contained" 
-                color="primary" 
-                startIcon={<Add />} 
-            >  
-              <Typography sx={{display: {xs:"none", sm:"block"}}}> POST & REQUEST </Typography>
+            <FavoriteIcon style={{ color: "black" }} />
+            <ChatIcon style={{ color: "black" }} />
+            <Button
+              component={Link}
+              to="/post_request_items"
+              variant="contained"
+              color="primary"
+              startIcon={<Add />}
+            >
+              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+                {" "}
+                POST & REQUEST{" "}
+              </Typography>
             </Button>
           </IconsNav>
-
-          </StyledToolbar>
+        </StyledToolbar>
       </AppBar>
     </ThemeProvider>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

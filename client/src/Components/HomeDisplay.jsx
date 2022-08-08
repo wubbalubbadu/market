@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productsActions";
 import Postsection from "./Postsection";
@@ -25,11 +25,21 @@ function HomeDisplay() {
     fetchProducts();
   }, []);
 
+  const [selectedTab, setSelectedTab] = useState("sell");
+  const handleTabChange = (event, selectedTab) => {
+    setSelectedTab(selectedTab);
+    console.log("tabswitch click!");
+  };
+
   return (
     <Box bgcolor="skyblue" padding={2}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
-        <Sidebar />
-        <Postsection products={products} />
+        <Sidebar selectedTab={selectedTab} />
+        <Postsection
+          products={products}
+          selectedTab={selectedTab}
+          handleTabChange={handleTabChange}
+        />
       </Stack>
     </Box>
   );
