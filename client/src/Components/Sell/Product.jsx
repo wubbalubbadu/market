@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import ProductModal from "../Components/common/ProductModal";
+import ProductModal from "../common/ProductModal";
 import { Typography } from "@mui/material";
 
 function Product({ product }) {
@@ -15,7 +15,12 @@ function Product({ product }) {
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      <img src={product.images.url} width={220} height={170} />
+      <img
+        src={product.images.url}
+        width={220}
+        height={170}
+        alt={product.images.url}
+      />
       <Typography fontSize={18}> {product.title} </Typography>
       <Typography fontSize={22}> ${product.price} </Typography>
 
@@ -35,8 +40,7 @@ const itemstyle = {
   bgcolor: "yellow",
   borderRadius: 2,
   boxShadow: 24,
-  border: 1,
-  margin: 2,
+  margin: 1,
   width: 225,
   height: 268,
   padding: 2,

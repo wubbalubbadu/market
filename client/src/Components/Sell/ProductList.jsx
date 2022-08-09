@@ -6,8 +6,10 @@ import { Box, styled } from "@mui/material";
 //to make each card responsive to screen sizes
 const Wrapperstyle = styled("div")({
   backgroundColor: "blue",
-  padding: 2,
-  display: "inline-flex",
+  padding: 1,
+  display: "flex",
+  flexWrap: "wrap",
+  alignContent: "flex-start",
 });
 
 function ProductList(props) {

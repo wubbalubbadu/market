@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../redux/actions/productsActions";
+import { setProducts } from "../../redux/actions/productsActions";
 import axios from "axios";
 
 import { Box, Typography } from "@mui/material";
@@ -20,6 +20,13 @@ const Sidebar = () => {
     >
       {categories.map((category) => (
         <Typography
+          sx={{
+            textDecoration: "none",
+            "&:hover": {
+              color: "blue",
+              cursor: "pointer",
+            },
+          }}
           key={category}
           onClick={async () => {
             // if (currentTab === 'sell') {

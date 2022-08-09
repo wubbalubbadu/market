@@ -1,5 +1,5 @@
 import React from "react";
-import ProductList from "../Sell/ProductList";
+import ProductList from "./Sell/ProductList";
 import TabSwitch from "./TabSwitch";
 import SearchBar from "./SearchBar";
 

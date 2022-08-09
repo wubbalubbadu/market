@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productsActions";
 import Postsection from "./Postsection";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import axios from "axios";
 import { Box, Stack } from "@mui/material";
 
