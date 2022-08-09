@@ -21,6 +21,7 @@ const Sidebar = () => {
       {categories.map((category) => (
         <Typography
           sx={{
+            margin: "5px",
             textDecoration: "none",
             "&:hover": {
               color: "blue",

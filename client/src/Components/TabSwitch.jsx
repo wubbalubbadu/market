@@ -1,9 +1,11 @@
 import React from "react";
+import handleTabChange from "./HomeDisplay";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-function TabSwitch({ selectedTab, handleTabChange }) {
+function TabSwitch({ selectedTab }) {
   return (
     <Box sx={{ width: "100%", background: "white" }}>
       <Tabs

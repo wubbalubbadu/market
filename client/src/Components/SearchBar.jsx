@@ -51,6 +51,9 @@ const SearchContainer = styled.div`
   width: 100%;
   background-color: white;
   padding: 2px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const SearchInput = styled.input`
