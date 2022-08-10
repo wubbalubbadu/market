@@ -1,5 +1,5 @@
 import React from "react";
-import handleTabChange from "./HomeDisplay";
+import handleTabChange, { setSelectedTab } from "./HomeDisplay";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
