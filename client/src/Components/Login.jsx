@@ -14,7 +14,6 @@ function Login () {
     const googleSuccess = async (res) => {
       const result = res?.profileObj;
       const token = res?.tokenId
-      console.log(result)
 
       try {
        const res = await axios.post('http://localhost:5000/user/google_login', {profileObj: result})
