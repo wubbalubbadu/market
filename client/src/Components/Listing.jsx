@@ -76,12 +76,13 @@ function Listing({id, handleInputChange, formValues, categories}){
               <MenuItem key="Apparel & Accessories" value="Apparel & Accessories">
                 Apparel & Accessories
               </MenuItem>
-              <MenuItem key="clothing" value="clothing">
+              <MenuItem key="Clothing" value="Clothing">
                 clothing
               </MenuItem>
-              <MenuItem key="furniture " value="furniture">
+              <MenuItem key="Furniture " value="Furniture">
               Furniture
               </MenuItem>
+
             </Select>
           </FormControl>
        </StyledForm>

@@ -16,13 +16,14 @@ function HomeDisplay() {
         console.log(err);
       });
     dispatch(setProducts(response.data.products));
+    
     // dispatch({
     //   type: 'SET_PRODUCTS', // type is required
     //   payload: response.data.products
     // })
   };
 
-  console.log(products)
+  //console.log(products)
   
   useEffect(() => {
     fetchProducts();

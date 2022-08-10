@@ -4,6 +4,9 @@ import ProductModal from "../common/ProductModal";
 import { Typography } from "@mui/material";
 
 function Product({ product }) {
+
+
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = (e) => {
@@ -15,12 +18,13 @@ function Product({ product }) {
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      <img
+    {(product?.images) ? <img
         src={product.images.url}
         width={220}
         height={170}
         alt={product.images.url}
-      />
+      /> : null}
+      
       <Typography fontSize={18}> {product.title} </Typography>
       <Typography fontSize={22}> ${product.price} </Typography>
 

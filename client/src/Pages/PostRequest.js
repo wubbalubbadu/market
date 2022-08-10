@@ -10,13 +10,15 @@ import {getCategories } from '../redux/actions/categoryActions'
 function PostRequest() {
   
   const user = JSON.parse(localStorage.getItem('profile'));
-  console.log(user.result)
   const defaultValues = {
     title: "",
     price: 0,
     description: "",
     condition: "",
-    images: {},
+    images: {
+      public_id: "test/rsltmafcyek9v4fm7oid",
+      url: "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg",
+    },
     category: ""
   };
   
@@ -48,10 +50,13 @@ let handleSubmit = async (e) => {
   try {
     formValues.map((product, id) => {
       dispatch(createProduct({...product, seller: user?.result?.name}))
-      console.log(product)
+
     })
     alert('successful')
-    navigate('/')
+    setTimeout(()=> {
+      navigate('/')
+    }, 1000)
+    
     
   } catch (err) {
     console.log(err);

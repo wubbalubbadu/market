@@ -28,7 +28,7 @@ export const createProduct = (product) => async (dispatch) => {
             console.log(err);
           });
 
-        console.log(data)
+        //console.log(data)
     
         dispatch({ type: ActionTypes.CREATE_PRODUCT, payload: data });
       } catch (error) {

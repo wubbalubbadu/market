@@ -15,11 +15,13 @@ const Wrapperstyle = styled("div")({
 function ProductList(props) {
   const { products } = props; //deconstruction
 
+  console.log("print something", products)
+
   return (
     <Wrapperstyle>
       {/* map each of the product into a Product component */}
       {products.map((product) => {
-        return <Product key={product._id} product={product} />;
+        return <Product product={product} />;
       })}
     </Wrapperstyle>
   );
