@@ -12,7 +12,7 @@ const StyledForm = styled(FormControl)(({theme}) => ({
   
 
   
-function Listing({id, handleInputChange, formValues}){
+function Listing({id, handleInputChange, formValues, categories}){
     
     return  (
         <ThemeProvider theme={theme}>
@@ -68,12 +68,13 @@ function Listing({id, handleInputChange, formValues}){
         <InputLabel id="category-select-label" >Required *</InputLabel>
             <Select
               name="category"
+              defaultValue=""
               value={formValues.category}
               onChange={handleInputChange}
         
             >
-              <MenuItem key="electronics" value="electronics">
-                electronics
+              <MenuItem key="Apparel & Accessories" value="Apparel & Accessories">
+                Apparel & Accessories
               </MenuItem>
               <MenuItem key="clothing" value="clothing">
                 clothing

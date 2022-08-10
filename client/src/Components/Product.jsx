@@ -11,6 +11,13 @@ function Product({product}) {
                               //prevent dubbed bubbling 
   //Modal to be close at default
 
+  if (!product?.images) {
+    product.images = {
+      public_id: "test/rsltmafcyek9v4fm7oid",
+      url: "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg",
+    }
+  }
+
   return (
     <Box onClick={handleOpen} sx={itemstyle} >
       <img src={product.images.url} width={220} height={170}/>

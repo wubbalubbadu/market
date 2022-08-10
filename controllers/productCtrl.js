@@ -67,8 +67,7 @@ const productCtrl = {
     },
     createProduct: async(req, res) =>{
         try {
-            console.log(req.user.id)
-            req.body.seller = req.user.id;
+            
             const {title, price, description, images, category, condition, seller} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 

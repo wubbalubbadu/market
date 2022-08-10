@@ -3,5 +3,6 @@ export const ActionTypes = {
     CREATE_PRODUCT: 'CREATE_PRODUCT',
     AUTH:'AUTH',
     ADD_TO_LOVES:'ADD_TO_LOVES',
+    GET_CATEGORIES: 'GET_CATEGORIES'
 }
 
