@@ -2,12 +2,28 @@ import React,{useState} from 'react'
 import PostHeader from '../Components/Postheader'
 import Listing from '../Components/Listing'
 import {Box, Stack, Paper, Button, Typography} from '@mui/material'
-import {useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+import {createProduct } from '../redux/actions/productsActions'
+import {getCategories } from '../redux/actions/categoryActions'
 
 function PostRequest() {
+  
   const user = JSON.parse(localStorage.getItem('profile'));
+  console.log(user.result)
+  const defaultValues = {
+    title: "",
+    price: 0,
+    description: "",
+    condition: "",
+    images: {},
+    category: ""
+  };
+  
+  const [formValues, setFormValues] = useState([defaultValues]);
   const [arr, setArr] = useState([0]);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const addInput = () => {
     setArr(s => {
       return [
@@ -16,36 +32,45 @@ function PostRequest() {
       ];
       
     });
+    setFormValues(s => {
+      return [
+        ...s,
+        defaultValues
+      ]
+    })
   };
+
+//  const categories = useSelector((state) => state.categories);
+//  console.log(categories)
 
 let handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    console.log('haylie')
+    formValues.map((product, id) => {
+      dispatch(createProduct({...product, seller: user?.result?.name}))
+      console.log(product)
+    })
+    alert('successful')
+    navigate('/')
     
   } catch (err) {
     console.log(err);
   }
 };
 
-const defaultValues = {
-  title: "",
-  price: 0,
-  description: "",
-  condition: "",
-  photos: {},
-  category: ""
+const handleInputChange = i => (e) => {
+  
+  let { name, value } = e.target;
+
+  setFormValues(s => s.map((item, id) => {
+    return (id === i? {...item, [name]: value} : item)
+  })
+)
+  console.log(formValues)
 };
 
-const [formValues, setFormValues] = useState(defaultValues);
-    
-const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
+
+
   const [method, setMethod] = useState('Post Your Items')
   const handleMethodChange = (event) => {
       setMethod(event.target.value)
@@ -69,7 +94,7 @@ const handleInputChange = (e) => {
           <PostHeader arr={arr} addInput={addInput} method = {method} handleMethodChange={handleMethodChange} key={1}/>
           {method === 'Post Your Items' ? <form onSubmit={handleSubmit}>
          { arr.map((item, i) => {
-          return  <Listing key={i} id={i+1} formValues={formValues} handleInputChange={handleInputChange}/>
+          return  <Listing key={i} id={i+1} formValues={formValues} handleInputChange={handleInputChange(i)}/>
          })
          }
           

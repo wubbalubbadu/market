@@ -1,4 +1,16 @@
 import { ActionTypes } from "../constants/actionType"
+import axios from 'axios'
+
+const API = axios.create({ baseURL: 'http://localhost:5000' });
+
+API.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+      req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+    }
+    console.log(req.headers.Authorization)
+    return req;
+  });
+
 
 export const setProducts = product => {
     return {
@@ -7,11 +19,18 @@ export const setProducts = product => {
     }
 };
 
-export const createProduct = product => {
+export const createProduct = (product) => async (dispatch) => {
+    console.log(product)
     try {
-        const res = await axios.post('http://localhost:5000/api/products', {product: product})
+        const {data} = await API
+        .post('/api/products', product)
+        .catch((err) => {
+            console.log(err);
+          });
+
+        console.log(data)
     
-        dispatch({ type: CREATE, payload: data });
+        dispatch({ type: ActionTypes.CREATE_PRODUCT, payload: data });
       } catch (error) {
         console.log(error);
       }

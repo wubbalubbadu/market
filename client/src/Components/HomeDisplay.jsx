@@ -21,8 +21,12 @@ function HomeDisplay() {
     //   payload: response.data.products
     // })
   };
+
+  console.log(products)
+  
   useEffect(() => {
     fetchProducts();
+   
   }, []);
 
   return (
