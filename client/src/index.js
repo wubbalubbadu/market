@@ -6,12 +6,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {theme} from "./themes/Theme"
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { reducers } from './redux/reducer/index'; 
 
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = configureStore({ reducer: reducers });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
