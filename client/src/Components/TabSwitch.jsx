@@ -1,11 +1,20 @@
 import React from "react";
-import handleTabChange, { setSelectedTab } from "./HomeDisplay";
+import { useDispatch, useSelector } from "react-redux";
+import { setTab } from "../redux/actions/tabsActions";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 function TabSwitch({ selectedTab }) {
+  // 0 = sell (products)
+  // 1 = request
+  const currTab = useSelector((state) => state.tabReducer.tab);
+  const dispatch = useDispatch();
+  const handleTabChange = (tabval) => {
+    dispatch(setTab(tabval));
+  };
+
   return (
     <Box sx={{ width: "100%", background: "white" }}>
       <Tabs

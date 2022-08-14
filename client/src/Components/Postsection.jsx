@@ -2,17 +2,19 @@ import React from "react";
 import ProductList from "./Sell/ProductList";
 import TabSwitch from "./TabSwitch";
 import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
 function PostSection({ products }) {
-  console.log('products at postsection', products)
+  const currTab = useSelector((state) => state.tabReducer.tab);
+  // console.log('products at postsection', products)
   return (
     <PostSectDiv>
       <SearchBar>Search</SearchBar>
       <TabSwitch>TabSwitch</TabSwitch>
       <ProductList products={products} />
-      {/* {currentTab === 'sell' ? <ProductList products={products} /> : <RequestList />} */}
+      {/* {currTab === 'sell' ? <ProductList products={products} /> : <RequestList />} */}
     </PostSectDiv>
   );
 }
