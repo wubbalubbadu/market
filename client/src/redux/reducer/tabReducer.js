@@ -1,7 +1,7 @@
 import {ActionTypes} from '../constants/actionType'
 
 const initialState = {
-    tab: 0 
+    tab: 0,
     // 0 = sell (products)
     // 1 = request
 }

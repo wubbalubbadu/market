@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "./Product";
+import Request from "./Request";
 import { styled } from "@mui/material";
 
 //this styled div should also take care of grid styling
@@ -10,17 +10,17 @@ const Wrapperstyle = styled("div")({
   display: "inline-flex",
 });
 
-function ProductList(props) {
+function RequestList(props) {
   const { requests } = props; //deconstruction
 
   return (
     <Wrapperstyle>
       {/* map each of the product into a Product component */}
       {requests.map((request) => {
-        return <Product key={request._id} request={request} />;
+        return <Request key={request._id} request={request} />;
       })}
     </Wrapperstyle>
   );
 }
 
-export default ProductList;
+export default RequestList;
