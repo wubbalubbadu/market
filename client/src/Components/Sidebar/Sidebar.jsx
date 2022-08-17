@@ -21,11 +21,39 @@ const Sidebar = () => {
       <Typography
         sx={{
           fontWeight: "bold",
+          fontSize: 24,
+        }}
+      >
+        {" "}
+        SORT BY
+      </Typography>
+      {sortby.map((sorttype) => (
+        <Typography
+          sx={{
+            margin: "5px",
+            marginLeft: 0,
+            marginTop: "10px",
+            textDecoration: "none",
+            "&:hover": {
+              color: "blue",
+              cursor: "pointer",
+            },
+          }}
+        >
+          {" "}
+          {sorttype}{" "}
+        </Typography>
+      ))}
+
+      <Typography
+        sx={{
+          fontWeight: "bold",
           "&:hover": {
             color: "blue",
             cursor: "pointer",
           },
           fontSize: 24,
+          marginTop: 5,
         }}
         onClick={async () => {
           // if (currentTab === 'sell') {
@@ -88,4 +116,11 @@ const categories = [
   "Pets & Pets Supplies",
   "Consumer Electronic Goods",
   "Books",
+];
+
+const sortby = [
+  "Price: Low to High",
+  "Price: High to Low",
+  "Latest Post",
+  "Earliest Post",
 ];

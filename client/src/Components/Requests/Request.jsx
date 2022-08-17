@@ -29,12 +29,15 @@ function Request({ request }) {
 export default Request;
 
 const itemstyle = {
-  border: "2px solid #000",
+  border: "0.5px solid #000",
   bgcolor: "white",
   borderRadius: 2,
-  boxShadow: 24,
-  margin: 2,
-  width: 225,
+  boxShadow: 5,
+  margin: 1,
+  width: 550,
   height: 268,
   padding: 2,
+  "&:hover": {
+    cursor: "pointer",
+  },
 };

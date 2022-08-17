@@ -47,4 +47,7 @@ const itemstyle = {
   width: 225,
   height: 268,
   padding: 2,
+  "&:hover": {
+    cursor: "pointer",
+  },
 };
