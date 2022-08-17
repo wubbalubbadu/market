@@ -48,7 +48,10 @@ function Navbar() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="sticky">
+      <AppBar
+        position="sticky"
+        sx={{ bgcolor: "white", borderRadius: "5px", boxShadow: 0 }}
+      >
         <StyledToolbar>
           <Typography
             component={Link}
@@ -74,12 +77,13 @@ function Navbar() {
               component={Link}
               to="/post_request_items"
               variant="contained"
-              color="primary"
-              startIcon={<Add />}
+              startIcon={<Add color="black" />}
+              sx={{ bgcolor: "white" }}
             >
-              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
-                {" "}
-                POST & REQUEST{" "}
+              <Typography
+                sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
+              >
+                POST & REQUEST
               </Typography>
             </Button>
           </IconsNav>

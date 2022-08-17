@@ -58,17 +58,18 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
   padding: 0.5em;
-  background: papayawhip;
+  background: #333333;
   padding: 0.5em;
   border: 0.25em;
   border-radius: 5px;
   width: 40%;
+  color: white;
 `;
 
 const SummitButton = styled.button`
   background-color: rgba(51, 51, 51, 0.05);
   border-radius: 5px;
-  border-width: 0;
+  border-width: 0.1mm;
   color: #333333;
   cursor: pointer;
   display: inline-block;

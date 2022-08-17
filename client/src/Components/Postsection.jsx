@@ -26,10 +26,11 @@ function PostSection({ products, requests }) {
 export default PostSection;
 
 const PostSectDiv = styled.div`
-  background: pink;
+  background: white;
   width: 60%;
   border-radius: 5px;
   max-height: 80%;
   flex: 2;
   padding: 2%;
+  padding-right: 0.5%;
 `;

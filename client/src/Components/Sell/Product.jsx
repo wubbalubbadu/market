@@ -4,9 +4,6 @@ import ProductModal from "../common/ProductModal";
 import { Typography } from "@mui/material";
 
 function Product({ product }) {
-
-
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = (e) => {
@@ -18,13 +15,15 @@ function Product({ product }) {
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-    {(product?.images) ? <img
-        src={product.images.url}
-        width={220}
-        height={170}
-        alt={product.images.url}
-      /> : null}
-      
+      {product?.images ? (
+        <img
+          src={product.images.url}
+          width={220}
+          height={170}
+          alt={product.images.url}
+        />
+      ) : null}
+
       <Typography fontSize={18}> {product.title} </Typography>
       <Typography fontSize={22}> ${product.price} </Typography>
 
@@ -40,10 +39,10 @@ function Product({ product }) {
 export default Product;
 
 const itemstyle = {
-  border: "2px solid #000",
-  bgcolor: "yellow",
+  border: "0.5px solid #000",
+  bgcolor: "white",
   borderRadius: 2,
-  boxShadow: 24,
+  boxShadow: 5,
   margin: 1,
   width: 225,
   height: 268,

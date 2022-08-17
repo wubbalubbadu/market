@@ -35,7 +35,7 @@ function HomeDisplay() {
   // };
 
   return (
-    <Box bgcolor="skyblue" padding={2}>
+    <Box bgcolor="white" padding={2} sx={{ marginRight: 0, paddingRight: 0 }}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
         <Sidebar />
         {/* selectedTab={selectedTab}  */}
@@ -52,9 +52,9 @@ function HomeDisplay() {
 
 export default HomeDisplay;
 
-const SAMPLE_REQUESTS = {
-  request1: {
-    _id: "62d1e1a0c7d7db1a43f44822",
+const SAMPLE_REQUESTS = [
+  {
+    _d: "62d1e1a0c7d7db1a43f44822",
     title: "request test 1",
     description: "Im test1",
     category: "Clothing",
@@ -65,7 +65,7 @@ const SAMPLE_REQUESTS = {
     updatedAt: "2022-07-15T21:52:32.094Z",
     __v: 0,
   },
-  request2: {
+  {
     _id: "62d1e1a0c7d7db1a47814",
     title: "Request Test 2",
     description:
@@ -78,4 +78,4 @@ const SAMPLE_REQUESTS = {
     updatedAt: "2022-12-16T00:52:32.094Z",
     __v: 0,
   },
-};
+];

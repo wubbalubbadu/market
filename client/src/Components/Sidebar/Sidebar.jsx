@@ -13,15 +13,39 @@ const Sidebar = () => {
   // const currentTab = useSelector(state => state.currentTab);
   return (
     <Box
-      bgcolor="lightyellow"
+      bgcolor="white"
       flex={0.25}
       padding={2}
       sx={{ display: { xs: "none", sm: "block" } }} //when we in mobile view we dont display the sidebar
     >
+      <Typography
+        sx={{
+          fontWeight: "bold",
+          "&:hover": {
+            color: "blue",
+            cursor: "pointer",
+          },
+          fontSize: 24,
+        }}
+        onClick={async () => {
+          // if (currentTab === 'sell') {
+          // }
+          const response = await axios
+            .get("http://localhost:5000/api/products")
+            .catch((err) => {
+              console.log(err);
+            });
+          dispatch(setProducts(response.data.products));
+        }}
+      >
+        ALL CATEGORIES
+      </Typography>
       {categories.map((category) => (
         <Typography
           sx={{
             margin: "5px",
+            marginLeft: 0,
+            marginTop: "10px",
             textDecoration: "none",
             "&:hover": {
               color: "blue",
@@ -29,17 +53,10 @@ const Sidebar = () => {
             },
           }}
           key={category}
-          onClick={async () => {
-            // if (currentTab === 'sell') {
-            // }
-            if (category === "All") {
-              const response = await axios
-                .get("http://localhost:5000/api/products")
-                .catch((err) => {
-                  console.log(err);
-                });
-              dispatch(setProducts(response.data.products));
-            } else {
+          onClick={
+            async () => {
+              // if (currentTab === 'sell') {
+              // }
               const response = await axios.get(
                 "http://localhost:5000/api/products?category=" + category
               );
@@ -48,7 +65,7 @@ const Sidebar = () => {
             // console.log(category);
             // normally, we call dispatch with an object
             // setProducts(response.data.products);
-          }}
+          }
         >
           {category}
         </Typography>
@@ -60,7 +77,6 @@ const Sidebar = () => {
 export default Sidebar;
 
 const categories = [
-  "All",
   "Apparel & Accessories",
   "Beauty & Personal Care ",
   "Home & Kitchen",

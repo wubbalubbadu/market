@@ -19,8 +19,8 @@ function TabSwitch() {
 
   return (
     <Box sx={{ width: "100%", background: "white" }}>
-      <Button>Sell</Button>
-      <Button>Request</Button>
+      <Button onClick={() => handleTabChange(0)}>Sell</Button>
+      <Button onClick={() => handleTabChange(1)}>Request</Button>
       {/* <Tabs
         onChange={handleTabChange()}
         textColor="secondary"
