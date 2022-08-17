@@ -68,7 +68,7 @@ const Sidebar = () => {
       >
         ALL CATEGORIES
       </Typography>
-      {categories.map((category) => (
+      {/* {categories.map((category) => (
         <Typography
           sx={{
             margin: "5px",
@@ -97,6 +97,32 @@ const Sidebar = () => {
         >
           {category}
         </Typography>
+      ))} */}
+
+      {Object.entries(categories_dict).map(([key, value]) => (
+        <Typography
+          key={value}
+          sx={{
+            margin: "5px",
+            marginLeft: 0,
+            marginTop: "10px",
+            textDecoration: "none",
+            "&:hover": {
+              color: "blue",
+              cursor: "pointer",
+            },
+          }}
+          onClick={async () => {
+            // if (currentTab === 'sell') {
+            // }
+            const response = await axios.get(
+              "http://localhost:5000/api/products?category=" + value
+            );
+            dispatch(setProducts(response.data.products));
+          }}
+        >
+          {key}
+        </Typography>
       ))}
     </Box>
   );
@@ -124,3 +150,17 @@ const sortby = [
   "Latest Post",
   "Earliest Post",
 ];
+
+const categories_dict = {
+  "Apparel & Accessories": "Apparel %26 Accessories",
+  "Beauty & Personal Care": "Beauty %26 Personal Care",
+  "Home & Kitchen": "Home %26 Kitchen",
+  Furniture: "Furniture",
+  "Office Supplies": "Office Supplies",
+  "Toys & Games": "Toys%26 Games",
+  "Exercise & Fitness": "Exercise %26 Fitness",
+  "Garden & Outdoor": "Garden %26 Outdoor",
+  "Pets & Pets Supplies": "Pets %26 Pets Supplies",
+  "Consumer Electronic Goods": "Consumer Electronic Goods",
+  Books: "Books",
+};
