@@ -4,15 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node app",
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm run start",
     "server-install": "npm install",
     "client-install": "cd client && npm install",
     "install-all": "concurrently \"npm run server-install\" \"npm run client-install\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "build": "webpack --config webpack.config.js"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -30,10 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0",
-    "webpack": "^5.74.0",
-    "webpack-dev-server": "^4.10.0",
-    "webpack": "^5.74.0",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

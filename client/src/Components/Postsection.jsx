@@ -10,7 +10,7 @@ import styled from "styled-components";
 function PostSection({ products, requests }) {
   const currTab = useSelector((state) => state.tabReducer.tab);
   // console.log('products at postsection', products)
-function PostSection({ products }) {
+
   return (
     <PostSectDiv>
       <SearchBar>Search</SearchBar>
@@ -22,7 +22,7 @@ function PostSection({ products }) {
       )}
     </PostSectDiv>
   );
-}}
+}
 
 export default PostSection;
 
