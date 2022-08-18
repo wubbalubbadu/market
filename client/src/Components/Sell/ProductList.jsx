@@ -15,7 +15,6 @@ const Wrapperstyle = styled("div")({
 function ProductList(props) {
   const { products } = props; //deconstruction
 
-  console.log("print something", products)
 
   return (
     <Wrapperstyle>
