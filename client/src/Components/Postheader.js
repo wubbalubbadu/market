@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {Typography,Button, styled, AppBar, Fab, Box, Select, FormControl, MenuItem, InputLabel, Stack} from '@mui/material'
-import {ThemeProvider } from "@material-ui/core/styles";
 import {theme} from "../themes/Theme"
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+
 
 const StyledForm = styled(FormControl)(({theme}) => ({
     margin: theme.spacing(1),
@@ -15,7 +15,7 @@ function PostHeader({arr, addInput, method, handleMethodChange}){
 
 
     return  (
-        <ThemeProvider theme={theme}>
+      <>
           <AppBar sx={{ display: 'inline' }} >
           <Stack direction="row" justifyContent="space-between" spacing={2}>
             <StyledForm >
@@ -46,7 +46,7 @@ function PostHeader({arr, addInput, method, handleMethodChange}){
                 
                 </Stack>
           </AppBar>
-        </ThemeProvider>
+        </>
       )
 }
 

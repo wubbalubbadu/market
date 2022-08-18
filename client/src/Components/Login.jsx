@@ -1,5 +1,5 @@
 import {GoogleLogin} from 'react-google-login'
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'

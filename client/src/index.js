@@ -1,4 +1,3 @@
-import {ThemeProvider } from "@material-ui/core/styles";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
@@ -9,6 +8,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducers } from './redux/reducer/index'; 
+import { ThemeProvider } from '@mui/material';
 
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));

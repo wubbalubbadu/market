@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import {Typography, Divider, Container, InputLabel, styled, Select, FormControl, Stack, Input, Radio, FormControlLabel, RadioGroup, MenuItem, TextField, Grid} from '@mui/material'
-import {ThemeProvider } from "@material-ui/core/styles";
-import {theme} from "../themes/Theme"
 
 
   
@@ -15,7 +13,7 @@ const StyledForm = styled(FormControl)(({theme}) => ({
 function Listing({id, handleInputChange, formValues, categories}){
     
     return  (
-        <ThemeProvider theme={theme}>
+      <>
 
      <Container  justifyContent="center">
         
@@ -169,8 +167,7 @@ function Listing({id, handleInputChange, formValues, categories}){
       </Grid>
     </Container>
     <Divider/>
-  
-        </ThemeProvider>
-      )
+    </>
+      );
 }
 export default Listing

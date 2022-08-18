@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
     palette:{
@@ -13,16 +13,18 @@ export const theme = createTheme({
             main: "#ffee33"
         }
     },
-    typography:{
+    typography: {
         headlineoswald: {
             fontsize: 22,
-
         },
         bodynunito:{
             fontsize: 18,
         },
         subbodynunito:{
             fontsize: 18,
-        }
+        },
+        allVariants: {
+            fontFamily: 'Alumni Sans Pinstripe, sans-serif',
+        },
     }
-    });
+});

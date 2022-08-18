@@ -47,7 +47,7 @@ class APIfeatures {
 
 const productCtrl = {
     getProducts: async(req, res) =>{
-        console.log(req)
+        console.log(req.query);
         try {
             const features = new APIfeatures(Products.find(), req.query)
             .filtering().sorting().paginating()

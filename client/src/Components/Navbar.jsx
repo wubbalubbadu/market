@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { theme } from "../themes/Theme";
 import Login from "./Login";
 
 import Add from "@mui/icons-material/Add";
@@ -17,7 +16,6 @@ import {
   AppBar,
   Box,
 } from "@mui/material";
-import { ThemeProvider } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
 
 // contains searchbar and Post Request button
@@ -47,14 +45,13 @@ function Navbar() {
   }, [location]);
 
   return (
-    <ThemeProvider theme={theme}>
       <AppBar position="sticky">
         <StyledToolbar>
           <Typography
             component={Link}
             to="/"
-            variant="h6"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            variant="h3"
+            sx={{ display: { xs: "none", sm: "block" }, textDecoration: 'none', '&:visited': { color: 'white' } }}
           >
             MARKET
           </Typography>
@@ -85,7 +82,6 @@ function Navbar() {
           </IconsNav>
         </StyledToolbar>
       </AppBar>
-    </ThemeProvider>
   );
 }
 

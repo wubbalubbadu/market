@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import ProductModal from "../common/ProductModal";
-import { Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
 
 function Product({ product }) {
 
@@ -17,16 +17,30 @@ function Product({ product }) {
   //Modal to be close at default
 
   return (
-    <Box onClick={handleOpen} sx={itemstyle}>
-    {(product?.images) ? <img
-        src={product.images.url}
-        width={220}
-        height={170}
-        alt={product.images.url}
-      /> : null}
-      
-      <Typography fontSize={18}> {product.title} </Typography>
-      <Typography fontSize={22}> ${product.price} </Typography>
+    <Card sx={{
+      maxWidth: 345,
+      width: 220,
+      height: 280,
+      margin: '4px',
+      borderRadius: '10px',
+      '&:hover': {
+        cursor: 'pointer'
+      }
+    }}
+    onClick={handleOpen}
+    >
+      <CardMedia
+        component="img"
+        height="190"
+        width="220"
+        image={product.images.url}
+        alt={product.title}
+      />
+      <CardContent>
+        <Typography fontSize={18}> {product.title} </Typography>
+        <Divider sx={{ mb: '2px' }}/>
+        <Typography fontSize={22} fontWeight='bold' > ${product.price} </Typography>
+      </CardContent>
 
       <ProductModal
         open={open}
@@ -34,7 +48,7 @@ function Product({ product }) {
         product={product}
       ></ProductModal>
       {/* pass in modal state */}
-    </Box>
+    </Card>
   );
 }
 export default Product;

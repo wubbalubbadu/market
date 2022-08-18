@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Modal, Stack, Box, Button } from "@mui/material";
+import { Modal, Stack, Box, Button, Divider, Grid } from "@mui/material";
 import styled from "styled-components";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
 
 const ProductModal = ({ open, onClose, product }) => {
@@ -20,12 +20,16 @@ const ProductModal = ({ open, onClose, product }) => {
     boxShadow: 24,
     p: 4,
     borderRadius: 5,
-    padding: 10,
+    padding: '40px',
+    overflow: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    }
   };
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box sx={style}>
+      <Grid container sx={style}>
         <Stack direction="row" justifyContent="space-between" spacing={1}>
           <Imagediv>
             <ImgsContainer>
@@ -62,6 +66,7 @@ const ProductModal = ({ open, onClose, product }) => {
               }}
             />
           </Imagediv>
+          <Divider orientation="vertical" flexItem/>
           <Box justifyContent="flex-start" sx={PDheadingDiv}>
             <Typography id="modal-modal-title" fontSize={30} fontWeight="bold">
               {product.title}
@@ -76,9 +81,10 @@ const ProductModal = ({ open, onClose, product }) => {
             <Typography fontSize={28} sx={{ mt: 5, mb: 5 }}>
               ${product.price}
             </Typography>
-            <Box>
+            <Stack direction="row">
+              <AccountCircleIcon />
               <Typography> {product.seller} </Typography>
-            </Box>
+            </Stack>
             <ActionButtonDiv>
               <Button sx={buttonstyle} component={Link} to="/message">
                 Contact Seller
@@ -88,22 +94,22 @@ const ProductModal = ({ open, onClose, product }) => {
           </Box>
         </Stack>
 
-        <Box padding={2}>
+        <Stack direction="column">
           <Stack direction="row" justifyContent="flex-start" spacing={5}>
             <Typography fontWeight="bold" fontSize={24}>
               Condition:
             </Typography>
             <Typography fontSize={24}>{product.condition} </Typography>
           </Stack>
-        </Box>
-
-        <Box padding={2}>
-          <Typography fontWeight="bold" fontSize={24}>
-            Description:
-          </Typography>
-          <Typography fontSize={24}>{product.description} </Typography>
-        </Box>
-      </Box>
+          <Divider />
+          <Stack direction="row" spacing={5}>
+            <Typography fontWeight="bold" fontSize={24}>
+              Description:
+            </Typography>
+            <Typography fontSize={24}>{product.description} </Typography>
+          </Stack>
+        </Stack>
+      </Grid>
     </Modal>
   );
 };
@@ -145,7 +151,8 @@ const buttonstyle = {
   "&:hover": {
     background: "#FECB58",
   },
-  mr: 5,
+  mr: 2,
+  mt: 2,
 };
 
 const SAMPLEIMAGES = [
