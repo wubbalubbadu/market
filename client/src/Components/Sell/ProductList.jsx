@@ -18,6 +18,7 @@ function ProductList(props) {
   const { products } = props; //deconstruction
   // console.log("print products", products);
 
+
   return (
     <Wrapperstyle>
       {/* map each of the product into a Product component */}

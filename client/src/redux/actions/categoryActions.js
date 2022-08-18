@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 
 export const getCategories = (categories) =>  async (dispatch)=> {
     try {
-        const {data} = await API.get('/api/categories')
+        const {data} = await API.get('/api/category')
         dispatch({type: ActionTypes.GET_CATEGORIES, payload: data})
     } catch (error) {
         console.log(error)
