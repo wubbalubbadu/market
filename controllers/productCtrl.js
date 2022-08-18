@@ -72,7 +72,7 @@ const productCtrl = {
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             const newProduct = new Products({
-                title: title.toLowerCase(), price, description, images, category, condition, seller
+                title, price, description, images, category, condition, seller
             })
 
             await newProduct.save()

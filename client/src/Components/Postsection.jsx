@@ -6,7 +6,6 @@ import SearchBar from "./SearchBar";
 import styled from "styled-components";
 
 function PostSection({ products }) {
-  console.log('products at postsection', products)
   return (
     <PostSectDiv>
       <SearchBar>Search</SearchBar>

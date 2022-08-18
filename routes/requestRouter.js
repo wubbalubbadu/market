@@ -6,7 +6,7 @@ const authAdmin = require('../middleware/authAdmin')
 
 router.route('/requests')
     .get(requestCtrl.getRequests)
-    .post(auth, requestCtrl.createRequest)
+    .post(requestCtrl.createRequest)
 
 
 router.route('/requests/:id')

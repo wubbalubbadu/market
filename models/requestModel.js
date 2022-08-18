@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    user: {
+    seller: {
         type: String,
         required: true
       },

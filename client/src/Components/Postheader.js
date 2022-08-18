@@ -33,16 +33,7 @@ function PostHeader({arr, addInput, method, handleMethodChange}){
                 </Select>
                 </FormControl>
                 </StyledForm>
-                <div>
-                  <Stack direction="row" justifyContent="space-between" spacing={2}>
-                    <Typography>Number of Items</Typography>
-  
-                      <Typography>{arr.length}</Typography>
-                      <Fab color="secondary"  onClick={addInput}>
-                      <AddIcon />
-                    </Fab>
-                  </Stack>
-              </div>
+               
                 
                 </Stack>
           </AppBar>

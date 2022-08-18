@@ -1,8 +1,8 @@
-import React from "react";
+import React , {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/actions/productsActions";
 import axios from "axios";
-
+import {getCategories } from '../../redux/actions/categoryActions'
 import { Box, Typography } from "@mui/material";
 
 // http://localhost:5000/api/products?category=Furniture
@@ -11,6 +11,13 @@ const Sidebar = () => {
   const dispatch = useDispatch(); //return a function
   //useDispatch -> put data in redux!
   // const currentTab = useSelector(state => state.currentTab);
+  const categories = useSelector((state) => state.categoryReducer.categories);
+  
+  useEffect(() => {
+    dispatch(getCategories());
+   
+  }, []);
+  
   return (
     <Box
       bgcolor="lightyellow"
@@ -18,6 +25,7 @@ const Sidebar = () => {
       padding={2}
       sx={{ display: { xs: "none", sm: "block" } }} //when we in mobile view we dont display the sidebar
     >
+
       {categories.map((category) => (
         <Typography
           sx={{
@@ -28,11 +36,11 @@ const Sidebar = () => {
               cursor: "pointer",
             },
           }}
-          key={category}
+          key={category.name}
           onClick={async () => {
             // if (currentTab === 'sell') {
             // }
-            if (category === "All") {
+            if (category.name === "All") {
               const response = await axios
                 .get("http://localhost:5000/api/products")
                 .catch((err) => {
@@ -41,7 +49,7 @@ const Sidebar = () => {
               dispatch(setProducts(response.data.products));
             } else {
               const response = await axios.get(
-                "http://localhost:5000/api/products?category=" + category
+                "http://localhost:5000/api/products?category=" + category.name
               );
               dispatch(setProducts(response.data.products));
             }
@@ -50,7 +58,7 @@ const Sidebar = () => {
             // setProducts(response.data.products);
           }}
         >
-          {category}
+          {category.name}
         </Typography>
       ))}
     </Box>
@@ -59,17 +67,3 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-const categories = [
-  "All",
-  "Apparel & Accessories",
-  "Beauty & Personal Care ",
-  "Home & Kitchen",
-  "Furniture",
-  "Office Supplies",
-  "Toys & Games",
-  "Exercise & Fitness",
-  "Garden & Outdoor",
-  "Pets & Pets Supplies",
-  "Consumer Electronic Goods",
-  "Books",
-];
