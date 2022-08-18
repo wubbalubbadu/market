@@ -3,7 +3,6 @@ import {Typography, Divider, Container, InputLabel, styled, Select, FormControl,
 import {ThemeProvider } from "@material-ui/core/styles";
 import {theme} from "../themes/Theme"
 
-
   
 const StyledForm = styled(FormControl)(({theme}) => ({
     margin: theme.spacing(1),
@@ -13,7 +12,7 @@ const StyledForm = styled(FormControl)(({theme}) => ({
 
   
 function Listing({id, handleInputChange, formValues, categories}){
-    
+    categories = categories.map(x => x.name)
     return  (
         <ThemeProvider theme={theme}>
 
@@ -73,15 +72,12 @@ function Listing({id, handleInputChange, formValues, categories}){
               onChange={handleInputChange}
         
             >
-              <MenuItem key="Apparel & Accessories" value="Apparel & Accessories">
-                Apparel & Accessories
-              </MenuItem>
-              <MenuItem key="Clothing" value="Clothing">
-                clothing
-              </MenuItem>
-              <MenuItem key="Furniture " value="Furniture">
-              Furniture
-              </MenuItem>
+            {categories.map((item, i) => {
+              return (<MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>)
+            })}
+              
 
             </Select>
           </FormControl>
