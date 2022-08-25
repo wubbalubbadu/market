@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Login from "./Login";
 
 import Add from "@mui/icons-material/Add";
-//import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
 import ProfileIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Forum";
@@ -16,7 +15,6 @@ import {
   AppBar,
   Box,
 } from "@mui/material";
-import { ThemeProvider } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
 
 // contains searchbar and Post Request button
