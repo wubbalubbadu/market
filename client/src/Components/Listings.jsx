@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PostHeader from "../Components/Postheader";
 import Listing from "../Components/Listing";
 import { Box, Stack, Fab, Paper, Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
