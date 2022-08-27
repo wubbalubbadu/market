@@ -22,6 +22,7 @@ function Sidebar() {
         sx={{
           fontWeight: 'bold',
           fontSize: 24,
+          fontFamily: 'Oswald',
         }}
       >
         {' '}
@@ -49,6 +50,7 @@ function Sidebar() {
       <Typography
         sx={{
           fontWeight: 'bold',
+          fontFamily: 'Oswald',
           '&:hover': {
             color: 'blue',
             cursor: 'pointer',

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 import { setTab } from '../redux/actions/tabsActions';
 
 function TabSwitch() {
@@ -16,9 +17,13 @@ function TabSwitch() {
   };
 
   return (
-    <Box sx={{ width: '100%', background: 'white' }}>
-      <Button onClick={() => handleTabChange(0)}>Sell</Button>
-      <Button onClick={() => handleTabChange(1)}>Request</Button>
+    <Box sx={{ width: '100%', background: 'white', marginTop: '10px', marginBottom: '10px' }}>
+      <Button onClick={() => handleTabChange(0)}>
+        <Typography sx={{ fontFamily: 'Oswald' }}> Sell </Typography>
+      </Button>
+      <Button onClick={() => handleTabChange(1)}>
+        <Typography sx={{ fontFamily: 'Oswald' }}> Request </Typography>
+      </Button>
     </Box>
   );
 }
