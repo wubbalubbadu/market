@@ -6,5 +6,6 @@ export const ActionTypes = {
     GET_CATEGORIES: 'GET_CATEGORIES',
     GET_REQUESTS: 'GET_REQUESTS',
     CREATE_REQUEST: 'CREATE_REQUEST',
+    SET_TAB: 'SET_TAB',
 }
 
