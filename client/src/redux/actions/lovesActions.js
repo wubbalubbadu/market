@@ -7,31 +7,25 @@ API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
   }
-  console.log(localStorage.getItem('profile'));
-  console.log(req.headers.Authorization);
   return req;
 });
 
-export const setProducts = (product) => ({
-  type: ActionTypes.SET_PRODUCTS, // type is required
+export const getLoves = (product) => ({
+  type: ActionTypes.GET_LOVES, // type is required
   payload: product,
 });
 
-export const createProduct = (product) => async (dispatch) => {
+export const addToLoves = (product) => async (dispatch) => {
   console.log(product);
   try {
     const { data } = await API
-      .post('/api/products', product)
+      .post('/user/addCart', product)
       .catch((err) => {
         console.log(err);
       });
 
-    // console.log(data)
-
-    dispatch({ type: ActionTypes.CREATE_PRODUCT, payload: data });
+    dispatch({ type: ActionTypes.ADD_TO_LOVES, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
-
-// returns a product object

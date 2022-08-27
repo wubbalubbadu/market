@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import {
-  Modal, Stack, Box, Button,
+  Modal, Stack, Box, Button, Avatar,
 } from '@mui/material';
 import styled from 'styled-components';
-
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { SAMPLEIMAGES } from '../constants/homepage';
+// import { addToLoves } from '../redux/actions/lovesActions';
 
 function ProductModal({ open, onClose, product }) {
   const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);
+  const [name, setName] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const style = {
     position: 'absolute',
@@ -25,6 +28,34 @@ function ProductModal({ open, onClose, product }) {
     borderRadius: 5,
     padding: 10,
   };
+
+  const getUserInfo = async () => {
+    console.log(product);
+    const response = await axios
+      .get(`http://localhost:5000/user/userinfo?googleId=${product.googleId}`)
+      .catch((err) => {
+        console.log(err);
+      });
+    setName(response.data.name);
+    setAvatar(response.data.avatar);
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+  // const addToWatchingsSubmit = async (e) => {
+
+  //   e.preventDefault();
+  //   try {
+  //     dispatch(addToLoves({ ...product, seller: user?.result?.name }));
+  //     alert('successful');
+  //     setTimeout(() => {
+  //       navigate('/');
+  //     }, 1000);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -80,18 +111,27 @@ function ProductModal({ open, onClose, product }) {
               $
               {product.price}
             </Typography>
-            <Box>
+            <Stack direction="row">
+              <Avatar src={avatar} alt="avatar" />
               <Typography>
                 {' '}
-                {product.seller}
+                {name}
                 {' '}
               </Typography>
-            </Box>
+            </Stack>
             <ActionButtonDiv>
               <Button sx={buttonstyle} component={Link} to="/message">
                 Contact Seller
               </Button>
-              <Button sx={buttonstyle}>Add to Watchings</Button>
+              <Button
+                sx={buttonstyle}
+                onClick={() => {
+                  // addToWatchingsSubmit()
+                  console.log('something');
+                }}
+              >
+                Add to Watchings
+              </Button>
             </ActionButtonDiv>
           </Box>
         </Stack>

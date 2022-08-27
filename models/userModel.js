@@ -14,10 +14,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    // password: {
-    //     type: String,
-    //     required: true
-    // },
+    googleId: {
+        type: String,
+        required: true,
+        unique: true
+    },
     role: {
         type: Number,
         default: 0

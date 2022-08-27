@@ -43,7 +43,7 @@ function Requests() {
     console.log(formValues);
     try {
       formValues.map((request, id) => {
-        dispatch(createRequest({ ...request, seller: user?.result?.name }));
+        dispatch(createRequest({ ...request, googleId: user?.result?.googleId }));
       });
       alert('successful');
       setTimeout(() => {

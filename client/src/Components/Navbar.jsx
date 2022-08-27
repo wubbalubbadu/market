@@ -60,9 +60,7 @@ function Navbar() {
         <IconsNav>
           {user ? (
             <IconButton component={Link} to="/account">
-
               <ProfileIcon margin={2} style={{ color: 'black' }} />
-
             </IconButton>
           ) : (
             <Login />

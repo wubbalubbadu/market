@@ -42,10 +42,11 @@ function Listings() {
   //  console.log(categories)
 
   const handleSubmit = async (e) => {
+    console.log(user?.result?.googleId);
     e.preventDefault();
     try {
       formValues.map((product, id) => {
-        dispatch(createProduct({ ...product, seller: user?.result?.name }));
+        dispatch(createProduct({ ...product, googleId: user?.result?.googleId }));
       });
       alert('successful');
       setTimeout(() => {
@@ -58,9 +59,7 @@ function Listings() {
 
   const handleInputChange = (i) => (e) => {
     const { name, value } = e.target;
-
     setFormValues((s) => s.map((item, id) => (id === i ? { ...item, [name]: value } : item)));
-    console.log(formValues);
   };
 
   return (
