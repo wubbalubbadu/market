@@ -1,9 +1,7 @@
-
 import React from 'react';
 import {
   styled, AppBar, Select, FormControl, MenuItem, InputLabel, Stack,
 } from '@mui/material';
-
 
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
@@ -17,7 +15,6 @@ function PostHeader({
     <AppBar sx={{ display: 'inline' }}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
         <StyledForm>
-
 
           <FormControl>
             <InputLabel id="post-or-request-label">Method</InputLabel>
@@ -36,7 +33,6 @@ function PostHeader({
       </Stack>
     </AppBar>
   );
-
 }
 
 export default PostHeader;

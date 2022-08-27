@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 
 import Add from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
@@ -47,16 +45,13 @@ function Navbar() {
   return (
     <AppBar
       position="sticky"
-
       sx={{ bgcolor: 'white', borderRadius: '5px', boxShadow: 0 }}
-
     >
       <StyledToolbar>
         <Typography
           component={Link}
           to="/"
           variant="h6"
-
           sx={{ display: { xs: 'none', sm: 'block' } }}
         >
           MARKET
@@ -73,7 +68,6 @@ function Navbar() {
             <Login />
           )}
 
-
           <FavoriteIcon style={{ color: 'black' }} />
           <ChatIcon style={{ color: 'black' }} />
 
@@ -82,7 +76,6 @@ function Navbar() {
             to="/post_request_items"
             variant="contained"
             startIcon={<Add color="black" />}
-
             sx={{ bgcolor: 'white' }}
           >
             <Typography

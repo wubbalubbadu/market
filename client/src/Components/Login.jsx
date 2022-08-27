@@ -1,4 +1,3 @@
-
 import { GoogleLogin } from 'react-google-login';
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -17,13 +16,11 @@ function Login() {
     const token = res?.tokenId;
 
     try {
-
       const res = await axios.post('http://localhost:5000/user/google_login', {
         profileObj: result,
       });
       dispatch({ type: 'AUTH', data: { result, token } });
       navigate('/');
-
     } catch (error) {
       console.log(error.response.data);
     }
