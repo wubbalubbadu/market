@@ -80,9 +80,8 @@ function Navbar() {
           >
             <Typography
               sx={{ display: { xs: 'none', sm: 'block' }, color: 'black' }}
-
             >
-              POST & REQUEST
+              SELL & REQUEST
             </Typography>
           </Button>
         </IconsNav>

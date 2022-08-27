@@ -9,7 +9,7 @@ const StyledForm = styled(FormControl)(({ theme }) => ({
 }));
 
 function PostHeader({
-  arr, addInput, method, handleMethodChange,
+  method, handleMethodChange,
 }) {
   return (
     <AppBar sx={{ display: 'inline' }}>

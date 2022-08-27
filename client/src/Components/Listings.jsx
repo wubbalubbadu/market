@@ -38,6 +38,13 @@ function Listings() {
     setFormValues((s) => [...s, defaultValues]);
   };
 
+  const deleteInput = (id) => {
+    console.log(arr);
+    console.log(formValues);
+    setArr((s) => [...Array(s.length - 1).keys()]);
+    setFormValues((s) => s.filter((_, i) => i !== id - 1));
+  };
+
   const handleSubmit = async (e) => {
     console.log(user?.result?.googleId);
     e.preventDefault();
@@ -70,6 +77,7 @@ function Listings() {
               formValues={formValues}
               categories={categories}
               handleInputChange={handleInputChange(i)}
+              deleteInput={deleteInput}
             />
           ))}
 
