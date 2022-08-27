@@ -60,6 +60,7 @@ function ProductModal({ open, onClose, product }) {
                 margin: '20px',
                 borderRadius: '5px',
                 objectFit: 'cover',
+                minWidth: '400px',
                 boxShadow:
                   'rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset',
               }}
@@ -82,9 +83,7 @@ function ProductModal({ open, onClose, product }) {
             </Typography>
             <Box>
               <Typography>
-                {' '}
                 {product.seller}
-                {' '}
               </Typography>
             </Box>
             <ActionButtonDiv>
@@ -103,7 +102,6 @@ function ProductModal({ open, onClose, product }) {
             </Typography>
             <Typography fontSize={24}>
               {product.condition}
-              {' '}
             </Typography>
           </Stack>
         </Box>
@@ -127,6 +125,7 @@ export default ProductModal;
 const PDheadingDiv = {
   width: 450,
   height: 480,
+  bgcolor: 'yellow',
 };
 
 const Imagediv = styled.div`

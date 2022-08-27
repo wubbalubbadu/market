@@ -47,9 +47,7 @@ function ProductModal({ open, onClose, request }) {
           </Typography>
           <Box>
             <Typography>
-              {' '}
               {request.user}
-              {' '}
             </Typography>
           </Box>
           <ActionButtonDiv>
