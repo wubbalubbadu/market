@@ -65,8 +65,10 @@ function Navbar() {
           ) : (
             <Login />
           )}
+          <IconButton component={Link} to="/loves">
+            <FavoriteIcon style={{ color: 'black' }} />
+          </IconButton>
 
-          <FavoriteIcon style={{ color: 'black' }} />
           <ChatIcon style={{ color: 'black' }} />
 
           <Button
