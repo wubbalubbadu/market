@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { theme } from "../themes/Theme";
 import Login from "./Login";
 
 import Add from "@mui/icons-material/Add";
@@ -47,49 +46,47 @@ function Navbar() {
   }, [location]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppBar
-        position="sticky"
-        sx={{ bgcolor: "white", borderRadius: "5px", boxShadow: 0 }}
-      >
-        <StyledToolbar>
-          <Typography
-            component={Link}
-            to="/"
-            variant="h6"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            MARKET
-          </Typography>
-          {/* <HomeIcon/> */}
-          <IconsNav>
-            {user ? (
-              <IconButton component={Link} to="/account">
-                <ProfileIcon margin={2} style={{ color: "black" }} />
-              </IconButton>
-            ) : (
-              <Login />
-            )}
+    <AppBar
+      position="sticky"
+      sx={{ bgcolor: "white", borderRadius: "5px", boxShadow: 0 }}
+    >
+      <StyledToolbar>
+        <Typography
+          component={Link}
+          to="/"
+          variant="h6"
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
+          MARKET
+        </Typography>
+        {/* <HomeIcon/> */}
+        <IconsNav>
+          {user ? (
+            <IconButton component={Link} to="/account">
+              <ProfileIcon margin={2} style={{ color: "black" }} />
+            </IconButton>
+          ) : (
+            <Login />
+          )}
 
-            <FavoriteIcon style={{ color: "black" }} />
-            <ChatIcon style={{ color: "black" }} />
-            <Button
-              component={Link}
-              to="/post_request_items"
-              variant="contained"
-              startIcon={<Add color="black" />}
-              sx={{ bgcolor: "white" }}
+          <FavoriteIcon style={{ color: "black" }} />
+          <ChatIcon style={{ color: "black" }} />
+          <Button
+            component={Link}
+            to="/post_request_items"
+            variant="contained"
+            startIcon={<Add color="black" />}
+            sx={{ bgcolor: "white" }}
+          >
+            <Typography
+              sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
             >
-              <Typography
-                sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
-              >
-                POST & REQUEST
-              </Typography>
-            </Button>
-          </IconsNav>
-        </StyledToolbar>
-      </AppBar>
-    </ThemeProvider>
+              POST & REQUEST
+            </Typography>
+          </Button>
+        </IconsNav>
+      </StyledToolbar>
+    </AppBar>
   );
 }
 
