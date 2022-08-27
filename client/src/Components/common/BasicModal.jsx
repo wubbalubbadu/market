@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import Typography from '@mui/material/Typography';
-import {Modal, Stack,Box, styled} from '@mui/material';
+import { Modal, Box } from '@mui/material';
 
-const BasicModal = ({open, onClose}) => {
+function BasicModal({ open, onClose }) {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -26,7 +26,7 @@ const BasicModal = ({open, onClose}) => {
         </Typography>
       </Box>
     </Modal>
-  )
+  );
 }
 
-export default BasicModal
+export default BasicModal;

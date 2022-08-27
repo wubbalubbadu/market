@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import SearchIcon from "@mui/icons-material/Search";
-import { Typography } from "@mui/material";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import SearchIcon from '@mui/icons-material/Search';
 
-import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../redux/actions/productsActions";
-import axios from "axios";
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { setProducts } from '../redux/actions/productsActions';
 
 function SearchBar() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
   const fetchbytitle = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/products?title[regex]=" + query
+      `http://localhost:5000/api/products?title[regex]=${query}`,
     );
     dispatch(setProducts(response.data.products));
-    console.log("click submitsearch, keyword", query);
+    // console.log('click submitsearch, keyword', query);
   };
 
   const keyDownHandler = (event, query) => {
-    if (event.key === "Enter") {
-      console.log("User pressed: ", event.key);
+    if (event.key === 'Enter') {
+      // console.log('User pressed: ', event.key);
       event.preventDefault();
       // call submit function here
       fetchbytitle();
@@ -30,12 +29,12 @@ function SearchBar() {
 
   return (
     <SearchContainer>
-      <SearchIcon></SearchIcon>
+      <SearchIcon />
       <SearchInput
         placeholder="Feed me some keywords"
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={keyDownHandler}
-      ></SearchInput>
+      />
       <SummitButton id="submitsearch" onClick={fetchbytitle}>
         Submit
       </SummitButton>
