@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 function Message() {
   return (
     <div>Message</div>
-  )
+  );
 }
 
-export default Message
+export default Message;
