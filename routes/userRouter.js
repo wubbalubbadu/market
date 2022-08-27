@@ -19,7 +19,7 @@ router.post('/google_login', userCtrl.googleLogin)
 
 router.get('/userinfo', userCtrl.getUser)
 
-//router.patch('/addcart', auth, userCtrl.addCart)
+router.put('/addToLoves', userCtrl.addToLoves)
 
 
 module.exports = router

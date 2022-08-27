@@ -5,14 +5,19 @@ import {
 } from '@mui/material';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import { SAMPLEIMAGES } from '../constants/homepage';
-// import { addToLoves } from '../redux/actions/lovesActions';
+import { addToLoves } from '../../redux/actions/lovesActions';
 
 function ProductModal({ open, onClose, product }) {
   const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const style = {
     position: 'absolute',
@@ -43,19 +48,15 @@ function ProductModal({ open, onClose, product }) {
   useEffect(() => {
     getUserInfo();
   }, []);
-  // const addToWatchingsSubmit = async (e) => {
 
-  //   e.preventDefault();
-  //   try {
-  //     dispatch(addToLoves({ ...product, seller: user?.result?.name }));
-  //     alert('successful');
-  //     setTimeout(() => {
-  //       navigate('/');
-  //     }, 1000);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  const addToWatchingsSubmit = async (e) => {
+    try {
+      dispatch(addToLoves({ productId: product._id, googleId: user?.result?.googleId }));
+      alert('success');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -126,8 +127,7 @@ function ProductModal({ open, onClose, product }) {
               <Button
                 sx={buttonstyle}
                 onClick={() => {
-                  // addToWatchingsSubmit()
-                  console.log('something');
+                  addToWatchingsSubmit();
                 }}
               >
                 Add to Watchings

@@ -144,18 +144,17 @@ const userCtrl = {
         }
     },
     
-    // addCart: async (req, res) =>{
-    //     try {
-    //         const {seller, cart} = req.body;
-    //         await Users.findOneAndUpdate({_id: req.user.id}, {
-    //             loves: req.body.cart
-    //         })
-    //         return res.json({msg: "Added to cart"})
-    //     } catch (err) {
-    //         return res.status(500).json({msg: err.message})
-    //     }
-    // }
-
+    addToLoves: async (req, res) =>{
+        try {
+            const {googleId, productId} = req.body;
+            await Users.findOneAndUpdate({googleId}, {
+                $addToSet: {loves: productId}
+            })
+            return res.json({msg: "Added to cart"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    }
 }
 
 // const createAccessToken = (user) =>{

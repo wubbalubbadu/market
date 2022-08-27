@@ -38,9 +38,6 @@ function Listings() {
     setFormValues((s) => [...s, defaultValues]);
   };
 
-  //  const categories = useSelector((state) => state.categories);
-  //  console.log(categories)
-
   const handleSubmit = async (e) => {
     console.log(user?.result?.googleId);
     e.preventDefault();
