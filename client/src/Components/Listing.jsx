@@ -1,4 +1,6 @@
+
 import React from 'react';
+
 import {
   Typography,
   Divider,
@@ -17,6 +19,7 @@ import {
   Grid,
 } from '@mui/material';
 
+
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
   width: 200,
@@ -29,10 +32,12 @@ function Listing({ id, handleInputChange, formValues, categories }) {
       <Container justifyContent="center">
         <Grid container spacing={0}>
           <Grid item xs={12}>
+
             <Typography>
               Item
               {id}
             </Typography>
+
           </Grid>
           <Grid item xs={1}>
             <Typography>Title: </Typography>
@@ -77,11 +82,13 @@ function Listing({ id, handleInputChange, formValues, categories }) {
                   value={formValues.category}
                   onChange={handleInputChange}
                 >
+
                   {categories.map((item, i) => (
                     <MenuItem key={item} value={item}>
                       {item}
                     </MenuItem>
                   ))}
+
                 </Select>
               </FormControl>
             </StyledForm>
