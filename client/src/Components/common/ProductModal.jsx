@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import {
-  Typography, Modal, Stack, Box, Button, Grid,
+  Typography, Modal, Stack, Box, Grid,
 } from '@mui/material';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
+import { Button } from '../../themes/Button';
 import { SAMPLEIMAGES } from '../constants/homepage';
 
 function ProductModal({ open, onClose, product }) {
-  // console.log(product);
+  console.log(product);
   // const imglist = product.images;
   // console.log(imglist);
   const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);
@@ -26,6 +27,10 @@ function ProductModal({ open, onClose, product }) {
     p: 4,
     borderRadius: 5,
     padding: 10,
+    overflow: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   };
 
   return (
@@ -100,14 +105,13 @@ function ProductModal({ open, onClose, product }) {
                   bgcolor: 'background.paper',
                   borderColor: 'text.primary',
                   m: 1,
-                  border: 1,
+                  border: 0,
                   width: '5rem',
                   height: '5rem',
                   borderRadius: '50%',
+                  boxShadow: '3px 3px 6px rgba(0, 0, 0, 0.25), -3px -3px 6px rgba(255, 255, 255, 0.3)',
                 }}
-                >
-                  <img>
-                </Box>
+                />
                 <ActionButtonDiv>
                   <Button sx={buttonstyle} component={Link} to="/message">
                     <Typography sx={{ fontFamily: 'Oswald' }}>
@@ -177,6 +181,7 @@ const ImgsContainer = styled.div`
 
 const ActionButtonDiv = styled.div`
   background-color: "yellow";
+  margin-top: 25px;
 `;
 
 const buttonstyle = {
@@ -184,11 +189,12 @@ const buttonstyle = {
   maxHeight: '60px',
   minWidth: '160px',
   minHeight: '60px',
-  bgcolor: 'black',
+  bgcolor: 'white',
   '&:hover': {
-    background: '#FECB58',
+    background: '#FCFFF7',
   },
   mr: 5,
+  borderRadius: '10px',
 };
 
 const MainPhotoContainer = styled.div`

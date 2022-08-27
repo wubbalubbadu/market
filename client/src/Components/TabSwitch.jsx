@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
+import { Button } from '../themes/Button';
 import { setTab } from '../redux/actions/tabsActions';
 
 function TabSwitch() {
