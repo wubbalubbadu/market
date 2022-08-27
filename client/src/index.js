@@ -1,15 +1,14 @@
 import { ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {theme} from "./themes/Theme"
-import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { reducers } from './redux/reducer/index'; 
-
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { theme } from './themes/Theme';
+import { reducers } from './redux/reducer/index';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,8 +20,8 @@ root.render(
       </ThemeProvider>
     </BrowserRouter>
 
-  </Provider>
-  
+  </Provider>,
+
 );
 
 // If you want to start measuring performance in your app, pass a function

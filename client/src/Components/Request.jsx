@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import {
   Typography,
   Divider,
@@ -10,21 +10,26 @@ import {
   MenuItem,
   TextField,
   Grid,
-} from "@mui/material";
+} from '@mui/material';
 
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
   width: 200,
 }));
 
-function Request({ id, handleInputChange, formValues, categories }) {
+function Request({
+  id, handleInputChange, formValues, categories,
+}) {
   categories = categories.map((x) => x.name);
   return (
     <>
       <Container justifyContent="center">
         <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Typography>Item {id}</Typography>
+            <Typography>
+              Item
+              {id}
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography>Title: </Typography>
@@ -52,13 +57,11 @@ function Request({ id, handleInputChange, formValues, categories }) {
                   value={formValues.category}
                   onChange={handleInputChange}
                 >
-                  {categories.map((item, i) => {
-                    return (
-                      <MenuItem key={item} value={item}>
-                        {item}
-                      </MenuItem>
-                    );
-                  })}
+                  {categories.map((item, i) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </StyledForm>

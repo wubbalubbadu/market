@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Request from "../Components/Request";
-import { Box, Stack, Fab, Paper, Button, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { createRequest } from "../redux/actions/requestsActions";
-import { getCategories } from "../redux/actions/categoryActions";
-import AddIcon from "@mui/icons-material/Add";
+import React, { useState, useEffect } from 'react';
+import {
+  Box, Stack, Fab, Paper, Button, Typography,
+} from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
+import { createRequest } from '../redux/actions/requestsActions';
+import { getCategories } from '../redux/actions/categoryActions';
+import Request from './Request';
 
 function Requests() {
   const categories = useSelector((state) => state.categoryReducer.categories);
@@ -15,41 +17,37 @@ function Requests() {
     dispatch(getCategories());
   }, []);
 
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const defaultValues = {
-    title: "",
+    title: '',
     low_price: 0,
     high_price: 1,
-    description: "",
-    category: "",
+    description: '',
+    category: '',
   };
 
   const [formValues, setFormValues] = useState([defaultValues]);
   const [arr, setArr] = useState([0]);
   const navigate = useNavigate();
   const addInput = () => {
-    setArr((s) => {
-      return [...s, s.length];
-    });
-    setFormValues((s) => {
-      return [...s, defaultValues];
-    });
+    setArr((s) => [...s, s.length]);
+    setFormValues((s) => [...s, defaultValues]);
   };
 
   //  const categories = useSelector((state) => state.categories);
   //  console.log(categories)
 
-  let handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formValues);
     try {
       formValues.map((request, id) => {
         dispatch(createRequest({ ...request, seller: user?.result?.name }));
       });
-      alert("successful");
+      alert('successful');
       setTimeout(() => {
-        navigate("/");
+        navigate('/');
       }, 1000);
     } catch (err) {
       console.log(err);
@@ -57,13 +55,9 @@ function Requests() {
   };
 
   const handleInputChange = (i) => (e) => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
 
-    setFormValues((s) =>
-      s.map((item, id) => {
-        return id === i ? { ...item, [name]: value } : item;
-      })
-    );
+    setFormValues((s) => s.map((item, id) => (id === i ? { ...item, [name]: value } : item)));
     console.log(formValues);
   };
 
@@ -71,17 +65,15 @@ function Requests() {
     <div>
       <Box>
         <form onSubmit={handleSubmit}>
-          {arr.map((item, i) => {
-            return (
-              <Request
-                key={i}
-                id={i + 1}
-                formValues={formValues}
-                categories={categories}
-                handleInputChange={handleInputChange(i)}
-              />
-            );
-          })}
+          {arr.map((item, i) => (
+            <Request
+              key={i}
+              id={i + 1}
+              formValues={formValues}
+              categories={categories}
+              handleInputChange={handleInputChange(i)}
+            />
+          ))}
 
           <div>
             <Stack direction="row" justifyContent="space-between" spacing={2}>

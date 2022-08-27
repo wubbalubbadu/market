@@ -1,11 +1,10 @@
-import React from "react";
-import ProductList from "./Sell/ProductList";
-import RequestList from "./Requests/RequestList";
-import TabSwitch from "./TabSwitch";
-import SearchBar from "./SearchBar";
-import { useSelector } from "react-redux";
-
-import styled from "styled-components";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import ProductList from './Sell/ProductList';
+import RequestList from './Requests/RequestList';
+import TabSwitch from './TabSwitch';
+import SearchBar from './SearchBar';
 
 function PostSection({ products, requests }) {
   const currTab = useSelector((state) => state.tabReducer.tab);
@@ -13,7 +12,7 @@ function PostSection({ products, requests }) {
   return (
     <PostSectDiv>
       <SearchBar>Search</SearchBar>
-      <TabSwitch></TabSwitch>
+      <TabSwitch />
       {currTab === 0 ? (
         <ProductList products={products} />
       ) : (
