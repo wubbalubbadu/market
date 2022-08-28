@@ -26,6 +26,7 @@ const StyledForm = styled(FormControl)(({ theme }) => ({
 
 function Listing({ id, handleInputChange, formValues, categories, deleteInput }) {
   categories = categories.map((x) => x.name);
+  console.log(formValues);
   return (
     <>
       <Container justifyContent="center">
@@ -50,7 +51,7 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
               name="title"
               label="Required *"
               type="text"
-              value={formValues.title}
+              value={formValues[id - 1].title}
               onChange={handleInputChange}
             />
           </Grid>
@@ -67,7 +68,7 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
                 shrink: true,
               }}
               variant="filled"
-              value={formValues.price}
+              value={formValues[id - 1].price}
               onChange={handleInputChange}
             />
           </Grid>
@@ -81,7 +82,7 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
                 <Select
                   name="category"
                   defaultValue=""
-                  value={formValues.category}
+                  value={formValues[id - 1].category}
                   onChange={handleInputChange}
                 >
 
@@ -102,7 +103,7 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
             <FormControl>
               <RadioGroup
                 name="condition"
-                value={formValues.condition}
+                value={formValues[id - 1].condition}
                 onChange={handleInputChange}
                 row
               >
@@ -144,7 +145,7 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
               rows={4}
               placeholder="my description blah blah"
               type="text"
-              value={formValues.description}
+              value={formValues[id - 1].description}
               onChange={handleInputChange}
             />
           </Grid>

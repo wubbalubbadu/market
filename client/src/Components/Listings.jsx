@@ -31,17 +31,14 @@ function Listings() {
   };
 
   const [formValues, setFormValues] = useState([defaultValues]);
-  const [arr, setArr] = useState([0]);
   const navigate = useNavigate();
   const addInput = () => {
-    setArr((s) => [...s, s.length]);
     setFormValues((s) => [...s, defaultValues]);
   };
 
   const deleteInput = (id) => {
-    console.log(arr);
     console.log(formValues);
-    setArr((s) => [...Array(s.length - 1).keys()]);
+    console.log(id);
     setFormValues((s) => s.filter((_, i) => i !== id - 1));
   };
 
@@ -70,7 +67,7 @@ function Listings() {
     <div>
       <Box>
         <form onSubmit={handleSubmit}>
-          {arr.map((item, i) => (
+          {formValues.map((item, i) => (
             <Listing
               key={i}
               id={i + 1}
@@ -85,7 +82,7 @@ function Listings() {
             <Stack direction="row" justifyContent="space-between" spacing={2}>
               <Typography>Number of Items</Typography>
 
-              <Typography>{arr.length}</Typography>
+              <Typography>{formValues.length}</Typography>
               <Fab color="secondary" onClick={addInput}>
                 <AddIcon />
               </Fab>
