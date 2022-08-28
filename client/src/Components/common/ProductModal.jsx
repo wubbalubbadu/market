@@ -20,16 +20,15 @@ function ProductModal({ open, onClose, product }) {
   const navigate = useNavigate();
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: 'sticky',
+    top: '15%',
+    left: '15%',
+    marginRight: '10%',
     width: '70%',
     height: '60%',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
     borderRadius: 5,
     padding: 10,
     overflow: 'scroll',
@@ -65,8 +64,8 @@ function ProductModal({ open, onClose, product }) {
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
-        <Grid lg={12} container spacing={2}>
-          <Grid item lg={6} xs={12} sx={{ bgcolor: 'yellow' }}>
+        <Grid lg={12} container spacing={2} columnSpacing={2}>
+          <Grid item lg={6} xs={12} sx={{ bgcolor: 'white' }}>
             <Imagediv>
               <ImgsContainer>
                 {SAMPLEIMAGES.map((img, index) => (
@@ -108,37 +107,45 @@ function ProductModal({ open, onClose, product }) {
               </MainPhotoContainer>
             </Imagediv>
           </Grid>
-          <Grid item lg={6} xs={12} sx={{ bgcolor: 'blue' }}>
-            <Stack direction="row" justifyContent="space-between" spacing={1}>
-              <Box justifyContent="flex-start" sx={PDheadingDiv}>
-                <Typography fontSize={30} fontWeight="bold">
-                  {product.title}
-                </Typography>
-                <Typography
-                  fontSize={16}
-                  fontWeight="light"
-                  sx={{ textDecoration: 'underline' }}
-                >
-                  {product.category}
-                </Typography>
-                <Typography fontWeight="light" fontSize={28} sx={{ mt: 5, mb: 5 }}>
-                  $
-                  {product.price}
-                </Typography>
-                <Stack direction="row">
+          <Grid container lg={6} xs={12} sx={{ bgcolor: 'white', paddingLeft: '20px' }}>
+            <Grid item lg={12} sm={6} sx={{ bgcolor: 'white', marginTop: '20px' }}>
+              <Stack direction="row" justifyContent="space-between" spacing={1}>
+                <Grid item lg={12} xs={6}>
+                  <Typography fontSize={30} fontWeight="bold">
+                    {product.title}
+                  </Typography>
+                  <Typography
+                    fontSize={16}
+                    fontWeight="light"
+                    sx={{ textDecoration: 'underline' }}
+                  >
+                    {product.category}
+                  </Typography>
+                  <Typography fontWeight="light" fontSize={28} sx={{ mt: 5 }}>
+                    $
+                    {product.price}
+                  </Typography>
+                </Grid>
+              </Stack>
+            </Grid>
+            <Grid container lg={12} sm={6} rowSpacing={5} sx={{ bgcolor: 'white', marginTop: '10px' }}>
+              <Grid item lg={12} xs={6} sx={{ marginTop: '15px' }}>
+                <Stack flexDirection="row">
                   <Avatar src={avatar} alt="avatar" />
                   <Typography>
-                    {' '}
                     {name}
-                    {' '}
                   </Typography>
                 </Stack>
-                <ActionButtonDiv>
+              </Grid>
+              <Grid container>
+                <Grid item xs={6}>
                   <Button sx={buttonstyle} component={Link} to="/message">
                     <Typography sx={{ fontFamily: 'Oswald' }}>
                       Contact Seller
                     </Typography>
                   </Button>
+                </Grid>
+                <Grid xs={6}>
                   <Button
                     sx={buttonstyle}
                     onClick={() => {
@@ -149,30 +156,34 @@ function ProductModal({ open, onClose, product }) {
                       Add to Watchings
                     </Typography>
                   </Button>
-                </ActionButtonDiv>
-              </Box>
-            </Stack>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-        <Box padding={2}>
-          <Stack direction="row" justifyContent="flex-start" spacing={5}>
+        <Grid container lg={12} xs={12} rowSpacing={2} sx={{ marginTop: '25px' }}>
+          <Grid item lg={12} xs={12}>
+            <Stack flexDirection="row">
+              <Typography fontWeight="bold" fontSize={24}>
+                Condition:
+              </Typography>
+              <Typography fontSize={24}>
+                &nbsp;
+                &nbsp;
+                {product.condition}
+              </Typography>
+            </Stack>
+
+          </Grid>
+          <Grid item lg={12} xs={12}>
             <Typography fontWeight="bold" fontSize={24}>
-              Condition:
+              Description:
             </Typography>
             <Typography fontSize={24}>
-              {product.condition}
+              {product.description}
             </Typography>
-          </Stack>
-        </Box>
-
-        <Box padding={2}>
-          <Typography fontWeight="bold" fontSize={24}>
-            Description:
-          </Typography>
-          <Typography fontSize={24}>
-            {product.description}
-          </Typography>
-        </Box>
+          </Grid>
+        </Grid>
       </Box>
     </Modal>
   );
@@ -205,7 +216,7 @@ const ImgsContainer = styled.div`
 `;
 
 const ActionButtonDiv = styled.div`
-  background-color: "yellow";
+  background-color: "white";
   margin-top: 25px;
 `;
 
@@ -223,7 +234,7 @@ const buttonstyle = {
 };
 
 const MainPhotoContainer = styled.div`
-  background-color: orange;
+  background-color: white;
 `;
 
 const imgListContainer = styled.div`
