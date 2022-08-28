@@ -43,8 +43,9 @@ function Sidebar() {
         {' '}
         SORT BY
       </Typography>
-      {sortby.map((sorttype) => (
+      {sortby.map((sorttype, i) => (
         <Typography
+          key={i}
           sx={{
             margin: '5px',
             marginLeft: 0,

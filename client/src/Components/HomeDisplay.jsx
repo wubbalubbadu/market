@@ -50,7 +50,6 @@ function HomeDisplay() {
     //   payload: response.data.products
     // })
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
