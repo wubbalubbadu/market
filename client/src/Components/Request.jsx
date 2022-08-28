@@ -10,7 +10,9 @@ import {
   MenuItem,
   TextField,
   Grid,
+  Button,
 } from '@mui/material';
+import Delete from '@mui/icons-material/Delete';
 
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
@@ -18,7 +20,7 @@ const StyledForm = styled(FormControl)(({ theme }) => ({
 }));
 
 function Request({
-  id, handleInputChange, formValues, categories,
+  id, handleInputChange, formValues, categories, deleteInput,
 }) {
   categories = categories.map((x) => x.name);
   return (
@@ -30,6 +32,9 @@ function Request({
               Item
               {id}
             </Typography>
+            <Button onClick={() => deleteInput(id)}>
+              <Delete style={{ color: 'black' }} />
+            </Button>
           </Grid>
           <Grid item xs={2}>
             <Typography>Title: </Typography>
@@ -40,7 +45,7 @@ function Request({
               name="title"
               label="Required *"
               type="text"
-              value={formValues.title}
+              value={formValues[id - 1].title}
               onChange={handleInputChange}
             />
           </Grid>
@@ -54,7 +59,7 @@ function Request({
                 <Select
                   name="category"
                   defaultValue=""
-                  value={formValues.category}
+                  value={formValues[id - 1].category}
                   onChange={handleInputChange}
                 >
                   {categories.map((item, i) => (
@@ -79,7 +84,7 @@ function Request({
                 shrink: true,
               }}
               variant="filled"
-              value={formValues.low_price}
+              value={formValues[id - 1].low_price}
               onChange={handleInputChange}
             />
           </Grid>
@@ -96,7 +101,7 @@ function Request({
                 shrink: true,
               }}
               variant="filled"
-              value={formValues.high_price}
+              value={formValues[id - 1].high_price}
               onChange={handleInputChange}
             />
           </Grid>
@@ -112,7 +117,7 @@ function Request({
               rows={4}
               placeholder="my description blah blah"
               type="text"
-              value={formValues.description}
+              value={formValues[id - 1].description}
               onChange={handleInputChange}
             />
           </Grid>
