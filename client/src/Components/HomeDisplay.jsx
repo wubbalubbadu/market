@@ -50,12 +50,10 @@ function HomeDisplay() {
     //   payload: response.data.products
     // })
   };
-  // console.log(products)
 
   useEffect(() => {
     fetchProducts();
   }, []);
-
   // const [selectedTab, setSelectedTab] = useState("sell");
   // const handleTabChange = (event, selectedTab) => {
   //   setSelectedTab(selectedTab);

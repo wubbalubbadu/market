@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, Stack, Fab, Button, Typography,
+  Box, Stack, Fab, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { createProduct } from '../redux/actions/productsActions';
 import { getCategories } from '../redux/actions/categoryActions';
 import Listing from './Listing';
+import { Button } from '../themes/Button';
 
 function Listings() {
   const categories = useSelector((state) => state.categoryReducer.categories);
@@ -79,17 +80,22 @@ function Listings() {
           ))}
 
           <div>
-            <Stack direction="row" justifyContent="space-between" spacing={2}>
+            <Stack direction="row" justifyContent="flex-end" spacing={2} alignItems="center" marginTop="20px" marginRight="30px">
               <Typography>Number of Items</Typography>
-
-              <Typography>{formValues.length}</Typography>
+              <Typography fontWeight={500}>{formValues.length}</Typography>
               <Fab color="secondary" onClick={addInput}>
                 <AddIcon />
               </Fab>
             </Stack>
           </div>
-          <Button sx={{ width: 150 }} variant="contained" type="submit">
-            <Typography> Sell </Typography>
+          <Button
+            sx={{
+              width: 150, margin: '20px', '&:hover': { color: 'red', cursor: 'pointer' },
+            }}
+            variant="contained"
+            type="submit"
+          >
+            <Typography fontFamily="Oswald" color="Black"> Sell </Typography>
           </Button>
         </form>
       </Box>
