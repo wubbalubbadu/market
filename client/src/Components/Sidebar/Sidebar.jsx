@@ -25,7 +25,6 @@ function Sidebar() {
   categoriesList.sort();
 
   return (
-
     <Box
       bgcolor="white"
       flex={0.25}
@@ -84,13 +83,12 @@ function Sidebar() {
           dispatch(setProducts(response.data.products));
         }}
       >
-
-        CATEGORIES
+        ALL CATEGORIES
       </Typography>
 
       {Object.entries(categoriesList).map(([key, value]) => (
         <Typography
-          key={value}
+          key={value[0]}
           sx={{
             margin: '5px',
             marginLeft: 0,
@@ -103,12 +101,12 @@ function Sidebar() {
           }}
           onClick={async () => {
             const response = await axios.get(
-              `http://localhost:5000/api/products?category=${value}`,
+              `http://localhost:5000/api/products?category=${value[1]}`,
             );
             dispatch(setProducts(response.data.products));
           }}
         >
-          {key}
+          {value[0]}
         </Typography>
       ))}
     </Box>

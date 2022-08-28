@@ -25,7 +25,6 @@ const StyledForm = styled(FormControl)(({ theme }) => ({
   width: 200,
 }));
 
-
 function Listing({ id, handleInputChange, formValues, categories, deleteInput, handleUpload }) {
   categories = categories.map((x) => x.name);
   console.log(formValues);
