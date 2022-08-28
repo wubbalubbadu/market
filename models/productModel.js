@@ -2,25 +2,25 @@ const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema
 
 const productSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         trim: true,
         required: true
     },
-    price:{
+    price: {
         type: String,
         trim: true,
         required: true
     },
-    description:{
+    description: {
         type: String,
         required: true
     },
-    images:{
-        type: Object,
+    images: {
+        type: Array,
         required: false
     },
-    category:{
+    category: {
         type: String,
         required: true
     },
@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema({
     googleId: {
         type: String,
         required: true
-      }
+    }
 }, {
     timestamps: true //important
 })

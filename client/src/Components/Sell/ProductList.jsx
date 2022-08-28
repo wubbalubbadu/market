@@ -21,7 +21,7 @@ function ProductList(props) {
   return (
     <Wrapperstyle>
       {/* map each of the product into a Product component */}
-      {products.map((product) => <Product product={product} />)}
+      {products.map((product, i) => <Product product={product} key={i} />)}
     </Wrapperstyle>
   );
 }

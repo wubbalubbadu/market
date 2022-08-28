@@ -4,6 +4,8 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import AddIcon from '@mui/icons-material/Add';
 import { createProduct } from '../redux/actions/productsActions';
 import { getCategories } from '../redux/actions/categoryActions';
@@ -24,11 +26,8 @@ function Listings() {
     price: 0,
     description: '',
     condition: '',
-    images: {
-      public_id: 'test/rsltmafcyek9v4fm7oid',
-      url: 'https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg',
-    },
     category: '',
+    images: [{}, {}, {}],
   };
 
   const [formValues, setFormValues] = useState([defaultValues]);
@@ -38,13 +37,10 @@ function Listings() {
   };
 
   const deleteInput = (id) => {
-    console.log(formValues);
-    console.log(id);
     setFormValues((s) => s.filter((_, i) => i !== id - 1));
   };
 
   const handleSubmit = async (e) => {
-    console.log(user?.result?.googleId);
     e.preventDefault();
     try {
       formValues.map((product, id) => {
@@ -58,6 +54,26 @@ function Listings() {
       console.log(err);
     }
   };
+  /* eslint-disable */
+  const handleUpload = (i, num) => async (e) => {
+    try {
+      const file = e.target.files[0];
+      if (!file) return alert('File not exist.');
+      if (file.size > 2048 * 2048) return alert('Size too large!');
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png') return alert('File format is incorrect.');
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await axios.post('http://localhost:5000/api/upload', formData, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
+      console.log(e.target);
+      console.log(res.data);
+      setFormValues((s) => s.map((item, id) => (id === i ? { ...item, images: formValues[i].images.map((item, id) => (id === num ? res.data : item)) } : item)));
+    } catch (err) {
+      alert(err);
+    }
+  };
+  /* eslint-enable */
 
   const handleInputChange = (i) => (e) => {
     const { name, value } = e.target;
@@ -76,6 +92,7 @@ function Listings() {
               categories={categories}
               handleInputChange={handleInputChange(i)}
               deleteInput={deleteInput}
+              handleUpload={handleUpload}
             />
           ))}
 
