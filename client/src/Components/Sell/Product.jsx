@@ -15,13 +15,9 @@ function Product({ product }) {
     url: 'https://res.cloudinary.com/dtoiffmee/image/upload/v1661676677/test/uvncoj2yarsodblc9d5f.png',
   };
 
-  // e = event
-  // prevent dubbed bubbling
-  // Modal to be close at default
-
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      {product.images && product.images.length >= 1 ? (
+      {product.images[0].url ? (
         <img
           src={product.images[0].url}
           width={220}
