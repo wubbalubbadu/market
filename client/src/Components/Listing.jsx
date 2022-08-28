@@ -24,7 +24,7 @@ const StyledForm = styled(FormControl)(({ theme }) => ({
   width: 200,
 }));
 
-function Listing({ id, handleInputChange, formValues, categories, deleteInput }) {
+function Listing({ id, handleInputChange, formValues, categories, deleteInput, handleUpload }) {
   categories = categories.map((x) => x.name);
   console.log(formValues);
   return (
@@ -151,13 +151,13 @@ function Listing({ id, handleInputChange, formValues, categories, deleteInput })
           <Grid item xs={3}>
             <Stack direction="column" alignItems="center" spacing={2}>
               <label htmlFor="icon-button-file">
-                <Input accept="image/*" id="icon-button-file" type="file" />
+                <Input accept="image/*" id="icon-button-file" type="file" onChange={handleUpload(id - 1, 0)} />
               </label>
               <label htmlFor="icon-button-file">
-                <Input accept="image/*" id="icon-button-file" type="file" />
+                <Input accept="image/*" id="icon-button-file" type="file" onChange={handleUpload(id - 1, 1)} />
               </label>
               <label htmlFor="icon-button-file">
-                <Input accept="image/*" id="icon-button-file" type="file" />
+                <Input accept="image/*" id="icon-button-file" type="file" onChange={handleUpload(id - 1, 2)} />
               </label>
             </Stack>
           </Grid>

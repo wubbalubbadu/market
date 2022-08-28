@@ -15,12 +15,12 @@ function Product({ product }) {
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      {product?.images ? (
+      {product.images && product.images.length >= 1 ? (
         <img
-          src={product.images.url}
+          src={product.images[0].url}
           width={220}
           height={170}
-          alt={product.images.url}
+          alt={product.images[0].url}
         />
       ) : null}
 
