@@ -53,9 +53,8 @@ function Listings() {
       console.log(err);
     }
   };
-
-  /* eslint-disable */
-  const handleUpload = (i, num) => async e => {
+/* eslint-disable */
+  const handleUpload = (i, num) => async (e) => {
     try {
       const file = e.target.files[0];
       if (!file) return alert('File not exist.');
@@ -66,9 +65,9 @@ function Listings() {
       const res = await axios.post('http://localhost:5000/api/upload', formData, {
         headers: { 'content-type': 'multipart/form-data' },
       });
-      console.log(e.target)
-      console.log(res.data)
-      setFormValues((s) => s.map((item, id) => (id === i ? { ...item, ["images"]: formValues[i].images.map((item, id) => (id === num ? res.data : item))} : item)));
+      console.log(e.target);
+      console.log(res.data);
+      setFormValues((s) => s.map((item, id) => (id === i ? { ...item, images: formValues[i].images.map((item, id) => (id === num ? res.data : item)) } : item)));
     } catch (err) {
       alert(err);
     }

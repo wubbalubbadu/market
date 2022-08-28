@@ -9,9 +9,11 @@ function Product({ product }) {
   const handleClose = (e) => {
     e.stopPropagation();
     setOpen(false);
-  }; // e = event
-  // prevent dubbed bubbling
-  // Modal to be close at default
+  };
+  const defaultImage = {
+    public_id: 'test/uvncoj2yarsodblc9d5f',
+    url: 'https://res.cloudinary.com/dtoiffmee/image/upload/v1661676677/test/uvncoj2yarsodblc9d5f.png',
+  };
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
@@ -22,7 +24,14 @@ function Product({ product }) {
           height={170}
           alt={product.images[0].url}
         />
-      ) : null}
+      ) : (
+        <img
+          src={defaultImage.url}
+          width={220}
+          height={170}
+          alt={defaultImage.url}
+        />
+      )}
 
       <Typography fontSize={18}>
         {' '}
