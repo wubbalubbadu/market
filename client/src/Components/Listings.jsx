@@ -54,7 +54,8 @@ function Listings() {
       console.log(err);
     }
   };
-  /* eslint-disable */
+
+/* eslint-disable */
   const handleUpload = (i, num) => async (e) => {
     try {
       const file = e.target.files[0];

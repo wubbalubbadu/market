@@ -67,7 +67,6 @@ const productCtrl = {
     },
     createProduct: async (req, res) => {
         try {
-
             const { title, price, description, images, category, condition, googleId } = req.body;
             const newProduct = new Products({
                 title, price, description, images, category, condition, googleId

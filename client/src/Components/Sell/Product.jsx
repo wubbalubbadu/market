@@ -14,6 +14,7 @@ function Product({ product }) {
     public_id: 'test/uvncoj2yarsodblc9d5f',
     url: 'https://res.cloudinary.com/dtoiffmee/image/upload/v1661676677/test/uvncoj2yarsodblc9d5f.png',
   };
+
   // e = event
   // prevent dubbed bubbling
   // Modal to be close at default
