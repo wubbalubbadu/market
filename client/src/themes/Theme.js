@@ -14,15 +14,11 @@ export const theme = createTheme({
     },
   },
   typography: {
-    headlineoswald: {
-      fontsize: 22,
-
+    allVariants: {
+      fontFamily: 'Nunito, sans-serif',
     },
-    bodynunito: {
-      fontsize: 18,
-    },
-    subbodynunito: {
-      fontsize: 18,
+    headtitle: {
+      fontFamily: 'Oswald, sans-serid',
     },
   },
 });

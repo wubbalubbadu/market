@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { Button } from '../themes/Button';
 import { setProducts } from '../redux/actions/productsActions';
 
 function SearchBar() {
@@ -35,9 +36,9 @@ function SearchBar() {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={keyDownHandler}
       />
-      <SummitButton id="submitsearch" onClick={fetchbytitle}>
+      <Button id="submitsearch" onClick={fetchbytitle} sx={SummitButtonstyle}>
         Submit
-      </SummitButton>
+      </Button>
     </SearchContainer>
   );
 }
@@ -65,15 +66,14 @@ const SearchInput = styled.input`
   color: white;
 `;
 
-const SummitButton = styled.button`
-  background-color: rgba(51, 51, 51, 0.05);
-  border-radius: 5px;
-  border-width: 0.1mm;
-  color: #333333;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0.5em;
-  padding: 0.5em;
-  text-align: center;
-  vertical-align: baseline;
-`;
+const SummitButtonstyle = {
+  borderRadius: '5px',
+  borderWidth: '0.1mm',
+  color: '#333333',
+  cursor: 'pointer',
+  display: 'inline-block',
+  margin: '0.5em',
+  padding: '0.5em',
+  textAlign: 'center',
+  verticalAlign: 'baseline',
+};
