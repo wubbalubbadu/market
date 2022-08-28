@@ -66,11 +66,11 @@ const requestCtrl = {
     },
     createRequest: async(req, res) =>{
         try {
-            const {title, description, category, seller, low_price, high_price} = req.body;
+            const {title, description, category, googleId, low_price, high_price} = req.body;
             if(high_price < low_price)
                 return res.status(400).json({msg: "Upper price must be higher than lower price."})
             const newRequest = new Requests({
-                title: title.toLowerCase(), description, category, seller, low_price, high_price
+                title: title.toLowerCase(), description, category, googleId, low_price, high_price
             })
             await newRequest.save()
             res.json({msg: "Created a Request", data: newRequest})

@@ -38,14 +38,19 @@ function Listings() {
     setFormValues((s) => [...s, defaultValues]);
   };
 
-  //  const categories = useSelector((state) => state.categories);
-  //  console.log(categories)
+  const deleteInput = (id) => {
+    console.log(arr);
+    console.log(formValues);
+    setArr((s) => [...Array(s.length - 1).keys()]);
+    setFormValues((s) => s.filter((_, i) => i !== id - 1));
+  };
 
   const handleSubmit = async (e) => {
+    console.log(user?.result?.googleId);
     e.preventDefault();
     try {
       formValues.map((product, id) => {
-        dispatch(createProduct({ ...product, seller: user?.result?.name }));
+        dispatch(createProduct({ ...product, googleId: user?.result?.googleId }));
       });
       alert('successful');
       setTimeout(() => {
@@ -58,9 +63,7 @@ function Listings() {
 
   const handleInputChange = (i) => (e) => {
     const { name, value } = e.target;
-
     setFormValues((s) => s.map((item, id) => (id === i ? { ...item, [name]: value } : item)));
-    console.log(formValues);
   };
 
   return (
@@ -74,6 +77,7 @@ function Listings() {
               formValues={formValues}
               categories={categories}
               handleInputChange={handleInputChange(i)}
+              deleteInput={deleteInput}
             />
           ))}
 

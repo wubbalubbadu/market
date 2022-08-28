@@ -1,6 +1,4 @@
-
 import React from 'react';
-
 import {
   Typography,
   Divider,
@@ -17,15 +15,16 @@ import {
   MenuItem,
   TextField,
   Grid,
+  Button,
 } from '@mui/material';
-
+import Delete from '@mui/icons-material/Delete';
 
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
   width: 200,
 }));
 
-function Listing({ id, handleInputChange, formValues, categories }) {
+function Listing({ id, handleInputChange, formValues, categories, deleteInput }) {
   categories = categories.map((x) => x.name);
   return (
     <>
@@ -37,6 +36,9 @@ function Listing({ id, handleInputChange, formValues, categories }) {
               Item
               {id}
             </Typography>
+            <Button onClick={() => deleteInput(id)}>
+              <Delete style={{ color: 'black' }} />
+            </Button>
 
           </Grid>
           <Grid item xs={1}>

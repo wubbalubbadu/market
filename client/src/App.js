@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import PostRequest from './Pages/PostRequest';
 import Account from './Pages/Account';
 import Message from './Pages/Message';
+import Loves from './Pages/Loves';
 
 function App() {
   gapi.load('client:auth2', () => {
