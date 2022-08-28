@@ -1,123 +1,124 @@
-import React,{useState, useEffect} from 'react'
-import PostHeader from '../Components/Postheader'
-import Listing from '../Components/Listing'
-import {Box, Stack, Fab ,Paper, Button, Typography} from '@mui/material'
+import React, { useState, useEffect } from 'react';
+import {
+  Box, Stack, Fab, Typography,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
-import {createProduct } from '../redux/actions/productsActions'
-import {getCategories } from '../redux/actions/categoryActions'
-import AddIcon from '@material-ui/icons/Add';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+import AddIcon from '@mui/icons-material/Add';
+import { createProduct } from '../redux/actions/productsActions';
+import { getCategories } from '../redux/actions/categoryActions';
+import Listing from './Listing';
+import { Button } from '../themes/Button';
 
 function Listings() {
-
   const categories = useSelector((state) => state.categoryReducer.categories);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getCategories());
-   
   }, []);
-  
+
   const user = JSON.parse(localStorage.getItem('profile'));
   const defaultValues = {
-    title: "",
+    title: '',
     price: 0,
-    description: "",
-    condition: "",
-    images: {
-      public_id: "test/rsltmafcyek9v4fm7oid",
-      url: "https://res.cloudinary.com/dtoiffmee/image/upload/v1657489616/test/rsltmafcyek9v4fm7oid.jpg",
-    },
-    category: ""
+    description: '',
+    condition: '',
+    category: '',
+    images: [{}, {}, {}],
   };
-  
+
   const [formValues, setFormValues] = useState([defaultValues]);
-  const [arr, setArr] = useState([0]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const addInput = () => {
-    setArr(s => {
-      return [
-        ...s,
-        s.length
-      ];
-      
-    });
-    setFormValues(s => {
-      return [
-        ...s,
-        defaultValues
-      ]
-    })
+    setFormValues((s) => [...s, defaultValues]);
   };
 
-//  const categories = useSelector((state) => state.categories);
-//  console.log(categories)
+  const deleteInput = (id) => {
+    setFormValues((s) => s.filter((_, i) => i !== id - 1));
+  };
 
-let handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    formValues.map((product, id) => {
-      dispatch(createProduct({...product, seller: user?.result?.name}))
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      formValues.map((product, id) => {
+        dispatch(createProduct({ ...product, googleId: user?.result?.googleId }));
+      });
+      alert('successful');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    })
-    alert('successful')
-    setTimeout(()=> {
-      navigate('/')
-    }, 1000)
-    
-    
-  } catch (err) {
-    console.log(err);
-  }
-};
+/* eslint-disable */
+  const handleUpload = (i, num) => async (e) => {
+    try {
+      const file = e.target.files[0];
+      if (!file) return alert('File not exist.');
+      if (file.size > 2048 * 2048) return alert('Size too large!');
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png') return alert('File format is incorrect.');
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await axios.post('http://localhost:5000/api/upload', formData, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
+      console.log(e.target);
+      console.log(res.data);
+      setFormValues((s) => s.map((item, id) => (id === i ? { ...item, images: formValues[i].images.map((item, id) => (id === num ? res.data : item)) } : item)));
+    } catch (err) {
+      alert(err);
+    }
+  };
+  /* eslint-enable */
 
-const handleInputChange = i => (e) => {
-  
-  let { name, value } = e.target;
+  const handleInputChange = (i) => (e) => {
+    const { name, value } = e.target;
+    setFormValues((s) => s.map((item, id) => (id === i ? { ...item, [name]: value } : item)));
+  };
 
-  setFormValues(s => s.map((item, id) => {
-    return (id === i? {...item, [name]: value} : item)
-  })
-)
-  console.log(formValues)
-};
-
-
-
-      return (
-      <div>
-        <Box >
+  return (
+    <div>
+      <Box>
         <form onSubmit={handleSubmit}>
-         { arr.map((item, i) => {
-          return  <Listing key={i} id={i+1} formValues={formValues} categories={categories} handleInputChange={handleInputChange(i)}/>
-         })
-         }
-          
-          
-                  <div>
-                  <Stack direction="row" justifyContent="space-between" spacing={2}>
-                    <Typography>Number of Items</Typography>
-  
-                      <Typography>{arr.length}</Typography>
-                      <Fab color="secondary"  onClick={addInput}>
-                      <AddIcon />
-                      </Fab>
-        
-                  </Stack>
-              </div>
-              <Button sx={{width: 150} }
-                      variant="contained" 
-                      type='submit'>  
-                    <Typography > Sell </Typography>
-                  </Button>
-          </form> 
-    
-        </Box>
-      </div>
-      
-    )
+          {formValues.map((item, i) => (
+            <Listing
+              key={i}
+              id={i + 1}
+              formValues={formValues}
+              categories={categories}
+              handleInputChange={handleInputChange(i)}
+              deleteInput={deleteInput}
+              handleUpload={handleUpload}
+            />
+          ))}
+
+          <div>
+            <Stack direction="row" justifyContent="flex-end" spacing={2} alignItems="center" marginTop="20px" marginRight="30px">
+              <Typography>Number of Items</Typography>
+              <Typography fontWeight={500}>{formValues.length}</Typography>
+              <Fab color="secondary" onClick={addInput}>
+                <AddIcon />
+              </Fab>
+            </Stack>
+          </div>
+          <Button
+            sx={{
+              width: 150, margin: '20px', '&:hover': { color: 'red', cursor: 'pointer' },
+            }}
+            variant="contained"
+            type="submit"
+          >
+            <Typography fontFamily="Oswald" color="Black"> Sell </Typography>
+          </Button>
+        </form>
+      </Box>
+    </div>
+  );
 }
-  
 
-
-export default Listings
+export default Listings;

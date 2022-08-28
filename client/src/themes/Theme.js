@@ -1,28 +1,24 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
-    palette:{
-        primary:{
-            main: "#ab003c",
-            light:"skyblue"
-        },
-        secondary:{
-            main: "#2a3eb1"
-        },
-        otherColor:{
-            main: "#ffee33"
-        }
+  palette: {
+    primary: {
+      main: '#ab003c',
+      light: 'skyblue',
     },
-    typography:{
-        headlineoswald: {
-            fontsize: 22,
-
-        },
-        bodynunito:{
-            fontsize: 18,
-        },
-        subbodynunito:{
-            fontsize: 18,
-        }
-    }
-    });
+    secondary: {
+      main: '#2a3eb1',
+    },
+    otherColor: {
+      main: '#ffee33',
+    },
+  },
+  typography: {
+    allVariants: {
+      fontFamily: 'Nunito, sans-serif',
+    },
+    headtitle: {
+      fontFamily: 'Oswald, sans-serid',
+    },
+  },
+});
