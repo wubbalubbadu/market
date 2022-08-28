@@ -28,22 +28,27 @@ function Requests() {
   };
 
   const [formValues, setFormValues] = useState([defaultValues]);
-  const [arr, setArr] = useState([0]);
+
   const navigate = useNavigate();
   const addInput = () => {
-    setArr((s) => [...s, s.length]);
     setFormValues((s) => [...s, defaultValues]);
   };
 
   //  const categories = useSelector((state) => state.categories);
   //  console.log(categories)
 
+  const deleteInput = (id) => {
+    console.log(formValues);
+    console.log(id);
+    setFormValues((s) => s.filter((_, i) => i !== id - 1));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formValues);
     try {
       formValues.map((request, id) => {
-        dispatch(createRequest({ ...request, seller: user?.result?.name }));
+        dispatch(createRequest({ ...request, googleId: user?.result?.googleId }));
       });
       alert('successful');
       setTimeout(() => {
@@ -65,13 +70,14 @@ function Requests() {
     <div>
       <Box>
         <form onSubmit={handleSubmit}>
-          {arr.map((item, i) => (
+          {formValues.map((item, i) => (
             <Request
               key={i}
               id={i + 1}
               formValues={formValues}
               categories={categories}
               handleInputChange={handleInputChange(i)}
+              deleteInput={deleteInput}
             />
           ))}
 
@@ -79,7 +85,7 @@ function Requests() {
             <Stack direction="row" justifyContent="space-between" spacing={2}>
               <Typography>Number of Items</Typography>
 
-              <Typography>{arr.length}</Typography>
+              <Typography>{formValues.length}</Typography>
               <Fab color="secondary" onClick={addInput}>
                 <AddIcon />
               </Fab>

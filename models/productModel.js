@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    seller: {
+    googleId: {
         type: String,
         required: true
       }

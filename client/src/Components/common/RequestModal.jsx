@@ -64,7 +64,6 @@ function ProductModal({ open, onClose, request }) {
           </Typography>
           <Typography fontSize={24}>
             {request.description}
-            {' '}
           </Typography>
         </Box>
       </Box>

@@ -31,21 +31,23 @@ function Listings() {
   };
 
   const [formValues, setFormValues] = useState([defaultValues]);
-  const [arr, setArr] = useState([0]);
   const navigate = useNavigate();
   const addInput = () => {
-    setArr((s) => [...s, s.length]);
     setFormValues((s) => [...s, defaultValues]);
   };
 
-  //  const categories = useSelector((state) => state.categories);
-  //  console.log(categories)
+  const deleteInput = (id) => {
+    console.log(formValues);
+    console.log(id);
+    setFormValues((s) => s.filter((_, i) => i !== id - 1));
+  };
 
   const handleSubmit = async (e) => {
+    console.log(user?.result?.googleId);
     e.preventDefault();
     try {
       formValues.map((product, id) => {
-        dispatch(createProduct({ ...product, seller: user?.result?.name }));
+        dispatch(createProduct({ ...product, googleId: user?.result?.googleId }));
       });
       alert('successful');
       setTimeout(() => {
@@ -58,22 +60,21 @@ function Listings() {
 
   const handleInputChange = (i) => (e) => {
     const { name, value } = e.target;
-
     setFormValues((s) => s.map((item, id) => (id === i ? { ...item, [name]: value } : item)));
-    console.log(formValues);
   };
 
   return (
     <div>
       <Box>
         <form onSubmit={handleSubmit}>
-          {arr.map((item, i) => (
+          {formValues.map((item, i) => (
             <Listing
               key={i}
               id={i + 1}
               formValues={formValues}
               categories={categories}
               handleInputChange={handleInputChange(i)}
+              deleteInput={deleteInput}
             />
           ))}
 
@@ -81,7 +82,7 @@ function Listings() {
             <Stack direction="row" justifyContent="space-between" spacing={2}>
               <Typography>Number of Items</Typography>
 
-              <Typography>{arr.length}</Typography>
+              <Typography>{formValues.length}</Typography>
               <Fab color="secondary" onClick={addInput}>
                 <AddIcon />
               </Fab>

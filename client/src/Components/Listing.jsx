@@ -15,15 +15,18 @@ import {
   MenuItem,
   TextField,
   Grid,
+  Button,
 } from '@mui/material';
+import Delete from '@mui/icons-material/Delete';
 
 const StyledForm = styled(FormControl)(({ theme }) => ({
   margin: theme.spacing(1),
   width: 200,
 }));
 
-function Listing({ id, handleInputChange, formValues, categories }) {
+function Listing({ id, handleInputChange, formValues, categories, deleteInput }) {
   categories = categories.map((x) => x.name);
+  console.log(formValues);
   return (
     <>
       <Container justifyContent="center">
@@ -33,6 +36,9 @@ function Listing({ id, handleInputChange, formValues, categories }) {
               Item
               {id}
             </Typography>
+            <Button onClick={() => deleteInput(id)}>
+              <Delete style={{ color: 'black' }} />
+            </Button>
           </Grid>
           <Grid item xs={1}>
             <Typography>Title: </Typography>
@@ -43,7 +49,7 @@ function Listing({ id, handleInputChange, formValues, categories }) {
               name="title"
               label="Required *"
               type="text"
-              value={formValues.title}
+              value={formValues[id - 1].title}
               onChange={handleInputChange}
             />
           </Grid>
@@ -60,7 +66,7 @@ function Listing({ id, handleInputChange, formValues, categories }) {
                 shrink: true,
               }}
               variant="filled"
-              value={formValues.price}
+              value={formValues[id - 1].price}
               onChange={handleInputChange}
             />
           </Grid>
@@ -74,7 +80,7 @@ function Listing({ id, handleInputChange, formValues, categories }) {
                 <Select
                   name="category"
                   defaultValue=""
-                  value={formValues.category}
+                  value={formValues[id - 1].category}
                   onChange={handleInputChange}
                 >
                   {categories.map((item, i) => (
@@ -93,7 +99,7 @@ function Listing({ id, handleInputChange, formValues, categories }) {
             <FormControl>
               <RadioGroup
                 name="condition"
-                value={formValues.condition}
+                value={formValues[id - 1].condition}
                 onChange={handleInputChange}
                 row
               >
@@ -135,7 +141,7 @@ function Listing({ id, handleInputChange, formValues, categories }) {
               rows={4}
               placeholder="my description blah blah"
               type="text"
-              value={formValues.description}
+              value={formValues[id - 1].description}
               onChange={handleInputChange}
             />
           </Grid>

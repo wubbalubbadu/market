@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Typography, Modal, Stack, Box, Grid,
+  Modal, Stack, Box, Avatar, Grid, Typography,
 } from '@mui/material';
 import styled from 'styled-components';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-import { Button } from '../../themes/Button';
 import { SAMPLEIMAGES } from '../constants/homepage';
+import { Button } from '../../themes/Button';
+import { addToLoves } from '../../redux/actions/lovesActions';
 
 function ProductModal({ open, onClose, product }) {
-  console.log(product);
-  // const imglist = product.images;
-  // console.log(imglist);
   const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);
+  const [name, setName] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const style = {
     position: 'absolute',
@@ -31,6 +36,30 @@ function ProductModal({ open, onClose, product }) {
     '&::-webkit-scrollbar': {
       display: 'none',
     },
+  };
+
+  const getUserInfo = async () => {
+    console.log(product);
+    const response = await axios
+      .get(`http://localhost:5000/user/userinfo?googleId=${product.googleId}`)
+      .catch((err) => {
+        console.log(err);
+      });
+    setName(response.data.name);
+    setAvatar(response.data.avatar);
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const addToWatchingsSubmit = async (e) => {
+    try {
+      dispatch(addToLoves({ productId: product._id, googleId: user?.result?.googleId }));
+      alert('success');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -96,29 +125,26 @@ function ProductModal({ open, onClose, product }) {
                   $
                   {product.price}
                 </Typography>
-                <Box>
+                <Stack direction="row">
+                  <Avatar src={avatar} alt="avatar" />
                   <Typography>
-                    {product.seller}
+                    {' '}
+                    {name}
+                    {' '}
                   </Typography>
-                </Box>
-                <Box sx={{
-                  bgcolor: 'background.paper',
-                  borderColor: 'text.primary',
-                  m: 1,
-                  border: 0,
-                  width: '5rem',
-                  height: '5rem',
-                  borderRadius: '50%',
-                  boxShadow: '3px 3px 6px rgba(0, 0, 0, 0.25), -3px -3px 6px rgba(255, 255, 255, 0.3)',
-                }}
-                />
+                </Stack>
                 <ActionButtonDiv>
                   <Button sx={buttonstyle} component={Link} to="/message">
                     <Typography sx={{ fontFamily: 'Oswald' }}>
                       Contact Seller
                     </Typography>
                   </Button>
-                  <Button sx={buttonstyle}>
+                  <Button
+                    sx={buttonstyle}
+                    onClick={() => {
+                      addToWatchingsSubmit();
+                    }}
+                  >
                     <Typography sx={{ fontFamily: 'Oswald' }}>
                       Add to Watchings
                     </Typography>
@@ -128,7 +154,6 @@ function ProductModal({ open, onClose, product }) {
             </Stack>
           </Grid>
         </Grid>
-
         <Box padding={2}>
           <Stack direction="row" justifyContent="flex-start" spacing={5}>
             <Typography fontWeight="bold" fontSize={24}>
@@ -204,9 +229,3 @@ const MainPhotoContainer = styled.div`
 const imgListContainer = styled.div`
   background-color: blueviolet;
 `;
-
-// const SAMPLEIMAGES = [
-//   'https://images.unsplash.com/photo-1658487476847-a180f98870d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80',
-//   'https://images.unsplash.com/photo-1658755362781-02899c3569ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-//   'https://images.unsplash.com/photo-1658756832548-f959ddf9004d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-// ];

@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Button } from '../themes/Button';
+
 import { setProducts } from '../redux/actions/productsActions';
 
 function SearchBar() {

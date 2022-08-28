@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
 import { Box, Typography } from '@mui/material';
 import { setProducts } from '../../redux/actions/productsActions';
+import { getCategories } from '../../redux/actions/categoryActions';
 
 // http://localhost:5000/api/products?category=Furniture
 
@@ -11,7 +11,22 @@ function Sidebar() {
   const dispatch = useDispatch(); // return a function
   // useDispatch -> put data in redux!
   // const currentTab = useSelector(state => state.currentTab);
+
+  const categories = useSelector((state) => state.categoryReducer.categories);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
+
+  const categoriesList = new Array(categories.length);
+  categories.forEach((item, i) => {
+    const display = item.name.replace('&', '%26');
+    categoriesList[i] = [item.name, display];
+  });
+  categoriesList.sort();
+
   return (
+
     <Box
       bgcolor="white"
       flex={0.25}
@@ -69,38 +84,8 @@ function Sidebar() {
           dispatch(setProducts(response.data.products));
         }}
       >
-        ALL CATEGORIES
+        CATEGORIES
       </Typography>
-      {/* {categories.map((category) => (
-        <Typography
-          sx={{
-            margin: "5px",
-            marginLeft: 0,
-            marginTop: "10px",
-            textDecoration: "none",
-            "&:hover": {
-              color: "blue",
-              cursor: "pointer",
-            },
-          }}
-          key={category}
-          onClick={
-            async () => {
-              // if (currentTab === 'sell') {
-              // }
-              const response = await axios.get(
-                "http://localhost:5000/api/products?category=" + category
-              );
-              dispatch(setProducts(response.data.products));
-            }
-            // console.log(category);
-            // normally, we call dispatch with an object
-            // setProducts(response.data.products);
-          }
-        >
-          {category}
-        </Typography>
-      ))} */}
 
       {Object.entries(categoriesDict).map(([key, value]) => (
         <Typography

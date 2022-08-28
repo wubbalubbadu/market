@@ -68,11 +68,10 @@ const productCtrl = {
     createProduct: async(req, res) =>{
         try {
             
-            const {title, price, description, images, category, condition, seller} = req.body;
+            const {title, price, description, images, category, condition, googleId} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
-
             const newProduct = new Products({
-                title, price, description, images, category, condition, seller
+                title, price, description, images, category, condition, googleId
             })
 
             await newProduct.save()
@@ -92,11 +91,11 @@ const productCtrl = {
     },
     updateProduct: async(req, res) =>{
         try {
-            const {title, price, description, images, category, condition, seller} = req.body;
+            const {title, price, description, images, category, condition, googleId} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Products.findOneAndUpdate({_id: req.params.id}, {
-                title: title.toLowerCase(), price, description, images, category, condition, seller
+                title: title.toLowerCase(), price, description, images, category, condition, googleId
             })
 
             res.json({msg: "Updated a Product"})
