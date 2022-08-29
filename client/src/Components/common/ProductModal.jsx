@@ -84,7 +84,7 @@ function ProductModal({ open, onClose, product }) {
                         style={{
                           width: '100px',
                           height: '100px',
-                          objectFit: 'cover',
+                          objectFit: 'contain',
                           borderRadius: '10px',
                           margin: '5px',
                           marginTop: '13px',
@@ -107,7 +107,7 @@ function ProductModal({ open, onClose, product }) {
                     height: '400px',
                     margin: '20px',
                     borderRadius: '5px',
-                    objectFit: 'cover',
+                    objectFit: 'contain',
                     minWidth: '400px',
                     boxShadow:
                       'rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset',
