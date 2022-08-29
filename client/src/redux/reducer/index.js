@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import authReducer from './authReducer';
-import productsReducer from './productsReducer';
+import productsReducer from '../slice/product';
 import categoryReducer from './categoryReducer';
 import tabReducer from './tabReducer';
 import lovesReducer from './lovesReducer';

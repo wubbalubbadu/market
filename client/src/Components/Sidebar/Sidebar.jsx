@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
-import { setProducts } from '../../redux/actions/productsActions';
 import { getCategories } from '../../redux/actions/categoryActions';
+import { fetchProducts } from '../../redux/thunk/product';
 
 // http://localhost:5000/api/products?category=Furniture
 
@@ -72,13 +72,8 @@ function Sidebar() {
           fontSize: 24,
           marginTop: 5,
         }}
-        onClick={async () => {
-          const response = await axios
-            .get('http://localhost:5000/api/products')
-            .catch((err) => {
-              console.log(err);
-            });
-          dispatch(setProducts(response.data.products));
+        onClick={() => {
+          dispatch(fetchProducts());
         }}
       >
         ALL CATEGORIES
@@ -97,11 +92,8 @@ function Sidebar() {
               cursor: 'pointer',
             },
           }}
-          onClick={async () => {
-            const response = await axios.get(
-              `http://localhost:5000/api/products?category=${value[1]}`,
-            );
-            dispatch(setProducts(response.data.products));
+          onClick={() => {
+            dispatch(fetchProducts({ category: value[1] }));
           }}
         >
           {value[0]}
