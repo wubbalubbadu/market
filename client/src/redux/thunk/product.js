@@ -14,16 +14,10 @@ export const createProduct = (product) => async (dispatch) => {
 export const fetchProducts = (filter) => async (dispatch) => {
   dispatch(fetchProductsPending());
   try {
-    let response;
-
-    if (filter?.title) {
-      response = await axios.get(`http://localhost:5000/api/products?title[regex]=${filter.title}`);
-    } else if (filter?.category) {
-      response = await axios.get(`http://localhost:5000/api/products?category=${filter.category}`);
-    } else {
-      response = await axios.get('http://localhost:5000/api/products');
-    }
-    dispatch(fetchProductsFulfilled(response.data.products));
+    const response = await axios.get('http://localhost:5000/api/products', { params: {
+      ...filter,
+    } });
+    dispatch(fetchProductsFulfilled({ products: response.data.products, totalCount: response.data.totalCount }));
   } catch (error) {
     dispatch(fetchProductsRejected());
   }

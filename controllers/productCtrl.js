@@ -47,6 +47,34 @@ class APIfeatures {
 
 const productCtrl = {
     getProducts: async (req, res) => {
+        console.log(req.query)
+        const { category, title, offset } = req.query;
+        let query = {}
+        let options = { limit: 10 }
+        if (category) {
+            query.category = category
+        }
+        if (title) {
+            query.title = new RegExp(title, 'i')
+        }
+        if (offset) {
+            options.skip = Number(offset)
+        }
+        
+        try {
+            const products = await Products.find(query).setOptions(options);
+            const totalCount = await Products.estimatedDocumentCount(query).setOptions(options);
+            res.json({
+                products,
+                totalCount,
+            })
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({ msg: err.message })
+        }
+
+    },
+    getProducts_: async (req, res) => {
         console.log(req)
         try {
             const features = new APIfeatures(Products.find(), req.query)

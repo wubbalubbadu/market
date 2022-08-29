@@ -36,7 +36,7 @@ const SAMPLE_REQUESTS = [
 ];
 
 function HomeDisplay() {
-  const products = useSelector((state) => state.productsReducer.products);
+  const products = useSelector((state) => state.product.products);
   const dispatch = useDispatch();
 
   useEffect(() => {

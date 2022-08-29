@@ -5,7 +5,7 @@ const initialState = {
   totalPages: 0,
   filter: {
     offset: 1,
-    limit: 20,
+    limit: 10,
   },
   loading: false,
 };
@@ -32,7 +32,8 @@ const slice = createSlice({
     },
     fetchProductsFulfilled(state, action) {
       state.loading = false;
-      state.products = action.payload;
+      state.products = action.payload.products;
+      state.totalPages = action.payload.totalCount ? Math.ceil(action.payload.totalCount / 10) : 1;
     },
     fetchProductsRejected(state) {
       state.loading = false;

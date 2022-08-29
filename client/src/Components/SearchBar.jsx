@@ -15,7 +15,7 @@ function SearchBar() {
     dispatch(fetchProducts({ title: query }));
   };
 
-  const keyDownHandler = (event, query) => {
+  const keyDownHandler = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       dispatch(fetchProducts({ title: query }));
