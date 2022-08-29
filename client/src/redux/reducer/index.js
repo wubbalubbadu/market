@@ -5,7 +5,8 @@ import productsReducer from './productsReducer';
 import categoryReducer from './categoryReducer';
 import tabReducer from './tabReducer';
 import lovesReducer from './lovesReducer';
+import requestsReducer from './requestsReducer';
 
 export const reducers = combineReducers({
-  authReducer, productsReducer, categoryReducer, tabReducer, lovesReducer,
+  authReducer, productsReducer, categoryReducer, tabReducer, lovesReducer, requestsReducer,
 });
