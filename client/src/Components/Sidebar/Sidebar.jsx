@@ -73,8 +73,6 @@ function Sidebar() {
           marginTop: 5,
         }}
         onClick={async () => {
-          // if (currentTab === 'sell') {
-          // }
           const response = await axios
             .get('http://localhost:5000/api/products')
             .catch((err) => {
