@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Box, Stack } from '@mui/material';
 import { setProducts } from '../redux/actions/productsActions';
+import { getRequests } from '../redux/actions/requestsActions';
 import Postsection from './Postsection';
 import Sidebar from './Sidebar/Sidebar';
 
@@ -55,6 +56,16 @@ function HomeDisplay() {
     fetchProducts();
   }, []);
 
+  const requests = useSelector((state) => state.requestsReducer.requests);
+  const fetchRequests = async () => {
+    const response = await axios
+      .get('http://localhost:5000/api/requests')
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(getRequests(response.data.requests));
+  };
+  // console.log(requests);
   return (
     <Box bgcolor="white" padding={2} sx={{ marginRight: 0, paddingRight: 0 }}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
