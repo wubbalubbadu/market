@@ -3,9 +3,9 @@ import { ActionTypes } from '../constants/actionType';
 
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 
-export const getRequests = (requests) => ({
+export const getRequests = (request) => ({
   type: ActionTypes.GET_REQUESTS, // type is required
-  payload: requests,
+  payload: request,
 });
 
 export const createRequest = (request) => async (dispatch) => {

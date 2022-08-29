@@ -65,7 +65,11 @@ function HomeDisplay() {
       });
     dispatch(getRequests(response.data.requests));
   };
-  // console.log(requests);
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+
   return (
     <Box bgcolor="white" padding={2} sx={{ marginRight: 0, paddingRight: 0 }}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
@@ -75,7 +79,7 @@ function HomeDisplay() {
           products={products}
           // selectedTab={selectedTab}
           // handleTabChange={handleTabChange}
-          requests={SAMPLE_REQUESTS}
+          requests={requests}
         />
       </Stack>
     </Box>
