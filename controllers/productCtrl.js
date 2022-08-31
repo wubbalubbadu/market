@@ -69,7 +69,7 @@ const productCtrl = {
         try {
             const { title, price, description, images, category, condition, googleId } = req.body;
             const newProduct = new Products({
-                title, price, description, images, category, condition, googleId
+                title: title.toLowerCase(), price, description, images, category, condition, googleId
             })
 
             await newProduct.save()
@@ -92,7 +92,7 @@ const productCtrl = {
             const { title, price, description, images, category, condition, googleId } = req.body;
 
             await Products.findOneAndUpdate({ _id: req.params.id }, {
-                title: title, price, description, images, category, condition, googleId
+                title: title.toLowerCase(), price, description, images, category, condition, googleId
             })
 
             res.json({ msg: "Updated a Product" })
