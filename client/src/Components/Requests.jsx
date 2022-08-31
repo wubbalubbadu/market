@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, Stack, Fab, Paper, Button, Typography,
+  Box, Stack, Fab, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { createRequest } from '../redux/actions/requestsActions';
 import { getCategories } from '../redux/actions/categoryActions';
 import Request from './Request';
+import { Button } from '../themes/Button';
 
 function Requests() {
   const categories = useSelector((state) => state.categoryReducer.categories);
@@ -82,17 +83,22 @@ function Requests() {
           ))}
 
           <div>
-            <Stack direction="row" justifyContent="space-between" spacing={2}>
+            <Stack direction="row" justifyContent="flex-end" spacing={2} alignItems="center" marginTop="20px" marginRight="30px">
               <Typography>Number of Items</Typography>
-
-              <Typography>{formValues.length}</Typography>
+              <Typography fontWeight={500}>{formValues.length}</Typography>
               <Fab color="secondary" onClick={addInput}>
                 <AddIcon />
               </Fab>
             </Stack>
           </div>
-          <Button sx={{ width: 150 }} variant="contained" type="submit">
-            <Typography> Request </Typography>
+          <Button
+            sx={{
+              width: 150, margin: '20px', '&:hover': { color: '#F5EE9E', cursor: 'pointer' },
+            }}
+            variant="contained"
+            type="submit"
+          >
+            <Typography fontFamily="Oswald" color="Black"> Request </Typography>
           </Button>
         </form>
       </Box>
