@@ -14,7 +14,7 @@ function SearchBar() {
 
   const fetchbytitle = async () => {
     const response = await axios.get(
-      `http://localhost:5000/api/products?title[regex]=${query}`,
+      `http://localhost:5000/api/products?title[regex]=${query.toLowerCase()}`,
     );
     dispatch(setProducts(response.data.products));
     // console.log('click submitsearch, keyword', query);
