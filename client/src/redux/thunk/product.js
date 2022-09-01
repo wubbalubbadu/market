@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected, setProducts } from '../slice/product';
+import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected, updateFilter } from '../slice/product';
 
 export const createProduct = (product) => async (dispatch) => {
   dispatch(createProductPending());
@@ -11,11 +11,16 @@ export const createProduct = (product) => async (dispatch) => {
   }
 };
 
-export const fetchProducts = (filter) => async (dispatch) => {
+export const fetchProducts = (filter) => async (dispatch, getState) => {
+  dispatch(updateFilter(filter));
+
+  const state = getState();
+  const newFilter = state.product.filter;
+
   dispatch(fetchProductsPending());
   try {
     const response = await axios.get('http://localhost:5000/api/products', { params: {
-      ...filter,
+      ...newFilter,
     } });
     dispatch(fetchProductsFulfilled({ products: response.data.products, totalCount: response.data.totalCount }));
   } catch (error) {

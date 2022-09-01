@@ -51,10 +51,10 @@ const productCtrl = {
         const { category, title, offset } = req.query;
         let query = {}
         let options = { limit: 10 }
-        if (category) {
+        if (category && category !== '') {
             query.category = category
         }
-        if (title) {
+        if (title && title !== '') {
             query.title = new RegExp(title, 'i')
         }
         if (offset) {

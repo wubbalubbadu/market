@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Grid, Pagination, Stack, styled } from '@mui/material';
+import { Divider, Grid, Pagination, Stack, styled, CircularProgress } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import Product from './Product';
 import { fetchProducts } from '../../redux/thunk/product';
@@ -20,9 +20,10 @@ function ProductList(props) {
   const { products } = props;
   const dispatch = useDispatch();
   const totalPages = useSelector((state) => state.product.totalPages);
+  const loading = useSelector((state) => state.product.loading);
 
-  const onPageSelected = (event, value) => {
-    dispatch(fetchProducts({ offset: (value - 1) * 10 }));
+  const onPageSelected = (event, pageNumber) => {
+    dispatch(fetchProducts({ offset: (pageNumber - 1) * 10 }));
   };
 
   return (
@@ -30,9 +31,9 @@ function ProductList(props) {
       <Stack sx={{ width: '1400px' }}>
         <Grid
           container
-          justifyContent="flex-start"
+          justifyContent={loading ? 'center' : 'flex-start'}
         >
-          {products.map((product, i) => <Product product={product} key={i} />)}
+          { loading ? <CircularProgress /> : products.map((product, i) => <Product product={product} key={i} />)}
         </Grid>
         <Divider sx={{ m: '12px' }} />
         <Grid container justifyContent="center">

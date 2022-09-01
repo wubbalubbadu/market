@@ -4,18 +4,23 @@ const initialState = {
   products: [],
   totalPages: 0,
   filter: {
-    offset: 1,
+    title: '',
+    category: '',
+    offset: 0,
     limit: 10,
   },
   loading: false,
+  dialogMessage: '',
 };
 
 const slice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProducts(state, action) {
-      state.products = action.payload;
+    updateFilter(state, action) {
+      for (const key in action.payload) {
+        state.filter[key] = action.payload[key];
+      }
     },
     createProductPending(state) {
       state.loading = true;
@@ -35,14 +40,15 @@ const slice = createSlice({
       state.products = action.payload.products;
       state.totalPages = action.payload.totalCount ? Math.ceil(action.payload.totalCount / 10) : 1;
     },
-    fetchProductsRejected(state) {
+    fetchProductsRejected(state, action) {
       state.loading = false;
+      state.dialogMessage = action.payload;
     },
   },
 });
 
 export const {
-  setProducts,
+  updateFilter,
   createProductFulfilled,
   createProductPending,
   createProductRejected,
