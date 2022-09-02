@@ -108,7 +108,7 @@ function Listings() {
           </div>
           <Button
             sx={{
-              width: 150, margin: '20px', '&:hover': { color: 'red', cursor: 'pointer' },
+              width: 150, margin: '20px', '&:hover': { color: '#F5EE9E', cursor: 'pointer' },
             }}
             variant="contained"
             type="submit"

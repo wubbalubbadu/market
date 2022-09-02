@@ -12,11 +12,11 @@ function PostHeader({
   method, handleMethodChange,
 }) {
   return (
-    <AppBar sx={{ display: 'inline' }}>
+    <AppBar sx={{ display: 'inline', bgcolor: 'white', boxShadow: 0 }}>
       <Stack direction="row" justifyContent="space-between" spacing={2}>
         <StyledForm>
-          <FormControl>
-            <InputLabel id="post-or-request-label">Method</InputLabel>
+          <FormControl hiddenLabel="true">
+            {/* <InputLabel id="post-or-request-label">Method</InputLabel> */}
             <Select
               labelId="post-or-request-label"
               id="post-or-request"

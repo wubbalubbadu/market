@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Box, Stack } from '@mui/material';
-import { setProducts } from '../redux/actions/productsActions';
+import { fetchProducts } from '../redux/thunk/product';
 import { getRequests } from '../redux/actions/requestsActions';
 import Postsection from './Postsection';
 import Sidebar from './Sidebar/Sidebar';
@@ -38,22 +38,8 @@ const SAMPLE_REQUESTS = [
 function HomeDisplay() {
   const products = useSelector((state) => state.productsReducer.products);
   const dispatch = useDispatch();
-  const fetchProducts = async () => {
-    const response = await axios
-      .get('http://localhost:5000/api/products')
-      .catch((err) => {
-        console.log(err);
-      });
-    dispatch(setProducts(response.data.products));
-
-    // dispatch({
-    //   type: 'SET_PRODUCTS', // type is required
-    //   payload: response.data.products
-    // })
-  };
-
   useEffect(() => {
-    fetchProducts();
+    dispatch(fetchProducts());
   }, []);
 
   const requests = useSelector((state) => state.requestsReducer.requests);

@@ -35,7 +35,7 @@ function Product({ product }) {
           alt={defaultImage.url}
         />
       )}
-      <Typography fontSize={18}>
+      <Typography fontSize={18} textTransform="capitalize">
         {' '}
         {product.title}
         {' '}
