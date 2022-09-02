@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, styled } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, styled, Grid, CircularProgress } from '@mui/material';
 import Product from './Product';
 
 // this styled div should also take care of grid styling
@@ -17,11 +18,16 @@ const Wrapperstyle = styled('div')({
 function ProductList(props) {
   const { products } = props; // deconstruction
   // console.log("print products", products);
+  const loading = useSelector((state) => state.productsReducer.products.loading);
 
   return (
     <Wrapperstyle>
-      {/* map each of the product into a Product component */}
-      {products.map((product, i) => <Product product={product} key={i} />)}
+      <Grid
+        container
+        justifyContent={loading ? 'center' : 'flex-start'}
+      >
+        {loading ? <CircularProgress /> : products.map((product, i) => <Product product={product} key={i} />)}
+      </Grid>
     </Wrapperstyle>
   );
 }

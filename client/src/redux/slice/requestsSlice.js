@@ -6,63 +6,48 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  products: [],
+  requests: [],
   loading: false,
-  filter: {
-    'title[regex]': null,
-    category: null,
-    sort: null,
-  },
-  dialogMessage: '',
 };
 
 // for every async func in redux/thunk
 // define 3 stages: 'pending', 'fulfilled', 'rejected' to indicate stage of api / func
 // useful for ui loading (the circular progress thing)
 // & / error dialog (when server / func fails & we need to show users message)
-
 const slice = createSlice({
-  name: 'productslice',
+  name: 'requestsslice',
   initialState,
   reducers: {
-    createProductPending(state) {
+    createRequestPending(state) {
       state.loading = true;
     },
-    createProductFulfilled(state, action) {
+    createRequestFulfilled(state, action) {
       state.loading = false;
-      state.products = [...state.products, action.payload];
+      state.requests = [...state.requests, action.payload];
     },
-    createProductRejected(state) {
+    createRequestRejected(state) {
       state.loading = false;
     },
-    fetchProductsPending(state) {
+    fetchRequestsPending(state) {
       state.loading = true;
     },
-    fetchProductsFulfilled(state, action) {
+    fetchRequestsFulfilled(state, action) {
       state.loading = false;
-      state.products = action.payload;
+      state.requests = action.payload;
     },
-    fetchProductsRejected(state, action) {
+    fetchRequestsRejected(state) {
       state.loading = false;
-      state.dialogMessage = action.payload;
-    },
-    updateFilter(state, action) {
-      // console.log(action.payload);
-      for (const key in action.payload) {
-        state.filter[key] = action.payload[key];
-      }
     },
   },
 });
 
 export const {
-  createProductFulfilled,
-  createProductPending,
-  createProductRejected,
-  fetchProductsPending,
-  fetchProductsFulfilled,
-  fetchProductsRejected,
-  updateFilter,
+  createRequestPending,
+  createRequestFulfilled,
+  createRequestRejected,
+  fetchRequestsPending,
+  fetchRequestsFulfilled,
+  fetchRequestsRejected,
 } = slice.actions;
 // slice turns all the functions you defined in reducers into action!
 

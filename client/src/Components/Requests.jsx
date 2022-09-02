@@ -5,7 +5,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { createRequest } from '../redux/actions/requestsActions';
+import { createRequest } from '../redux/thunk/request';
 import { getCategories } from '../redux/actions/categoryActions';
 import Request from './Request';
 import { Button } from '../themes/Button';

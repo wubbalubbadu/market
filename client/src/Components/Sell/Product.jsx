@@ -35,7 +35,7 @@ function Product({ product }) {
           alt={defaultImage.url}
         />
       )}
-      <Typography fontSize={18} textTransform="capitalize">
+      <Typography fontSize={18} textTransform="capitalize" textOverflow="ellipsis" noWrap="true">
         {' '}
         {product.title}
         {' '}
@@ -69,4 +69,5 @@ const itemstyle = {
   '&:hover': {
     cursor: 'pointer',
   },
+  textOverflow: 'ellipsis',
 };
