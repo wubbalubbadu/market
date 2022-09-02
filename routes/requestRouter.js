@@ -1,7 +1,5 @@
 const router = require('express').Router()
 const requestCtrl = require('../controllers/requestCtrl')
-const auth = require('../middleware/auth')
-const authAdmin = require('../middleware/authAdmin')
 
 
 router.route('/requests')
@@ -10,7 +8,10 @@ router.route('/requests')
 
 
 router.route('/requests/:id')
-    .delete(auth, requestCtrl.deleteRequest)
-    .put(auth, requestCtrl.updateRequest)
+    .delete(requestCtrl.deleteRequest)
+    .put(requestCtrl.updateRequest)
+
+router.route('/requests/num')
+    .get(requestCtrl.getNumRequests)
 
 module.exports = router
