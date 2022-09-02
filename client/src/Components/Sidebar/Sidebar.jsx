@@ -74,7 +74,7 @@ function Sidebar() {
           marginTop: 5,
         }}
         onClick={async () => {
-          dispatch(fetchProducts());
+          dispatch(fetchProducts({ category: null }));
         }}
       >
         ALL CATEGORIES
@@ -94,7 +94,7 @@ function Sidebar() {
             },
           }}
           onClick={async () => {
-            dispatch(fetchProducts({ category: value[1] }));
+            dispatch(fetchProducts({ category: value[0] }));
           }}
         >
           {value[0]}

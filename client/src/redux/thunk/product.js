@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected } from '../slice/productsSlice';
+import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected, updateFilter } from '../slice/productsSlice';
 
 // use thunk in redux to separate fetching api from actual UI, similar to middleware
 // aka moving the asyc request & logic outside of UI ->
@@ -18,18 +18,27 @@ export const createProduct = (product) => async (dispatch) => {
   }
 };
 
-export const fetchProducts = (filter) => async (dispatch) => {
+export const fetchProducts = (filter) => async (dispatch, getState) => {
+  dispatch(updateFilter(filter));
+  const state = getState();
+  const newFilter = state.productsReducer.filter;
+
+  const filterparams = {};
+  for (const key in newFilter) {
+    if (newFilter[key] !== null && newFilter[key] !== '') {
+      filterparams[key] = newFilter[key];
+    }
+  }
+
+  // console.log('filterparams', filterparams);
+
   dispatch(fetchProductsPending());
   try {
-    let response;
-
-    if (filter?.title) {
-      response = await axios.get(`http://localhost:5000/api/products?title[regex]=${filter.title}`);
-    } else if (filter?.category) {
-      response = await axios.get(`http://localhost:5000/api/products?category=${filter.category}`);
-    } else {
-      response = await axios.get('http://localhost:5000/api/products');
-    }
+    const response = await axios.get('http://localhost:5000/api/products', {
+      params: {
+        ...filterparams,
+      },
+    });
     dispatch(fetchProductsFulfilled(response.data.products));
   } catch (error) {
     dispatch(fetchProductsRejected());

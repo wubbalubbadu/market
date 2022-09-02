@@ -8,6 +8,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   products: [],
   loading: false,
+  filter: {
+    'title[regex]': null,
+    category: null,
+    sort: null,
+  },
+  dialogMessage: '',
 };
 
 // for every async func in redux/thunk
@@ -36,8 +42,15 @@ const slice = createSlice({
       state.loading = false;
       state.products = action.payload;
     },
-    fetchProductsRejected(state) {
+    fetchProductsRejected(state, action) {
       state.loading = false;
+      state.dialogMessage = action.payload;
+    },
+    updateFilter(state, action) {
+      // console.log(action.payload);
+      for (const key in action.payload) {
+        state.filter[key] = action.payload[key];
+      }
     },
   },
 });
@@ -49,6 +62,7 @@ export const {
   fetchProductsPending,
   fetchProductsFulfilled,
   fetchProductsRejected,
+  updateFilter,
 } = slice.actions;
 // slice turns all the functions you defined in reducers into action!
 

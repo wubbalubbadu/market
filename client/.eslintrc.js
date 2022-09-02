@@ -45,5 +45,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'eol-last': 'off',
     'no-param-reassign': 'off',
+    'guard-for-in': 'off',
+    'no-restricted-syntax': 'off',
   },
 };

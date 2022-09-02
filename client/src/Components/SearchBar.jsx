@@ -12,14 +12,18 @@ function SearchBar() {
   const dispatch = useDispatch();
 
   const fetchbytitle = () => {
-    dispatch(fetchProducts({ title: query }));
+    dispatch(fetchProducts({ 'title[regex]': query }));
+    // dispatch(fetchProducts({ title: query }));
+    // // console.log(`tried to fetch by title with ${query}`);
+    setQuery('');
   };
   const keyDownHandler = (event) => {
     if (event.key === 'Enter') {
       // console.log('User pressed: ', event.key);
       event.preventDefault();
       // call submit function here
-      dispatch(fetchProducts({ title: query }));
+      dispatch(fetchProducts({ 'title[regex]': query }));
+      setQuery('');
     }
   };
 
