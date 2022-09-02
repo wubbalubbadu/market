@@ -42,7 +42,7 @@ function Sidebar() {
         {' '}
         SORT BY
       </Typography>
-      {sortby.map((sorttype, i) => (
+      {Object.keys(sortby).map((sorttype, i) => (
         <Typography
           key={i}
           sx={{
@@ -55,10 +55,13 @@ function Sidebar() {
               cursor: 'pointer',
             },
           }}
+          onClick={async () => {
+            const apicall = sortby[sorttype];
+            dispatch(fetchProducts({ sort: apicall }));
+            // dispatch(fetchProducts({ sort: apicall }));
+          }}
         >
-          {' '}
           {sorttype}
-          {' '}
         </Typography>
       ))}
 
@@ -106,9 +109,9 @@ function Sidebar() {
 
 export default Sidebar;
 
-const sortby = [
-  'Price: Low to High',
-  'Price: High to Low',
-  'Latest Post',
-  'Earliest Post',
-];
+const sortby = {
+  'Price: Low to High': 'price',
+  'Price: High to Low': '-price',
+  'Latest Post': '',
+  'Earliest Post': '',
+};
