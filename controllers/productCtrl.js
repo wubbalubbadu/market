@@ -47,18 +47,32 @@ class APIfeatures {
 
 const productCtrl = {
     getProducts: async (req, res) => {
-        console.log(req)
         try {
             const features = new APIfeatures(Products.find(), req.query)
                 .filtering().sorting().paginating()
 
             const products = await features.query
 
-
             res.json({
                 status: 'success',
                 result: products.length,
                 products: products
+            })
+
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
+    getNumProducts: async (req, res) => {
+        try {
+            const features = new APIfeatures(Products.find(), req.query)
+                .filtering()
+
+            const products = await features.query
+
+            res.json({
+                status: 'success',
+                result: products.length,
             })
 
         } catch (err) {

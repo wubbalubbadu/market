@@ -64,6 +64,22 @@ const requestCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    getNumRequests: async (req, res) => {
+        try {
+            const features = new APIfeatures(Requests.find(), req.query)
+                .filtering()
+
+            const requests = await features.query
+
+            res.json({
+                status: 'success',
+                result: requests.length,
+            })
+
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
     createRequest: async(req, res) =>{
         try {
             const {title, description, category, googleId, low_price, high_price} = req.body;
