@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import { Button } from '../themes/Button';
 
 import { fetchProducts } from '../redux/thunk/product';
