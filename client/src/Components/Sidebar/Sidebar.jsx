@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material';
 // import { setProducts } from '../../redux/actions/productsActions';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { fetchProducts } from '../../redux/thunk/product';
+import { fetchRequests } from '../../redux/thunk/request';
 
 // http://localhost:5000/api/products?category=Furniture
 
@@ -24,6 +25,8 @@ function Sidebar() {
     categoriesList[i] = [item.name, display];
   });
   categoriesList.sort();
+
+  const currTab = useSelector((state) => state.tabReducer.tab);
 
   return (
     <Box
@@ -57,7 +60,12 @@ function Sidebar() {
           }}
           onClick={async () => {
             const apicall = sortby[sorttype];
-            dispatch(fetchProducts({ sort: apicall }));
+            if (currTab === 0) {
+              dispatch(fetchProducts({ sort: apicall }));
+            } else {
+              dispatch(fetchRequests({ sort: apicall }));
+            }
+            // dispatch(fetchProducts({ sort: apicall }));
             // dispatch(fetchProducts({ sort: apicall }));
           }}
         >
@@ -77,7 +85,12 @@ function Sidebar() {
           marginTop: 5,
         }}
         onClick={async () => {
-          dispatch(fetchProducts({ category: null }));
+          if (currTab === 0) {
+            dispatch(fetchProducts({ category: null }));
+          } else {
+            dispatch(fetchRequests({ category: null }));
+          }
+          // dispatch(fetchProducts({ category: null }));
         }}
       >
         ALL CATEGORIES
@@ -97,7 +110,12 @@ function Sidebar() {
             },
           }}
           onClick={async () => {
-            dispatch(fetchProducts({ category: value[0] }));
+            if (currTab === 0) {
+              dispatch(fetchProducts({ category: value[0] }));
+            } else {
+              dispatch(fetchRequests({ category: value[0] }));
+            }
+            // dispatch(fetchProducts({ category: value[0] }));
           }}
         >
           {value[0]}

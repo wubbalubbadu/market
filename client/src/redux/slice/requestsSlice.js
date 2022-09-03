@@ -8,6 +8,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   requests: [],
   loading: false,
+  filter: {
+    'title[regex]': null,
+    category: null,
+    sort: null,
+  },
+  dialogMessage: '',
 };
 
 // for every async func in redux/thunk
@@ -38,6 +44,12 @@ const slice = createSlice({
     fetchRequestsRejected(state) {
       state.loading = false;
     },
+    updateRequestFilter(state, action) {
+      // console.log(action.payload);
+      for (const key in action.payload) {
+        state.filter[key] = action.payload[key];
+      }
+    },
   },
 });
 
@@ -48,6 +60,7 @@ export const {
   fetchRequestsPending,
   fetchRequestsFulfilled,
   fetchRequestsRejected,
+  updateRequestFilter,
 } = slice.actions;
 // slice turns all the functions you defined in reducers into action!
 
