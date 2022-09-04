@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
+import { defaultImage } from '../constants/homepage';
 import ProductModal from '../common/ProductModal';
 
 function Product({ product }) {
@@ -10,14 +11,16 @@ function Product({ product }) {
     e.stopPropagation();
     setOpen(false);
   };
-  const defaultImage = {
-    public_id: 'test/uvncoj2yarsodblc9d5f',
-    url: 'https://res.cloudinary.com/dtoiffmee/image/upload/v1661676677/test/uvncoj2yarsodblc9d5f.png',
-  };
+
+  // console.log(product);
+  // console.log(product.images[0].url);
+  // e = event
+  // prevent dubbed bubbling
+  // Modal to be close at default
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      {product.images[0].url ? (
+      {product.images && typeof product.images[0].url !== 'undefined' ? (
         <img
           src={product.images[0].url}
           width={220}
@@ -32,7 +35,7 @@ function Product({ product }) {
           alt={defaultImage.url}
         />
       )}
-      <Typography fontSize={18}>
+      <Typography fontSize={18} textTransform="capitalize" textOverflow="ellipsis" noWrap="true">
         {' '}
         {product.title}
         {' '}
@@ -66,4 +69,5 @@ const itemstyle = {
   '&:hover': {
     cursor: 'pointer',
   },
+  textOverflow: 'ellipsis',
 };

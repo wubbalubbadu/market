@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import AddIcon from '@mui/icons-material/Add';
-import { createProduct } from '../redux/actions/productsActions';
+import { createProduct } from '../redux/thunk/product';
 import { getCategories } from '../redux/actions/categoryActions';
 import Listing from './Listing';
 import { Button } from '../themes/Button';
@@ -108,7 +108,7 @@ function Listings() {
           </div>
           <Button
             sx={{
-              width: 150, margin: '20px', '&:hover': { color: 'red', cursor: 'pointer' },
+              width: 150, margin: '20px', '&:hover': { color: '#F5EE9E', cursor: 'pointer' },
             }}
             variant="contained"
             type="submit"

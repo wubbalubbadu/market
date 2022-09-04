@@ -6,13 +6,19 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-import { SAMPLEIMAGES } from '../constants/homepage';
+import { defaultImage } from '../constants/homepage';
 import { Button } from '../../themes/Button';
 import { addToLoves } from '../../redux/actions/lovesActions';
 
 function ProductModal({ open, onClose, product }) {
-  const [SelectedImg, setSelectedImg] = useState(SAMPLEIMAGES[0]);
+  // console.log(product);
+  const imgsarray = product.images;
+  const imagesurl = imgsarray.map((image) => image.url);
+  // console.log(imagesurl);
+  const [SelectedImg, setSelectedImg] = useState(
+    typeof imagesurl[0] !== 'undefined' ? (
+      imagesurl[0]) : (defaultImage.url),
+  );
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -66,24 +72,28 @@ function ProductModal({ open, onClose, product }) {
           <Grid item lg={6} xs={12} sx={{ bgcolor: 'white' }}>
             <Imagediv>
               <ImgsContainer>
-                {SAMPLEIMAGES.map((img, index) => (
-                  <ImgListContainer key={index}>
-                    <img
-                      src={img}
-                      alt="alt1"
-                      onClick={() => setSelectedImg(img)}
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                        objectFit: 'cover',
-                        borderRadius: '10px',
-                        margin: '5px',
-                        marginTop: '13px',
-                        padding: '5px',
-                        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 20px',
-                      }}
-                    />
-                  </ImgListContainer>
+                {imagesurl.map((img, index) => (
+                  typeof img !== 'undefined' ? (
+                    <ImgListContainer key={index}>
+                      <img
+                        src={img}
+                        alt="alt1"
+                        onClick={() => setSelectedImg(img)}
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                          objectFit: 'contain',
+                          borderRadius: '10px',
+                          margin: '5px',
+                          marginTop: '13px',
+                          padding: '5px',
+                          boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 20px',
+                        }}
+                      />
+                    </ImgListContainer>
+                  ) : (
+                    null
+                  )
                 ))}
               </ImgsContainer>
               <MainPhotoContainer>
@@ -95,7 +105,7 @@ function ProductModal({ open, onClose, product }) {
                     height: '400px',
                     margin: '20px',
                     borderRadius: '5px',
-                    objectFit: 'cover',
+                    objectFit: 'contain',
                     minWidth: '400px',
                     boxShadow:
                       'rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset',

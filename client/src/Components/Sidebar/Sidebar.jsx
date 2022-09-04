@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
-import { setProducts } from '../../redux/actions/productsActions';
+// import { setProducts } from '../../redux/actions/productsActions';
 import { getCategories } from '../../redux/actions/categoryActions';
+import { fetchProducts } from '../../redux/thunk/product';
 
 // http://localhost:5000/api/products?category=Furniture
 
@@ -41,7 +42,7 @@ function Sidebar() {
         {' '}
         SORT BY
       </Typography>
-      {sortby.map((sorttype, i) => (
+      {Object.keys(sortby).map((sorttype, i) => (
         <Typography
           key={i}
           sx={{
@@ -54,10 +55,13 @@ function Sidebar() {
               cursor: 'pointer',
             },
           }}
+          onClick={async () => {
+            const apicall = sortby[sorttype];
+            dispatch(fetchProducts({ sort: apicall }));
+            // dispatch(fetchProducts({ sort: apicall }));
+          }}
         >
-          {' '}
           {sorttype}
-          {' '}
         </Typography>
       ))}
 
@@ -73,12 +77,7 @@ function Sidebar() {
           marginTop: 5,
         }}
         onClick={async () => {
-          const response = await axios
-            .get('http://localhost:5000/api/products')
-            .catch((err) => {
-              console.log(err);
-            });
-          dispatch(setProducts(response.data.products));
+          dispatch(fetchProducts({ category: null }));
         }}
       >
         ALL CATEGORIES
@@ -98,10 +97,7 @@ function Sidebar() {
             },
           }}
           onClick={async () => {
-            const response = await axios.get(
-              `http://localhost:5000/api/products?category=${value[1]}`,
-            );
-            dispatch(setProducts(response.data.products));
+            dispatch(fetchProducts({ category: value[0] }));
           }}
         >
           {value[0]}
@@ -113,9 +109,9 @@ function Sidebar() {
 
 export default Sidebar;
 
-const sortby = [
-  'Price: Low to High',
-  'Price: High to Low',
-  'Latest Post',
-  'Earliest Post',
-];
+const sortby = {
+  'Price: Low to High': 'price',
+  'Price: High to Low': '-price',
+  'Latest Post': '',
+  'Earliest Post': '',
+};

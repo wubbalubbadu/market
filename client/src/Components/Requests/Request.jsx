@@ -15,10 +15,18 @@ function Request({ request }) {
 
   return (
     <Box onClick={handleOpen} sx={itemstyle}>
-      <Typography fontSize={18}>
+      <Typography fontSize={20} textTransform="capitalize" fontWeight={850}>
         {request.title}
       </Typography>
+      <Typography marginTop={2}>
+        {request.description}
+      </Typography>
 
+      <Typography fontSize={20} fontWeight={850} marginBottom={4} marginTop={2}>
+        {request.low_price}
+        -
+        {request.high_price}
+      </Typography>
       <RequestModal
         open={open}
         onClose={handleClose}

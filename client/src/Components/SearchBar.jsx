@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
-
+import { Autocomplete, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import { Button } from '../themes/Button';
 
-import { setProducts } from '../redux/actions/productsActions';
+import { fetchProducts } from '../redux/thunk/product';
 
 function SearchBar() {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
-  const fetchbytitle = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/api/products?title[regex]=${query}`,
-    );
-    dispatch(setProducts(response.data.products));
-    // console.log('click submitsearch, keyword', query);
+  const fetchbytitle = () => {
+    dispatch(fetchProducts({ 'title[regex]': query }));
+    // dispatch(fetchProducts({ title: query }));
+    // // console.log(`tried to fetch by title with ${query}`);
+    setQuery('');
   };
-
-  const keyDownHandler = (event, query) => {
+  const keyDownHandler = (event) => {
     if (event.key === 'Enter') {
       // console.log('User pressed: ', event.key);
       event.preventDefault();
       // call submit function here
-      fetchbytitle();
+      dispatch(fetchProducts({ 'title[regex]': query }));
+      setQuery('');
     }
   };
 

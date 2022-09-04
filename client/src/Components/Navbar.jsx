@@ -8,12 +8,12 @@ import ChatIcon from '@mui/icons-material/Forum';
 import {
   IconButton,
   Typography,
-  Button,
   styled,
   Toolbar,
   AppBar,
   Box,
 } from '@mui/material';
+import { Button } from '../themes/Button';
 import Login from './Login';
 
 // contains searchbar and Post Request button
