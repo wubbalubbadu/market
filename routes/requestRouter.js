@@ -11,7 +11,4 @@ router.route('/requests/:id')
     .delete(requestCtrl.deleteRequest)
     .put(requestCtrl.updateRequest)
 
-router.route('/requests/num')
-    .get(requestCtrl.getNumRequests)
-
 module.exports = router

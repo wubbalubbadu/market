@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { SAMPLEIMAGES } from '../constants/homepage';
@@ -17,7 +17,6 @@ function ProductModal({ open, onClose, product }) {
   const [avatar, setAvatar] = useState('');
   const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const style = {
     position: 'sticky',
@@ -38,7 +37,6 @@ function ProductModal({ open, onClose, product }) {
   };
 
   const getUserInfo = async () => {
-    console.log(product);
     const response = await axios
       .get(`http://localhost:5000/user/userinfo?googleId=${product.googleId}`)
       .catch((err) => {
@@ -50,11 +48,11 @@ function ProductModal({ open, onClose, product }) {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [user]);
 
   const addToWatchingsSubmit = async (e) => {
     try {
-      dispatch(addToLoves({ productId: product._id, googleId: user?.result?.googleId }));
+      dispatch(addToLoves({ productId: product._id, googleId: user.result.googleId }));
       alert('success');
     } catch (err) {
       console.log(err);

@@ -10,7 +10,6 @@ class APIfeatures {
     filtering(){
         
        const queryObj = {...this.queryString} //queryString = req.query
-       console.log(queryObj)
        const excludedFields = ['page', 'sort', 'limit']
        excludedFields.forEach(el => delete(queryObj[el]))
        
@@ -53,31 +52,18 @@ const requestCtrl = {
             .filtering().sorting().paginating()
 
             const requests = await features.query
-
+            const all_features = new APIfeatures(Requests.find(), req.query)
+                .filtering().sorting()
+            const num_all = await all_features.query.countDocuments()
             res.json({
                 status: 'success',
                 result: requests.length,
+                numAll: num_all,
                 requests: requests
             })
             
         } catch (err) {
             return res.status(500).json({msg: err.message})
-        }
-    },
-    getNumRequests: async (req, res) => {
-        try {
-            const features = new APIfeatures(Requests.find(), req.query)
-                .filtering()
-
-            const requests = await features.query
-
-            res.json({
-                status: 'success',
-                result: requests.length,
-            })
-
-        } catch (err) {
-            return res.status(500).json({ msg: err.message })
         }
     },
     createRequest: async(req, res) =>{

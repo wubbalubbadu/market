@@ -18,7 +18,7 @@ function PostRequest() {
     setMethod(event.target.value);
   };
 
-  if (!user?.result?.name) {
+  if (!user.result.name) {
     setTimeout(() => {
       navigate('/');
     }, 1000);

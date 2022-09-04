@@ -50,29 +50,17 @@ const productCtrl = {
         try {
             const features = new APIfeatures(Products.find(), req.query)
                 .filtering().sorting().paginating()
-
             const products = await features.query
 
+            const all_features = new APIfeatures(Products.find(), req.query)
+                .filtering().sorting()
+
+            const num_all = await all_features.query.countDocuments()
             res.json({
                 status: 'success',
                 result: products.length,
+                numAll: num_all,
                 products: products
-            })
-
-        } catch (err) {
-            return res.status(500).json({ msg: err.message })
-        }
-    },
-    getNumProducts: async (req, res) => {
-        try {
-            const features = new APIfeatures(Products.find(), req.query)
-                .filtering()
-
-            const products = await features.query
-
-            res.json({
-                status: 'success',
-                result: products.length,
             })
 
         } catch (err) {
