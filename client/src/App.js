@@ -5,7 +5,6 @@ import Home from './Pages/Home';
 import PostRequest from './Pages/PostRequest';
 import Account from './Pages/Account';
 import Message from './Pages/Message';
-
 import Loves from './Pages/Loves';
 
 function App() {
@@ -24,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post_request_items" element={<PostRequest />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/watchings" element={<Loves />} />
         <Route path="/message" element={<Message />} />
 
       </Routes>

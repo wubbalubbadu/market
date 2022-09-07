@@ -101,7 +101,17 @@ const productCtrl = {
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
-    }
+    },
+    checkProduct: async (req, res) => {
+        try {
+            await Products.findOneAndUpdate({ _id: req.params.id }, {
+                checked: true,
+            })
+            res.json({ msg: "Checked a Product" })
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
 }
 
 

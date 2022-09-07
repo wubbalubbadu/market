@@ -65,7 +65,7 @@ function Navbar() {
           ) : (
             <Login />
           )}
-          <IconButton component={Link} to="/loves">
+          <IconButton component={Link} to="/watchings">
             <FavoriteIcon style={{ color: 'black' }} />
           </IconButton>
 

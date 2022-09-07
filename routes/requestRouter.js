@@ -11,4 +11,6 @@ router.route('/requests/:id')
     .delete(requestCtrl.deleteRequest)
     .put(requestCtrl.updateRequest)
 
+router.route('/requests/checked/:id')
+    .put(requestCtrl.checkRequest)
 module.exports = router

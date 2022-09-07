@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import axios from 'axios';
-import ProductList from '../Sell/ProductList';
+import ProductListAccount from '../Sell/ProductListAccount';
 
 function MyListings({ googleId }) {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,7 @@ function MyListings({ googleId }) {
     <Box>
       <Typography>Click on each listing to update, edit, or delete posts</Typography>
       <div>
-        <ProductList products={products} />
+        <ProductListAccount products={products} />
       </div>
     </Box>
   );

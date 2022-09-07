@@ -101,7 +101,17 @@ const requestCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }
+    },
+    checkRequest: async (req, res) => {
+        try {
+            await Requests.findOneAndUpdate({ _id: req.params.id }, {
+                checked: true,
+            })
+            res.json({ msg: "Checked a Request" })
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
 }
 
 

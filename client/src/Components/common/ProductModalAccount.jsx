@@ -10,7 +10,7 @@ import { defaultImage } from '../constants/homepage';
 import { Button } from '../../themes/Button';
 import { addToLoves } from '../../redux/actions/lovesActions';
 
-function ProductModal({ open, onClose, product }) {
+function ProductModalAccount({ open, onClose, product }) {
   // console.log(product);
   const imgsarray = product.images;
   const imagesurl = imgsarray.map((image) => image.url);
@@ -150,7 +150,7 @@ function ProductModal({ open, onClose, product }) {
                   <Grid item lg={6} xs={12}>
                     <Button sx={buttonstyle} component={Link} to="/message">
                       <Typography sx={{ fontFamily: 'Oswald' }}>
-                        Contact Seller
+                        Edit my listing
                       </Typography>
                     </Button>
                   </Grid>
@@ -162,7 +162,7 @@ function ProductModal({ open, onClose, product }) {
                       }}
                     >
                       <Typography sx={{ fontFamily: 'Oswald' }}>
-                        Add to Watchings
+                        Delete my listing
                       </Typography>
                     </Button>
                   </Grid>
@@ -199,7 +199,7 @@ function ProductModal({ open, onClose, product }) {
   );
 }
 
-export default ProductModal;
+export default ProductModalAccount;
 
 const PDheadingDiv = {
   width: 450,
