@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../themes/Button';
 
 import { fetchProducts } from '../redux/thunk/product';
+import { fetchRequests } from '../redux/thunk/request';
 
 function SearchBar() {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+  const currTab = useSelector((state) => state.tabReducer.tab);
 
   const fetchbytitle = () => {
-    dispatch(fetchProducts({ 'title[regex]': query }));
+    if (currTab === 0) {
+      dispatch(fetchProducts({ 'title[regex]': query }));
+    } else {
+      dispatch(fetchRequests({ 'title[regex]': query }));
+    }
+    // dispatch(fetchProducts({ 'title[regex]': query }));
     // dispatch(fetchProducts({ title: query }));
     // // console.log(`tried to fetch by title with ${query}`);
     setQuery('');
@@ -22,7 +29,12 @@ function SearchBar() {
       // console.log('User pressed: ', event.key);
       event.preventDefault();
       // call submit function here
-      dispatch(fetchProducts({ 'title[regex]': query }));
+      if (currTab === 0) {
+        dispatch(fetchProducts({ 'title[regex]': query }));
+      } else {
+        dispatch(fetchRequests({ 'title[regex]': query }));
+      }
+      // dispatch(fetchProducts({ 'title[regex]': query }));
       setQuery('');
     }
   };
