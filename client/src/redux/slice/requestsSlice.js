@@ -14,6 +14,7 @@ const initialState = {
     sort: null,
   },
   dialogMessage: '',
+  totalPage: 0,
 };
 
 // for every async func in redux/thunk
@@ -40,6 +41,7 @@ const slice = createSlice({
     fetchRequestsFulfilled(state, action) {
       state.loading = false;
       state.requests = action.payload;
+      state.totalPage = action.payload.numAll ? Math.ceil(action.payload.numAll / 10) : 1;
     },
     fetchRequestsRejected(state) {
       state.loading = false;
