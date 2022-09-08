@@ -57,7 +57,10 @@ export const fetchRequests = (filter) => async (dispatch, getState) => {
         ...filterparams,
       },
     });
-    dispatch(fetchRequestsFulfilled(response.data.requests));
+    dispatch(fetchRequestsFulfilled({
+      requests: response.data.requests,
+      numAll: response.data.numAll,
+    }));
   } catch (error) {
     dispatch(fetchRequestsRejected());
   }

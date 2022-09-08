@@ -39,8 +39,10 @@ export const fetchProducts = (filter) => async (dispatch, getState) => {
         ...filterparams,
       },
     });
-    // dispatch(fetchProductsFulfilled(response.data.products));
-    dispatch(fetchProductsFulfilled({ products: response.data.products, numAll: response.data.numAll }));
+    dispatch(fetchProductsFulfilled({
+      products: response.data.products,
+      numAll: response.data.numAll,
+    }));
   } catch (error) {
     dispatch(fetchProductsRejected());
   }
