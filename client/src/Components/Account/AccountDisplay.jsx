@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography, Grid } from '@mui/material';
 import axios from 'axios';
 import styled from 'styled-components';
 import Navbar from '../Navbar';
@@ -44,8 +44,8 @@ function AccountDisplay({ method, handleClick }) {
           <Stack flexDirection="row" justifyContent="space-between" spacing={0}>
             <AccountSidebar handleClick={handleClick} />
             <MainDiv>
-              <Box sx={{ border: 1, borderColor: 'black', borderRadius: '16px', width: '100%', height: '700px' }}>
-                <Typography>{method.toUpperCase()}</Typography>
+              <Box sx={{ border: 1, borderColor: 'black', borderRadius: '16px', width: '95%', height: '700px', paddingLeft: '28px', paddingTop: '28px' }}>
+                <Typography fontFamily="Oswald" fontSize={22} fontWeight="500">{method.toUpperCase()}</Typography>
                 {method === 'My Details' && <MyDetails name={name} avatar={avatar} />}
                 {method === 'My Listings' && <MyListings googleId={googleId} />}
                 {method === 'My Requests' && <MyRequests googleId={googleId} />}
@@ -66,22 +66,22 @@ const MainDiv = styled.div`
   border-radius: 5px;
   max-height: 80%;
   flex: 2;
-  padding: 2%;
-  padding-right: 0.5%;
+  margin-right: 20px;
+  margin-left: 10px;
 `;
 
 function AccountHeader({ name }) {
   return (
-    <div>
-      <Typography>
+    <Grid marginBottom={5} paddingLeft={2}>
+      <Typography fontFamily="Oswald" fontSize={22} fontWeight={500}>
         HELLO
-        {' '}
+        &nbsp;
         {name.toUpperCase()}
       </Typography>
-      <Typography>
+      <Typography fontFamily="Oswald" fontSize={22} fontWeight={500}>
         This is your ACCOUNT!
       </Typography>
-    </div>
+    </Grid>
   );
 }
 export default AccountDisplay;

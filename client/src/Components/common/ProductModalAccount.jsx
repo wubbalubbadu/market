@@ -48,7 +48,7 @@ function ProductModalAccount({ open, onClose, product }) {
       .catch((err) => {
         console.log(err);
       });
-    console.log(response);
+    // console.log(response);
     setName(response.data.name);
     setAvatar(response.data.avatar);
   };
