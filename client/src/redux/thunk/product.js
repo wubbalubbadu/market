@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected, updateFilter } from '../slice/productsSlice';
+import { createProductFulfilled, createProductPending, createProductRejected, fetchProductsFulfilled, fetchProductsPending, fetchProductsRejected, updateProductFilter } from '../slice/productsSlice';
 
 // use thunk in redux to separate fetching api from actual UI, similar to middleware
 // aka moving the asyc request & logic outside of UI ->
@@ -19,7 +19,7 @@ export const createProduct = (product) => async (dispatch) => {
 };
 
 export const fetchProducts = (filter) => async (dispatch, getState) => {
-  dispatch(updateFilter(filter));
+  dispatch(updateProductFilter(filter));
   const state = getState();
   const newFilter = state.productsReducer.filter;
 

@@ -46,7 +46,7 @@ const slice = createSlice({
       state.loading = false;
       state.dialogMessage = action.payload;
     },
-    updateFilter(state, action) {
+    updateProductFilter(state, action) {
       // console.log(action.payload);
       for (const key in action.payload) {
         state.filter[key] = action.payload[key];
@@ -62,7 +62,7 @@ export const {
   fetchProductsPending,
   fetchProductsFulfilled,
   fetchProductsRejected,
-  updateFilter,
+  updateProductFilter,
 } = slice.actions;
 // slice turns all the functions you defined in reducers into action!
 
