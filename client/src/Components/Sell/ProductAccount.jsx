@@ -65,25 +65,24 @@ function ProductAccount({ product }) {
         {product.title}
         {' '}
       </Typography>
-      <Stack direction="row" justifyContent="space-between" spacing={2}>
-        <Typography fontSize={22}>
-          {' '}
-          $
-          {product.price}
-        </Typography>
-        <Typography
-          sx={{
-            '&:hover': {
-              color: 'blue',
-              cursor: 'pointer',
-            },
-          }}
-          onClick={handleOpenFulfilled}
-        >
-          Fullfilled? ✔️
-        </Typography>
-        <Popup openFulfilled={openFulfilled} handleCloseFulfilled={handleCloseFulfilled} handleFulfillListing={handleFulfillListing} />
-      </Stack>
+      <Typography fontSize={22}>
+        {' '}
+        $
+        {product.price}
+      </Typography>
+      <Typography
+        align="right"
+        sx={{
+          '&:hover': {
+            color: 'blue',
+            cursor: 'pointer',
+          },
+        }}
+        onClick={handleOpenFulfilled}
+      >
+        Sold? ✔️
+      </Typography>
+      <Popup openFulfilled={openFulfilled} handleCloseFulfilled={handleCloseFulfilled} handleFulfillListing={handleFulfillListing} />
       <ProductModalAccount
         open={open}
         onClose={handleClose}

@@ -21,10 +21,8 @@ function MyListings({ googleId }) {
 
   return (
     <Box>
-      <Typography>Click on each listing to update, edit, or delete posts</Typography>
-      <div>
-        <ProductListAccount products={products} />
-      </div>
+      <Typography marginBottom={0}>Click on each listing to update, edit, or delete posts</Typography>
+      <ProductListAccount products={products} />
     </Box>
   );
 }

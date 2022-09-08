@@ -7,12 +7,10 @@ import ProductAccount from './ProductAccount';
 // to make each card responsive to screen sizes
 const Wrapperstyle = styled('div')({
   backgroundColor: 'white',
-  padding: 1,
   display: 'flex',
   flexWrap: 'wrap',
   alignContent: 'flex-start',
   marginRight: 0,
-  paddingRight: 0.25,
 });
 
 function ProductListAccount(props) {
